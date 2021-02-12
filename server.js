@@ -7,7 +7,6 @@ require("dotenv").config();
 
 app.use("/", express.static(path.join(__dirname, "client/build")));
 
-edit
 
 app.listen(port, () => {
     console.log(`Listening on port: ${port}.`);

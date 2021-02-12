@@ -4,7 +4,9 @@
   "description": "Fantasy Stock Trading Application",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1", 
+    "client": "npm run watch --prefix client", 
+    "dev": "concurrently \"nodemon sever.js\" \"npm run client\""
   },
   "author": "Dan Murphy",
   "license": "ISC",

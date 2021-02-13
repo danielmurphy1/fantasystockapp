@@ -6,6 +6,8 @@ const axios = require("axios");
 require("dotenv").config();
 
 app.use("/", express.static(path.join(__dirname, "client/build")));
+app.use("/trade", express.static(path.join(__dirname, "client/build")));
+app.use("/portfolio", express.static(path.join(__dirname, "client/build")));
 
 
 app.listen(port, () => {

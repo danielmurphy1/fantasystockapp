@@ -1,10 +1,11 @@
 import React from 'react';
+import Container from 'react-bootstrap/Container';
 
-function Home () {
+function Home() {
     return(
-        <div>
-            <h1>Test</h1>
-        </div>
+        <Container>
+            <h1>This is the Home Page</h1>
+        </Container>
     )
 }
 

@@ -2,6 +2,19 @@
   text-align: center;
 }
 
+.welcome-container {
+  background-color: aqua; 
+  border-radius: 20px;
+}
+
+.form-container{
+  width: 400px !important;
+}
+
+.form-paragraph{
+  display: inline-block;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

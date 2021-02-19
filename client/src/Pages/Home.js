@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Jumbotron } from 'react-bootstrap';
 import { Container, Form, Button } from 'react-bootstrap';
+import LogInForm from '../Components/LogInForm';
+import SignUpForm from '../Components/SignUpForm';
 
 function Home() {
+    const [ isRegistered, setIsRegistered ] = useState(true);
+
+    function toggleIsRegistered(event) {
+        event.preventDefault();
+        setIsRegistered(prevState => !prevState);
+        console.log(isRegistered)
+    };
+
+    function FormSwitch() {
+        if (isRegistered) {
+            return <LogInForm isRegistered={toggleIsRegistered}/>
+         } else {
+            return <SignUpForm isRegistered={toggleIsRegistered}/>
+         }
+    }
+
     return (
         <Container>
             <Container className="App welcome-container">
@@ -17,22 +35,9 @@ function Home() {
                     culpa qui officia deserunt mollit anim id est laborum."
                 </p>
             </Container>
-            <Container className="form-container">
-                <Form>
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Control type="email" placeholder="Enter email" />
-                    </Form.Group>
-
-                    <Form.Group controlId="formBasicPassword">
-                        <Form.Control type="password" placeholder="Password" />
-                    </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Login
-                    </Button>
-                    <p className="form-paragraph ml-5">Not registered yet? Register <a href="">Here</a></p>
-                </Form>
-            </Container>
+            <FormSwitch />
         </Container>
+        
     );
 }
 

@@ -1,0 +1,7 @@
+.card-header{
+    background-color: white !important;
+}
+
+.card-body, p{
+    font-size: 2rem;
+}

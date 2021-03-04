@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Container, Image } from 'react-bootstrap';
 import SearchForm from '../Components/SearchForm';
 import SearchResultCard from '../Components/SearchResultCard';
+import CurrentHoldingsCard from '../Components/CurrentHoldingsCard';
 import puppy from '../images/place-holder-line-graph.jpg';
 
 
@@ -25,15 +26,14 @@ function Trade() {
     if(showResultCard){
         resultCard = <SearchResultCard stockSymbol={stockSymbol}/>
     }
-    
+
     function handleStockSearch(event){
         event.preventDefault();
         setShowChart(true);
         setShowResultCard(true);
         // console.log(showChart) 
     }
-
-// need to add current holding cards under the area for the SearchResultCard and the chart - they are persistent 
+    
 //current holding cards being clicked on will make them "searched" and return a SearchResultCard and Chart
 
     return(
@@ -45,6 +45,12 @@ function Trade() {
             {/* the Image component is where the line graph will go for the SearchResultCard Stock */}
             {resultCard}
             {chart}
+            <div className="row justify-content-around">
+                <CurrentHoldingsCard />
+                <CurrentHoldingsCard />
+                <CurrentHoldingsCard />
+            </div>
+            
         </Container>
     )
 }

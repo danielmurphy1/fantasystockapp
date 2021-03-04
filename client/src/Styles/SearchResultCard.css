@@ -1,5 +1,5 @@
-.card-header{
-    background-color: white !important;
+#result-header{
+    background-color: white;
 }
 
 .card-body, p{

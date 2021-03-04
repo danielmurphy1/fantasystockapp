@@ -6,7 +6,7 @@ import '../Styles/SearchResultCard.css';
 function SearchResultCard(props){
     return(
         <Card>
-            <Card.Header as="h3" className="text-left d-flex justify-content-between">{props.stockSymbol}
+            <Card.Header id="result-header" as="h3" className="text-left d-flex justify-content-between">{props.stockSymbol}
                 {/* <Container className=""> */}
                 <div>
                     <Button className="mx-3">Buy</Button>

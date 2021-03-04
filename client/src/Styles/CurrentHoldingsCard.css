@@ -1,0 +1,7 @@
+#holdings-header{
+    background-color: grey;
+}
+
+#holdings-header, p{
+    font-size: 1.5rem;
+}

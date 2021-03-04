@@ -3,10 +3,10 @@ import { Card, Button, Container } from 'react-bootstrap';
 import '../Styles/SearchResultCard.css';
 
 
-function SearchResultCard(){
+function SearchResultCard(props){
     return(
         <Card>
-            <Card.Header as="h3" className="text-left d-flex justify-content-between">Name of Stock
+            <Card.Header as="h3" className="text-left d-flex justify-content-between">{props.stockSymbol}
                 {/* <Container className=""> */}
                 <div>
                     <Button className="mx-3">Buy</Button>

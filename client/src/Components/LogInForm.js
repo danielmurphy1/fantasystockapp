@@ -15,7 +15,7 @@ function LogInForm(props) {
                 <Button variant="primary" type="submit">
                     Login
                 </Button>
-                <p className="form-paragraph ml-5">Not registered yet? Register <a onClick={props.isRegistered} href="">Here</a></p>
+                <p className="form-paragraph">Not registered yet? Register <a onClick={props.isRegistered} href="">Here</a></p>
             </Form>
         </Container>
     )

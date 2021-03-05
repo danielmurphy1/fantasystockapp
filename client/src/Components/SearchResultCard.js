@@ -14,7 +14,7 @@ function SearchResultCard(props){
                 {/* </Container> */}
                 </div>
             </Card.Header>
-            <Card.Body className="d-flex justify-content-around">
+            <Card.Body id="result-card-body" className="d-flex justify-content-around">
                 <div>
                     <h4>Current Shares</h4>
                     <p>10</p>

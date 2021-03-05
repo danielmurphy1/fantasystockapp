@@ -5,7 +5,7 @@ import '../Styles/CurrentHoldingsCard.css';
 function CurrentHoldingsCard() {
     return(
         <Card style={{width: '18rem'}}>
-            <Card.Header id="holdings-header" as="h3">
+            <Card.Header id="holdings-header">
                 <h3>Stock ABBR</h3>
             </Card.Header>
             <Card.Body>

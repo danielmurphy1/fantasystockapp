@@ -4,6 +4,7 @@ import { Container, Image } from 'react-bootstrap';
 import SearchForm from '../Components/SearchForm';
 import SearchResultCard from '../Components/SearchResultCard';
 import CurrentHoldingsCard from '../Components/CurrentHoldingsCard';
+import TransactionModal from '../Components/TransactionModal';
 import puppy from '../images/place-holder-line-graph.jpg';
 
 
@@ -12,6 +13,26 @@ function Trade() {
     const [showChart, setShowChart] = useState(false);
     const [showResultCard, setShowResultCard] = useState(false);
     const [stockSymbol, setStockSymbol] = useState("");
+    const [show, setShow] = useState(false);
+    const [buyOrSell, setBuyOrSell] = useState("");
+
+    function buyTransaction (event){
+        setShow(true)
+        setBuyOrSell(event.target.textContent);
+    }
+
+    function sellTransaction (event){
+        setShow(true);
+        setBuyOrSell(event.target.textContent);
+    }
+
+    function handleShowModal(){
+        setShow(true);
+    }
+
+    function handleCloseModal(){
+        setShow(false);
+    }
 
     function handleStockSymbolChange(event){
         setStockSymbol(event.target.value);
@@ -24,7 +45,7 @@ function Trade() {
 
     let resultCard;
     if(showResultCard){
-        resultCard = <SearchResultCard stockSymbol={stockSymbol}/>
+        resultCard = <SearchResultCard stockSymbol={stockSymbol} handleShowModal={handleShowModal} buyTransaction={buyTransaction} sellTransaction={sellTransaction}/>
     }
 
     function handleStockSearch(event){
@@ -50,7 +71,7 @@ function Trade() {
                 <CurrentHoldingsCard />
                 <CurrentHoldingsCard />
             </div>
-            
+            <TransactionModal buyOrSell={buyOrSell} stockSymbol={stockSymbol} show={show}  handleShowModal={handleShowModal} handleCloseModal={handleCloseModal} />
         </Container>
     )
 }

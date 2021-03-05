@@ -11,6 +11,7 @@ function CurrentHoldingsCard() {
             <Card.Body>
                 <p>Current Shares: 10</p>
                 <p>Current Price: $215.65</p>
+                <p>Value of Shares: $2156.50</p>
                 <Button>View Details</Button>
             </Card.Body>
         </Card>

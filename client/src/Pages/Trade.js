@@ -60,14 +60,17 @@ function Trade() {
 
     async function handleStockSearch(event){
         event.preventDefault();
-        setShowChart(true);
-        setShowResultCard(true);
-        setStockSymbol(inputValue);
-        // console.log(showChart)
-        setInputValue("");
+       
         
-        const content = await fetch(`/api/stock/search/${stockSymbol}`)
+        const content = await fetch(`/api/stock/search/${inputValue}`)
             .then(res => res.json());
+
+            setShowChart(true);
+            setShowResultCard(true);
+            setStockSymbol(inputValue);
+            // console.log(showChart)
+            setInputValue("");
+
             console.log(content);
             console.log(content.latestPrice)
             setCurrentPrice(content.latestPrice)

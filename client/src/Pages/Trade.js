@@ -17,6 +17,7 @@ function Trade() {
     const [show, setShow] = useState(false);
     const [buyOrSell, setBuyOrSell] = useState("");
     const [currentPrice, setCurrentPrice] = useState(null);
+    const [priceChange, setPriceChange] = useState(null);
     const [companyName, setCompanyName] = useState("");
 
     function buyTransaction (event){
@@ -54,6 +55,7 @@ function Trade() {
                         buyTransaction={buyTransaction} 
                         sellTransaction={sellTransaction} 
                         currentPrice={currentPrice}
+                        priceChange={priceChange}
                         companyName={companyName}
                         />
     }
@@ -73,7 +75,9 @@ function Trade() {
 
             console.log(content);
             console.log(content.latestPrice)
-            setCurrentPrice(content.latestPrice)
+            console.log(content.change);
+            setCurrentPrice(content.latestPrice);
+            setPriceChange(content.change);
             setCompanyName(content.companyName);  
     }
 

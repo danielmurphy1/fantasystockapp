@@ -24,6 +24,7 @@ function SearchResultCard(props){
     });
 
     const price = formatter.format(props.currentPrice);
+    const priceChange = formatter.format(props.priceChange);
 
     return(
         <Card>
@@ -48,8 +49,8 @@ function SearchResultCard(props){
                     <p>{price}</p>
                 </div>
                 <div>
-                    <h4>Precentage Change</h4>
-                    <p>+0.52%</p>
+                    <h4>Price Change</h4>
+                    <p>{priceChange}</p>
                 </div>
             </Card.Body>
         </Card>

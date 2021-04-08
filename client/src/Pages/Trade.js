@@ -48,11 +48,15 @@ function Trade() {
         resultCard = <SearchResultCard stockSymbol={stockSymbol} handleShowModal={handleShowModal} buyTransaction={buyTransaction} sellTransaction={sellTransaction}/>
     }
 
-    function handleStockSearch(event){
+    async function handleStockSearch(event){
         event.preventDefault();
         setShowChart(true);
         setShowResultCard(true);
-        // console.log(showChart) 
+        // console.log(showChart)
+        
+        const content = await fetch(`/api/stock/search/${stockSymbol}`)
+            .then(res => res.json());
+            console.log(content);    
     }
     
 //current holding cards being clicked on will make them "searched" and return a SearchResultCard and Chart

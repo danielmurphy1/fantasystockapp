@@ -10,6 +10,22 @@ app.use("/trade", express.static(path.join(__dirname, "client/build")));
 app.use("/portfolio", express.static(path.join(__dirname, "client/build")));
 
 
+app.get("/api/stock/search/:symbol", (req, res) =>{
+    const symbol = req.params.symbol;
+    const token = process.env.TEST_TOKEN;
+    axios.get(`https://sandbox.iexapis.com/stable/stock/${symbol}/quote?token=${token}`)
+        .then((response) => {
+            res.send(response.data);
+        console.log(response.data)
+
+        })
+        .catch(error => {
+            console.log(error)
+        })
+});
+
+
+
 app.listen(port, () => {
     console.log(`Listening on port: ${port}.`);
 });

@@ -13,8 +13,11 @@ function Trade() {
     const [showChart, setShowChart] = useState(false);
     const [showResultCard, setShowResultCard] = useState(false);
     const [stockSymbol, setStockSymbol] = useState("");
+    const [inputValue, setInputValue] = useState("");
     const [show, setShow] = useState(false);
     const [buyOrSell, setBuyOrSell] = useState("");
+    const [currentPrice, setCurrentPrice] = useState(null);
+    const [companyName, setCompanyName] = useState("");
 
     function buyTransaction (event){
         setShow(true)
@@ -34,8 +37,8 @@ function Trade() {
         setShow(false);
     }
 
-    function handleStockSymbolChange(event){
-        setStockSymbol(event.target.value);
+    function handleInputValueChange(event){
+        setInputValue(event.target.value);
     }
 
     let chart;
@@ -45,19 +48,33 @@ function Trade() {
 
     let resultCard;
     if(showResultCard){
-        resultCard = <SearchResultCard stockSymbol={stockSymbol} handleShowModal={handleShowModal} buyTransaction={buyTransaction} sellTransaction={sellTransaction}/>
+        resultCard = <SearchResultCard 
+                        stockSymbol={stockSymbol} 
+                        handleShowModal={handleShowModal} 
+                        buyTransaction={buyTransaction} 
+                        sellTransaction={sellTransaction} 
+                        currentPrice={currentPrice}
+                        companyName={companyName}
+                        />
     }
 
     async function handleStockSearch(event){
         event.preventDefault();
         setShowChart(true);
         setShowResultCard(true);
+        setStockSymbol(inputValue);
         // console.log(showChart)
+        setInputValue("");
         
         const content = await fetch(`/api/stock/search/${stockSymbol}`)
             .then(res => res.json());
-            console.log(content);    
+            console.log(content);
+            console.log(content.latestPrice)
+            setCurrentPrice(content.latestPrice)
+            setCompanyName(content.companyName);  
     }
+
+    
     
 //current holding cards being clicked on will make them "searched" and return a SearchResultCard and Chart
 
@@ -66,7 +83,7 @@ function Trade() {
             <h2>Trading Page</h2>
             <h3>Current Account Balance: ${accountBalance}</h3>
             <p>Search Stock Symbols to Trade. Examples: "AAPL" = Apple "NFLX" = Netflix</p>
-            <SearchForm  handleStockSearch={handleStockSearch} handleStockSymbolChange={handleStockSymbolChange} stockSymbol={stockSymbol}/>
+            <SearchForm  handleStockSearch={handleStockSearch} handleInputValueChange={handleInputValueChange} inputValue={inputValue}/>
             {/* the Image component is where the line graph will go for the SearchResultCard Stock */}
             {resultCard}
             {chart}

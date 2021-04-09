@@ -3,14 +3,16 @@ const path = require('path');
 const port = process.env.PORT || 3000;
 const app = express();
 const axios = require("axios");
+const { response } = require('express');
 require("dotenv").config();
 
 app.use("/", express.static(path.join(__dirname, "client/build")));
 app.use("/trade", express.static(path.join(__dirname, "client/build")));
 app.use("/portfolio", express.static(path.join(__dirname, "client/build")));
 
+const stocks = [];
 
-app.get("/api/stock/search/:symbol", (req, res) =>{
+app.get("/api/search/:symbol", (req, res) =>{
     const symbol = req.params.symbol;
     const token = process.env.TEST_TOKEN;
     axios.get(`https://sandbox.iexapis.com/stable/stock/${symbol}/quote?token=${token}`)
@@ -24,7 +26,10 @@ app.get("/api/stock/search/:symbol", (req, res) =>{
         })
 });
 
-
+app.post("/api/stocks", (req, res) =>{
+    res.send(req.body);
+    console.log(req.body)
+})
 
 app.listen(port, () => {
     console.log(`Listening on port: ${port}.`);

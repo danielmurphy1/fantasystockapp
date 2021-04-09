@@ -64,7 +64,7 @@ function Trade() {
         event.preventDefault();
        
         
-        const content = await fetch(`/api/stock/search/${inputValue}`)
+        const content = await fetch(`/api/search/${inputValue}`)
             .then(res => res.json());
 
             setShowChart(true);
@@ -99,7 +99,7 @@ function Trade() {
                 <CurrentHoldingsCard />
                 <CurrentHoldingsCard />
             </div>
-            <TransactionModal buyOrSell={buyOrSell} stockSymbol={stockSymbol} show={show}  handleShowModal={handleShowModal} handleCloseModal={handleCloseModal} />
+            <TransactionModal buyOrSell={buyOrSell} stockSymbol={stockSymbol} show={show} currentPrice={currentPrice} handleShowModal={handleShowModal} handleCloseModal={handleCloseModal} />
         </Container>
     )
 }

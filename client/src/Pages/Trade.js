@@ -64,21 +64,24 @@ function Trade() {
         event.preventDefault();
        
         
-        const content = await fetch(`/api/search/${inputValue}`)
-            .then(res => res.json());
+        await fetch(`/api/search/${inputValue}`)
+            .then(res => res.json())
+            .then(res => {
+                setShowChart(true);
+                setShowResultCard(true);
+                setStockSymbol(inputValue);
+                // console.log(showChart)
+                setInputValue("");
 
-            setShowChart(true);
-            setShowResultCard(true);
-            setStockSymbol(inputValue);
-            // console.log(showChart)
-            setInputValue("");
+                console.log(res);
+                console.log(res.latestPrice)
+                console.log(res.change);
+                setCurrentPrice(res.latestPrice);
+                setPriceChange(res.change);
+                setCompanyName(res.companyName);
+            });
 
-            console.log(content);
-            console.log(content.latestPrice)
-            console.log(content.change);
-            setCurrentPrice(content.latestPrice);
-            setPriceChange(content.change);
-            setCompanyName(content.companyName);  
+              
     }
 
     

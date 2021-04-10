@@ -3,7 +3,6 @@ const path = require('path');
 const port = process.env.PORT || 3000;
 const app = express();
 const axios = require("axios");
-const { response } = require('express');
 require("dotenv").config();
 
 app.use("/", express.static(path.join(__dirname, "client/build")));

@@ -35,6 +35,10 @@ app.post("/api/stocks", (req, res) =>{
     console.log(stocks);
 })
 
+app.get("/api/stocks", (req, res) =>{ //send client the stocks array
+    res.send(stocks)
+})
+
 app.listen(port, () => {
     console.log(`Listening on port: ${port}.`);
 });

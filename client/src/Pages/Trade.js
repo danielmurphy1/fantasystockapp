@@ -1,11 +1,12 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Image } from 'react-bootstrap';
 import SearchForm from '../Components/SearchForm';
 import SearchResultCard from '../Components/SearchResultCard';
 import CurrentHoldingsCard from '../Components/CurrentHoldingsCard';
 import TransactionModal from '../Components/TransactionModal';
 import puppy from '../images/place-holder-line-graph.jpg';
+import axios from 'axios';
 
 
 function Trade() {
@@ -19,6 +20,13 @@ function Trade() {
     const [currentPrice, setCurrentPrice] = useState(null);
     const [priceChange, setPriceChange] = useState(null);
     const [companyName, setCompanyName] = useState("");
+
+    useEffect(() => { //request stocks array from server and return to client
+        fetch("/api/stocks")
+        .then(res => res.json())
+        .then(res => console.log(res))
+            
+    }) 
 
     function buyTransaction (event){
         setShow(true)

@@ -4,6 +4,9 @@ const port = process.env.PORT || 3000;
 const app = express();
 const axios = require("axios");
 require("dotenv").config();
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
 
 app.use("/", express.static(path.join(__dirname, "client/build")));
 app.use("/trade", express.static(path.join(__dirname, "client/build")));
@@ -27,7 +30,9 @@ app.get("/api/search/:symbol", (req, res) =>{
 
 app.post("/api/stocks", (req, res) =>{
     res.send(req.body);
-    console.log(req.body)
+    console.log(req.body);
+    stocks.push(req.body);
+    console.log(stocks);
 })
 
 app.listen(port, () => {

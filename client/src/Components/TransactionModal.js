@@ -5,17 +5,16 @@ import axios from 'axios';
 function TransactionModal(props) {
     const [sharesToTrade, setSharesToTrade] = useState(null);
 
-    function buyButtonHandler(){
-        const stockInfo = {
+    async function buyButtonHandler(){
+        const body = {
             stockSymbol: props.stockSymbol, 
             sharesToTrade: sharesToTrade
         };
 
-        axios.post('/api/stocks', stockInfo)
-        .then(console.log(stockInfo))
-            .then(response => {
-                console.log(response)
-            })
+        const response = await axios.post('/api/stocks', body);
+        console.log(response);
+        // props.handleCloseModal();
+            
     };
 
     function renderButtons(){

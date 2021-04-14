@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Container, Image } from 'react-bootstrap';
 import SearchForm from '../Components/SearchForm';
 import SearchResultCard from '../Components/SearchResultCard';
@@ -10,6 +10,7 @@ import axios from 'axios';
 
 
 function Trade() {
+    const [currentHoldings, SetCurrentHoldings] = useState([]);
     const [accountBalance, setAccountBalance] = useState(100000.00);
     const [showChart, setShowChart] = useState(false);
     const [showResultCard, setShowResultCard] = useState(false);
@@ -21,12 +22,14 @@ function Trade() {
     const [priceChange, setPriceChange] = useState(null);
     const [companyName, setCompanyName] = useState("");
 
-    useEffect(() => { //request stocks array from server and return to client
+    useEffect(useCallback(() => { //request stocks array from server and return to client
         fetch("/api/stocks")
         .then(res => res.json())
-        .then(res => console.log(res))
+        // .then(res => console.log(res))
+        .then(currentHoldings => SetCurrentHoldings(currentHoldings))
+        .then(console.log(currentHoldings));
             
-    }) 
+    }, [currentHoldings]), [currentHoldings]) 
 
     function buyTransaction (event){
         setShow(true)
@@ -106,9 +109,10 @@ function Trade() {
             {resultCard}
             {chart}
             <div className="row justify-content-around">
+                {/* <CurrentHoldingsCard />
                 <CurrentHoldingsCard />
-                <CurrentHoldingsCard />
-                <CurrentHoldingsCard />
+                <CurrentHoldingsCard /> */}
+                {currentHoldings.map(holding => <CurrentHoldingsCard key={holding.stockSymbol} holding={holding} />)}
             </div>
             <TransactionModal buyOrSell={buyOrSell} stockSymbol={stockSymbol} show={show} currentPrice={currentPrice} handleShowModal={handleShowModal} handleCloseModal={handleCloseModal} />
         </Container>

@@ -92,7 +92,7 @@ function Trade() {
             .then(res => {
                 setShowChart(true);
                 setShowResultCard(true);
-                setStockSymbol(inputValue);
+                setStockSymbol(res.symbol);
                 // console.log(showChart)
                 setInputValue("");
 

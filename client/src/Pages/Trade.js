@@ -10,7 +10,7 @@ import axios from 'axios';
 
 
 function Trade() {
-    const [currentHoldings, SetCurrentHoldings] = useState([]);
+    const [currentHoldings, setCurrentHoldings] = useState([]);
     const [accountBalance, setAccountBalance] = useState(100000.00);
     const [showChart, setShowChart] = useState(false);
     const [showResultCard, setShowResultCard] = useState(false);
@@ -22,14 +22,26 @@ function Trade() {
     const [priceChange, setPriceChange] = useState(null);
     const [companyName, setCompanyName] = useState("");
 
-    useEffect(useCallback(() => { //request stocks array from server and return to client
-        fetch("/api/stocks")
-        .then(res => res.json())
-        // .then(res => console.log(res))
-        .then(currentHoldings => SetCurrentHoldings(currentHoldings))
-        .then(console.log(currentHoldings));
+    // useEffect(useCallback(() => { //request stocks array from server and return to client
+    //     fetch("/api/stocks")
+    //     .then(res => res.json())
+    //     // .then(res => console.log(res))
+    //     .then(currentHoldings => setCurrentHoldings(currentHoldings))
+    //     .then(console.log(currentHoldings));
             
-    }, [currentHoldings]), [currentHoldings]) 
+    // }, [currentHoldings]), []) 
+
+    useEffect(() => { //request stocks array from server and return to client
+        getHoldings();
+    }, [])
+
+    function getHoldings(){
+        fetch("/api/stocks")
+            .then(res => res.json())
+            // .then(res => console.log(res))
+            .then(currentHoldings => setCurrentHoldings(currentHoldings))
+            .then(console.log(currentHoldings));
+    };
 
     function buyTransaction (event){
         setShow(true)
@@ -114,7 +126,17 @@ function Trade() {
                 <CurrentHoldingsCard /> */}
                 {currentHoldings.map(holding => <CurrentHoldingsCard key={holding.stockSymbol} holding={holding} />)}
             </div>
-            <TransactionModal buyOrSell={buyOrSell} stockSymbol={stockSymbol} show={show} currentPrice={currentPrice} handleShowModal={handleShowModal} handleCloseModal={handleCloseModal} />
+            <TransactionModal 
+                buyOrSell={buyOrSell} 
+                stockSymbol={stockSymbol} 
+                show={show} 
+                currentPrice={currentPrice} 
+                handleShowModal={handleShowModal} 
+                handleCloseModal={handleCloseModal}
+                getHoldings={getHoldings}
+                setShowChart={setShowChart}
+                setShowResultCard={setShowResultCard}
+                />
         </Container>
     )
 }

@@ -20,16 +20,7 @@ function Trade() {
     const [buyOrSell, setBuyOrSell] = useState("");
     const [currentPrice, setCurrentPrice] = useState(null);
     const [priceChange, setPriceChange] = useState(null);
-    const [companyName, setCompanyName] = useState("");
-
-    // useEffect(useCallback(() => { //request stocks array from server and return to client
-    //     fetch("/api/stocks")
-    //     .then(res => res.json())
-    //     // .then(res => console.log(res))
-    //     .then(currentHoldings => setCurrentHoldings(currentHoldings))
-    //     .then(console.log(currentHoldings));
-            
-    // }, [currentHoldings]), []) 
+    const [companyName, setCompanyName] = useState(""); 
 
     useEffect(() => { //request stocks array from server and return to client
         getHoldings();

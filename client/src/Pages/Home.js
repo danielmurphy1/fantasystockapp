@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Jumbotron } from 'react-bootstrap';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container} from 'react-bootstrap';
 import LogInForm from '../Components/LogInForm';
 import SignUpForm from '../Components/SignUpForm';
 

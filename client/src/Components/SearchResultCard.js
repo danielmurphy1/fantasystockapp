@@ -1,21 +1,9 @@
 import React, { useState } from 'react';
 import { Card, Button, Container } from 'react-bootstrap';
-import TransactionModal from '../Components/TransactionModal'
 import '../Styles/SearchResultCard.css';
 
 
 function SearchResultCard(props){
-    // const [buyOrSell, setBuyOrSell] = useState("");
-
-    // function buyTransaction (event){
-    //     props.handleShowModal();
-    //     setBuyOrSell(event.target.textContent);
-    // }
-
-    // function sellTransaction (event){
-    //     props.handleShowModal();
-    //     setBuyOrSell(event.target.textContent);
-    // }
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',

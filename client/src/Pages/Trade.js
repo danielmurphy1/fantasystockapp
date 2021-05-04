@@ -29,7 +29,6 @@ function Trade() {
     function getHoldings(){
         fetch("/api/stocks")
             .then(res => res.json())
-            // .then(res => console.log(res))
             .then(currentHoldings => setCurrentHoldings(currentHoldings))
             .then(console.log(currentHoldings));
     };
@@ -93,8 +92,6 @@ function Trade() {
                 setPriceChange(res.change);
                 setCompanyName(res.companyName);
             });
-
-              
     }
 
     

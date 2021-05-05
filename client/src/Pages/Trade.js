@@ -108,9 +108,6 @@ function Trade() {
             {resultCard}
             {chart}
             <div className="row justify-content-around">
-                {/* <CurrentHoldingsCard />
-                <CurrentHoldingsCard />
-                <CurrentHoldingsCard /> */}
                 {currentHoldings.map(holding => <CurrentHoldingsCard key={holding.stockSymbol} holding={holding} />)}
             </div>
             <TransactionModal 

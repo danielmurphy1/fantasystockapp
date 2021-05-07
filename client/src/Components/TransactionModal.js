@@ -51,24 +51,6 @@ function TransactionModal(props) {
     const price = formatter.format(props.currentPrice);
 
     return(
-        // <Modal show={props.show} onHide={props.handleCloseModal} centered>
-        //     <Modal.Header closeButton>
-        //         <Modal.Title>{props.stockSymbol}</Modal.Title>
-        //     </Modal.Header>
-        //     <Modal.Body className="text-center">
-        //         <p>Current Share Price: {price}</p>
-        //         <p>Current Number of Shares: 27</p>
-        //         <Form>
-        //             <Form.Group>
-        //                 <Form.Label>Number of Shares to Trade</Form.Label>
-        //                 <Form.Control type="number" min="0"></Form.Control>
-        //             </Form.Group>
-        //         </Form>
-        //     </Modal.Body>
-        //     <Modal.Footer>
-        //         {renderButtons()}
-        //     </Modal.Footer>
-        // </Modal>
         <Modal show={props.show} onHide={props.handleCloseModal} centered>
             <Modal.Header closeButton>
                 <Modal.Title>{props.stockSymbol}</Modal.Title>

@@ -15,9 +15,9 @@ function Home() {
     function FormSwitch() {
         if (isRegistered) {
             return <LogInForm isRegistered={toggleIsRegistered}/>
-         } else {
+        } else {
             return <SignUpForm isRegistered={toggleIsRegistered}/>
-         }
+        }
     }
 
     return (

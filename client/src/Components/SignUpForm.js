@@ -9,9 +9,9 @@ function SignUpForm(props) {
                     <Form.Control type="text" placeholder="Choose Username" />
                 </Form.Group>
 
-                <Form.Group controlId="formBasicEmail">
+                {/* <Form.Group controlId="formBasicEmail">
                     <Form.Control type="email" placeholder="Enter email" />
-                </Form.Group>
+                </Form.Group> */}
 
                 <Form.Group controlId="formBasicPassword">
                     <Form.Control type="password" placeholder="Password" />

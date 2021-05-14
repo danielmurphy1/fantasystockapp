@@ -48,8 +48,16 @@ app.post("/api/login", async (req, res) => {
             SELECT * FROM test_users
             WHERE username = $1;
         `, [username])
-        res.send(rows)
-    console.log(rows);
+        if(rows[0].password === password){
+            res.send(rows)
+            console.log(rows);
+            console.log(rows[0].password)
+        } else {
+            res.sendStatus(500);
+            // res.send('Password incorrect')
+            // console.log('Password incorrect')
+
+        }
 
     }
 

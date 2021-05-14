@@ -1,10 +1,61 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { Container} from 'react-bootstrap';
 import LogInForm from '../Components/LogInForm';
 import SignUpForm from '../Components/SignUpForm';
 
+// function FormSwitch() { //this is one fix for the single character entry input bug
+//     const [ isRegistered, setIsRegistered ] = useState(true);
+//     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+//     const [ userName, setUserName] = useState('');
+//     const [ password, setPassword ] = useState('');
+
+//     if (isRegistered) {
+//         return <LogInForm 
+//                     isRegistered={toggleIsRegistered} 
+//                     handleUserNameChange={handleUserNameChange} 
+//                     handlePasswordChange={handlePasswordChange}
+//                     handleLogin={handleLogin}
+//                     userName={userName}
+//                     password={password}
+//                     />
+//     } else {
+//         return <SignUpForm isRegistered={toggleIsRegistered}/>
+//     };
+
+//     function toggleIsRegistered(event) {
+//         event.preventDefault();
+//         setIsRegistered(prevState => !prevState);
+//         console.log(isRegistered)
+//     };
+
+//     function handleLogin(event){
+//         event.preventDefault();
+//         if(userName && password.length > 0 ){
+//             axios.post('/api/login', {
+//                 username: 'admin', 
+//                 password: 'admin'
+//             });
+//             setIsLoggedIn(true);
+//         }
+//     };
+
+//     function handleUserNameChange(event){
+//         // const { name, value } = event.target;
+//         setUserName(event.target.value)
+//     };
+
+//     function handlePasswordChange(event){
+//         // const { name, value } = event.target;
+//         setPassword(event.target.value)
+//     };
+// };
+
 function Home() {
     const [ isRegistered, setIsRegistered ] = useState(true);
+    const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+    const [ userName, setUserName] = useState('');
+    const [ password, setPassword ] = useState('');
 
     function toggleIsRegistered(event) {
         event.preventDefault();
@@ -12,13 +63,74 @@ function Home() {
         console.log(isRegistered)
     };
 
-    function FormSwitch() {
+    // function FormSwitch() {
+    //     if (isRegistered) {
+    //         return <LogInForm 
+    //                     isRegistered={toggleIsRegistered} 
+    //                     handleUserNameChange={handleUserNameChange} 
+    //                     handlePasswordChange={handlePasswordChange}
+    //                     handleLogin={handleLogin}
+    //                     userName={userName}
+    //                     password={password}
+    //                     />
+    //     } else {
+    //         return <SignUpForm isRegistered={toggleIsRegistered}/>
+    //     }
+    // };
+
+    const formSwitch = () => { //fix lose input focus each character typed bug
         if (isRegistered) {
-            return <LogInForm isRegistered={toggleIsRegistered}/>
+            return <LogInForm 
+                        isRegistered={toggleIsRegistered} 
+                        // handleUserNameChange={handleUserNameChange} 
+                        // handlePasswordChange={handlePasswordChange}
+                        handleInputChange={handleInputChange}
+                        handleLogin={handleLogin}
+                        userName={userName}
+                        password={password}
+                        />
         } else {
             return <SignUpForm isRegistered={toggleIsRegistered}/>
         }
-    }
+    };
+
+    function handleLogin(event){
+        event.preventDefault();
+        if(userName && password){
+            axios.post('/api/login', {
+                username: userName, 
+                password: password
+            })
+            .then(res => {
+                console.log(res);
+                setIsLoggedIn(true);
+            })
+            .catch(error => console.log(error.message));
+            setUserName('');
+            setPassword('');
+        }
+    };
+
+    // function handleUserNameChange(event){
+    //     setUserName(event.target.value)
+    // };
+
+    // function handlePasswordChange(event){
+    //     setPassword(event.target.value)
+    // };
+
+    function handleInputChange(event){
+        if (event.target.name === 'userName'){
+            setUserName(event.target.value)
+        } else if (event.target.name === 'password'){
+            setPassword(event.target.value)
+        }
+    };
+
+
+    // useEffect(() => {
+    //     handleLogin();
+    // }, {})
 
     return (
         <Container>
@@ -34,7 +146,8 @@ function Home() {
                     culpa qui officia deserunt mollit anim id est laborum."
                 </p>
             </Container>
-            <FormSwitch />
+            {/* <FormSwitch /> */}
+            {formSwitch()}
         </Container>
         
     );

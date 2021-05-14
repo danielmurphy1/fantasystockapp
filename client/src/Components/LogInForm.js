@@ -4,13 +4,13 @@ import { Container, Form, Button } from 'react-bootstrap';
 function LogInForm(props) {
     return(
         <Container className="form-container">
-            <Form>
+            <Form onSubmit={props.handleLogin}>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Control type="text" placeholder="Enter Username" />
+                    <Form.Control type="text" name="userName" onChange={props.handleInputChange} value={props.userName} placeholder="Enter Username" />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control type="password" name="password" onChange={props.handleInputChange} value={props.password} placeholder="Password" />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Login

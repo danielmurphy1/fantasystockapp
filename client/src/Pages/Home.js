@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Container} from 'react-bootstrap';
 import LogInForm from '../Components/LogInForm';
 import SignUpForm from '../Components/SignUpForm';
@@ -56,6 +56,8 @@ function Home() {
     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
     const [ userName, setUserName] = useState('');
     const [ password, setPassword ] = useState('');
+    const userNameInputRef = useRef();
+    const passwordInputRef = useRef();
 
     function toggleIsRegistered(event) {
         event.preventDefault();
@@ -90,7 +92,12 @@ function Home() {
                         password={password}
                         />
         } else {
-            return <SignUpForm isRegistered={toggleIsRegistered}/>
+            return <SignUpForm 
+                        isRegistered={toggleIsRegistered}
+                        handleSignUp={handleSignUp}
+                        userNameInputRef={userNameInputRef}
+                        passwordInputRef={passwordInputRef}
+                        />
         }
     };
 
@@ -109,6 +116,26 @@ function Home() {
             setUserName('');
             setPassword('');
         }
+    };
+
+    function handleSignUp(event) {
+        event.preventDefault();
+        const enteredUserName = userNameInputRef.current.value;
+        const enteredPassword = passwordInputRef.current.value;
+
+        axios.post('/api/signup', {
+            username: enteredUserName, 
+            password: enteredPassword
+        }).then(res => {
+            console.log(res)
+            if (!res.data.name) {
+
+            } else {
+                const errorMessage = res.data.detail;
+                console.log(errorMessage);
+                alert(errorMessage);
+            }
+        })
     };
 
     // function handleUserNameChange(event){

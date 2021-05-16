@@ -6,6 +6,7 @@ const axios = require("axios");
 require("dotenv").config();
 const bodyParser = require('body-parser');
 const pool = require('./client/src/pool');
+const { restart } = require('nodemon');
 
 app.use(bodyParser.json());
 
@@ -60,7 +61,21 @@ app.post("/api/login", async (req, res) => {
         }
 
     }
+});
 
+app.post("/api/signup", async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        const { rows } = await pool.query(`
+            INSERT INTO test_users (username, password)
+            VALUES
+                ($1, $2)
+                RETURNING *;
+        `, [username, password])
+            res.send(rows);
+    } catch (error) {
+        res.send(error)
+    }
 });
 
 pool.connect({

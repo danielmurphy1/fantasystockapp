@@ -6,11 +6,11 @@ function LogInForm(props) {
         <Container className="form-container">
             <Form onSubmit={props.handleLogin}>
                 <Form.Group controlId="formBasicEmail">
-                    <Form.Control type="text" name="userName" onChange={props.handleInputChange} value={props.userName} placeholder="Enter Username" />
+                    <Form.Control type="text"  ref={props.userNameInputRef} placeholder="Enter Username" />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
-                    <Form.Control type="password" name="password" onChange={props.handleInputChange} value={props.password} placeholder="Password" />
+                    <Form.Control type="password"  ref={props.passwordInputRef} placeholder="Password" />
                 </Form.Group>
                 <Button variant="primary" type="submit">
                     Login

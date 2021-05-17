@@ -86,10 +86,10 @@ function Home() {
                         isRegistered={toggleIsRegistered} 
                         // handleUserNameChange={handleUserNameChange} 
                         // handlePasswordChange={handlePasswordChange}
-                        handleInputChange={handleInputChange}
+                        // handleInputChange={handleInputChange}
                         handleLogin={handleLogin}
-                        userName={userName}
-                        password={password}
+                        userNameInputRef={userNameInputRef}
+                        passwordInputRef={passwordInputRef}
                         />
         } else {
             return <SignUpForm 
@@ -103,10 +103,25 @@ function Home() {
 
     function handleLogin(event){
         event.preventDefault();
-        if(userName && password){
+        // if(userName && password){
+        //     axios.post('/api/login', {
+        //         username: userName, 
+        //         password: password
+        //     })
+        //     .then(res => {
+        //         console.log(res);
+        //         setIsLoggedIn(true);
+        //     })
+        //     .catch(error => console.log(error.body));
+        //     setUserName('');
+        //     setPassword('');
+        // }
+        const enteredUserName = userNameInputRef.current.value;
+        const enteredPassword = passwordInputRef.current.value;
+        if(enteredUserName && enteredPassword){
             axios.post('/api/login', {
-                username: userName, 
-                password: password
+                username: enteredUserName, 
+                password: enteredPassword
             })
             .then(res => {
                 console.log(res);
@@ -146,13 +161,13 @@ function Home() {
     //     setPassword(event.target.value)
     // };
 
-    function handleInputChange(event){
-        if (event.target.name === 'userName'){
-            setUserName(event.target.value)
-        } else if (event.target.name === 'password'){
-            setPassword(event.target.value)
-        }
-    };
+    // function handleInputChange(event){
+    //     if (event.target.name === 'userName'){
+    //         setUserName(event.target.value)
+    //     } else if (event.target.name === 'password'){
+    //         setPassword(event.target.value)
+    //     }
+    // };
 
 
     // useEffect(() => {

@@ -54,8 +54,8 @@ import SignUpForm from '../Components/SignUpForm';
 function Home() {
     const [ isRegistered, setIsRegistered ] = useState(true);
     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
-    const [ userName, setUserName] = useState('');
-    const [ password, setPassword ] = useState('');
+    // const [ userName, setUserName] = useState('');
+    // const [ password, setPassword ] = useState('');
     const userNameInputRef = useRef();
     const passwordInputRef = useRef();
 

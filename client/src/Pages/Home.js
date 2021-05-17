@@ -125,11 +125,11 @@ function Home() {
             })
             .then(res => {
                 console.log(res);
-                setIsLoggedIn(true);
+                // setIsLoggedIn(true);
             })
             .catch(error => console.log(error.body));
-            setUserName('');
-            setPassword('');
+            // setUserName('');
+            // setPassword('');
         }
     };
 

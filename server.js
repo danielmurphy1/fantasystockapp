@@ -43,7 +43,6 @@ app.get("/api/stocks", (req, res) =>{ //send client the stocks array
 
 app.post("/api/login", async (req, res) => {
     const { username, password } = req.body;
-
     if (username && password) { //using test db - change for production!
         const { rows } = await pool.query(`
             SELECT * FROM test_users
@@ -54,12 +53,9 @@ app.post("/api/login", async (req, res) => {
             console.log(rows);
             console.log(rows[0].password)
         } else {
-            res.sendStatus(500);
-            // res.send('Password incorrect')
-            // console.log('Password incorrect')
-
+            res.send('Username or Password Does Not Match');
+            res.status(404);
         }
-
     }
 });
 

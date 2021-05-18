@@ -49,23 +49,26 @@ app.post("/api/login", async (req, res) => {
     const accessToken = await jwt.sign(user, process.env.TOKEN_SECRET_KEY, {expiresIn: '1h'});
     // res.json({ accessToken: accessToken})
 
-    // if (username && password) { //using test db - change for production!
+    if (username && password) { //using test db - change for production!
         const { rows } = await pool.query(`
             SELECT * FROM test_users
             WHERE username = $1;
         `, [username])
+        console.log(rows[0].password)
+        console.log(password)
+
         if(rows[0].password === password){
             // res.send(accessToken)
             // console.log(rows + res.json({accessToken : accessToken}));
             // console.log(rows[0].password)
             res.send({accessToken: accessToken, rows})
         } else {
-            // res.status(404);
+            // res.send(error);
 
             // res.send('Username or Password Does Not Match', 404);
             res.send('Username or Password Does Not Match');
         }
-    // }
+    }
     
 });
 

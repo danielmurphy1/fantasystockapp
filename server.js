@@ -6,7 +6,9 @@ const axios = require("axios");
 require("dotenv").config();
 const bodyParser = require('body-parser');
 const pool = require('./client/src/pool');
-const { restart } = require('nodemon');
+const jwt = require('jsonwebtoken');
+
+
 
 app.use(bodyParser.json());
 
@@ -43,21 +45,36 @@ app.get("/api/stocks", (req, res) =>{ //send client the stocks array
 
 app.post("/api/login", async (req, res) => {
     const { username, password } = req.body;
+    const user = { name: username}
+    const accessToken = await jwt.sign(user, process.env.TOKEN_SECRET_KEY, {expiresIn: '1h'});
+    // res.json({ accessToken: accessToken})
+
     if (username && password) { //using test db - change for production!
         const { rows } = await pool.query(`
             SELECT * FROM test_users
             WHERE username = $1;
         `, [username])
         if(rows[0].password === password){
-            res.send(rows)
-            console.log(rows);
-            console.log(rows[0].password)
+            // res.send(accessToken)
+            // console.log(rows + res.json({accessToken : accessToken}));
+            // console.log(rows[0].password)
+            res.json({accessToken: accessToken})
         } else {
+            // res.status(404);
+
+            // res.send('Username or Password Does Not Match', 404);
             res.send('Username or Password Does Not Match');
-            res.status(404);
         }
     }
+    
 });
+
+// app.post('/api/token', async (req, res) => {
+//     const username = req.body.username;
+//     const user = { name: username };
+//     const accessToken = await jwt.sign(user, process.env.TOKEN_SECRET_KEY, {expiresIn: '1h'});
+//     res.json({ accessToken: accessToken})
+// })
 
 app.post("/api/signup", async (req, res) => {
     try {

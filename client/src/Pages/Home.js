@@ -127,7 +127,7 @@ function Home() {
                 console.log(res);
                 // setIsLoggedIn(true);
             })
-            .catch(error => console.log(error.body));
+            .catch(res => console.log(res.body));
             // setUserName('');
             // setPassword('');
         }

@@ -124,10 +124,11 @@ function Home() {
                 password: enteredPassword
             })
             .then(res => {
-                console.log(res);
+                console.log(res.data.rows);
+                console.log(res.data.accessToken);
                 // setIsLoggedIn(true);
             })
-            .catch(res => console.log(res.body));
+            .catch(error => console.log(error.message));
             // setUserName('');
             // setPassword('');
         }

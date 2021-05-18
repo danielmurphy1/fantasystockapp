@@ -58,7 +58,7 @@ app.post("/api/login", async (req, res) => {
             // res.send(accessToken)
             // console.log(rows + res.json({accessToken : accessToken}));
             // console.log(rows[0].password)
-            res.json({accessToken: accessToken})
+            res.send({accessToken: accessToken, rows})
         } else {
             // res.status(404);
 
@@ -68,6 +68,48 @@ app.post("/api/login", async (req, res) => {
     }
     
 });
+
+// app.post("/api/login", async (req, res) => {
+//     const { username, password } = req.body;
+//     // const user = { name: username}
+//     let loadedUser;
+//     // res.json({ accessToken: accessToken})
+
+//     //using test db - change for production!
+//     const { rows } = await pool.query(`
+//         SELECT * FROM test_users
+//         WHERE username = $1;
+//     `, [username])
+//         .then(username => {
+//             if(!rows[0].username) {
+//                 const error = new Error('Username does not exist.');
+//                 error.statusCode = 401;
+//                 throw error;
+//             }
+//             loadedUser = rows;
+//         })
+//         .then(password=> {
+//             if(password != password) {
+//                 const error = new Error('Wrong Password');
+//                 error.message = 'Wrong Password Entered';
+//                 error.statusCode = 401;
+//                 throw error;
+//             }
+//             const accessToken =  jwt.sign({
+//                 name: loadedUser.username, 
+//                 id: loadedUser.id.toString()
+//                 }, 
+//                 process.env.TOKEN_SECRET_KEY, 
+//                 {expiresIn: '1h'});
+//             res.status(200).json({accessToken: accessToken, id: loadedUser.id.toString()})
+//         })
+//         .catch(err => {
+//             console.log(err);
+//             res.status(401).json({message: err.message, statuscode: err.statusCode});
+//         })
+    
+    
+// });
 
 // app.post('/api/token', async (req, res) => {
 //     const username = req.body.username;

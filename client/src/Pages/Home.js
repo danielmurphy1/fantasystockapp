@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Container} from 'react-bootstrap';
 import LogInForm from '../Components/LogInForm';
 import SignUpForm from '../Components/SignUpForm';
+import AuthContext from '../store/auth-context';
 
 // function FormSwitch() { //this is one fix for the single character entry input bug
 //     const [ isRegistered, setIsRegistered ] = useState(true);
@@ -58,6 +59,8 @@ function Home() {
     // const [ password, setPassword ] = useState('');
     const userNameInputRef = useRef();
     const passwordInputRef = useRef();
+
+    const authCtx = useContext(AuthContext);
 
     function toggleIsRegistered(event) {
         event.preventDefault();
@@ -125,8 +128,9 @@ function Home() {
             })
             .then(res => {
                 console.log(res);
-                // console.log(res.data.accessToken);
+                console.log(res.data.accessToken);
                 // setIsLoggedIn(true);
+                authCtx.login(res.data.accessToken);
             })
             .catch(error => {
                 console.log(error)

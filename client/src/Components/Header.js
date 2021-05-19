@@ -1,7 +1,13 @@
 import React from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Nav, Navbar, Button } from 'react-bootstrap';
+import { useContext } from 'react';
+import AuthContext from '../store/auth-context';
 
 function Header() {
+    const authCtx = useContext(AuthContext);
+
+    const isLoggedIn = authCtx.isLoggedIn;
+
     return(
         <Navbar collapseOnSelect expand="lg" bg="light" variant="light" sticky="top">
             <Navbar.Brand href="#home"></Navbar.Brand>
@@ -9,8 +15,9 @@ function Header() {
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav>
                     <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/trade">Trade</Nav.Link>
-                    <Nav.Link href="/portfolio">Portfolio</Nav.Link>
+                    {isLoggedIn && (<Nav.Link href="/trade">Trade</Nav.Link>)}
+                    {isLoggedIn && (<Nav.Link href="/portfolio">Portfolio</Nav.Link>)}
+                    {isLoggedIn && (<Button>Logout</Button>)}
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

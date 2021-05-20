@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { Container} from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import LogInForm from '../Components/LogInForm';
 import SignUpForm from '../Components/SignUpForm';
 import AuthContext from '../store/auth-context';
@@ -55,6 +55,7 @@ import AuthContext from '../store/auth-context';
 function Home() {
     const [ isRegistered, setIsRegistered ] = useState(true);
     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+    const [ successfulReg, setSuccessfulReg ] = useState(false);
     // const [ userName, setUserName] = useState('');
     // const [ password, setPassword ] = useState('');
     const userNameInputRef = useRef();
@@ -65,6 +66,9 @@ function Home() {
     function toggleIsRegistered(event) {
         event.preventDefault();
         setIsRegistered(prevState => !prevState);
+        if (isRegistered) {
+            setSuccessfulReg(false);
+        }
         console.log(isRegistered)
     };
 
@@ -151,8 +155,9 @@ function Home() {
             password: enteredPassword
         }).then(res => {
             console.log(res)
-            if (!res.data.name) {
-
+            if (!res.data.detail) {
+                setIsRegistered(prevState => !prevState);
+                setSuccessfulReg(prevState => !prevState);
             } else {
                 const errorMessage = res.data.detail;
                 console.log(errorMessage);
@@ -196,6 +201,8 @@ function Home() {
                     culpa qui officia deserunt mollit anim id est laborum."
                 </p>
             </Container>
+            {successfulReg && (<p>Registration Successful</p>)}
+            {/* <p>Registration Successful</p> */}
             {/* <FormSwitch /> */}
             {formSwitch()}
         </Container>

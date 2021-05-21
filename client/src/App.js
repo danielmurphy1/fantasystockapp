@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Redirect, Switch } from 'react-router-dom';
 import AuthContext from './store/auth-context';
 import './App.css';
 import Header from './Components/Header';
@@ -15,11 +15,25 @@ function App() {
 
   return (
     <Router>
-      <Header />
-        {!isLoggedIn && (<Route path="/" exact component={Home} />)}
-        {isLoggedIn && (<Route path="/" exact component={Welcome} />)}
-        <Route path="/trade" component={Trade} />
-        <Route path="/portfolio" component={Portfolio} />
+        <Header />
+
+      <Switch>
+          {!isLoggedIn && (
+            <Route exact path="/"  component={Home} />
+          )}
+          {isLoggedIn && (
+            <Route exact path="/"  component={Welcome} />
+          )}
+          {isLoggedIn && (
+            <Route path="/trade" component={Trade} />
+          )}
+          {isLoggedIn && (
+            <Route path="/portfolio" component={Portfolio} />
+          )}
+          <Route path="*">
+            <Redirect to="/" />
+          </Route>
+      </Switch>
     </Router>
   );
 }

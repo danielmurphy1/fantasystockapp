@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AuthContext from '../store/auth-context';
+import axios from 'axios';
 
 import { Container } from 'react-bootstrap';
 
 function Welcome() {
 
+    // const authCtx = useContext(AuthContext);
+
+
+    // function getProtected(){
+    //     axios.get('api/protected', {
+    //         headers:{
+    //             "Content-type": "application/json", 
+    //             "Accept": "application/json", 
+    //             "Authorization": "Bearer" + " " + authCtx.token
+    //         }
+    //     })
+    //     .then(res => console.log(res))
+    // }
     return (
         <Container>
             <Container className="App welcome-container">
@@ -19,6 +34,8 @@ function Welcome() {
                 </p>
             </Container>
             <h2>Login Successful</h2>
+            {/* <button onClick={getProtected}>Protected</button> */}
+
         </Container>
         
     );

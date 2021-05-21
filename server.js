@@ -43,19 +43,22 @@ app.get("/api/stocks", (req, res) =>{ //send client the stocks array
     res.send(stocks)
 });
 
-app.get('/api/protected', (req, res) => {
-    // const token = req.headers.authorization.split(' ')[1];
-    const token = req.query.token;
+//testing for protected api endpoints
+// app.get('/api/protected', (req, res) => {
+//     const token = req.headers.authorization.split(' ')[1];
+//     // const token = req.headers.authorization;
 
-    jwt.verify(token, process.env.TOKEN_SECRET_KEY, function(err, decoded){
-        if(!err){
-            const info ={"name":"Tommy", "home": "Pittsburgh"};
-            res.json(info);
-        } else {
-            res.send(err);
-        }
-    })
-})
+//     // const token = req.query.token;
+
+//     jwt.verify(token, process.env.TOKEN_SECRET_KEY, function(err, decoded){
+//         if(!err){
+//             const info ={"name":"Tommy", "home": "Pittsburgh"};
+//             res.json(info);
+//         } else {
+//             res.send(err);
+//         }
+//     })
+// })
 
 app.post("/api/login", async (req, res) => {
     const { username, password } = req.body;

@@ -63,7 +63,7 @@ app.get("/api/stocks", (req, res) =>{ //send client the stocks array
 app.post("/api/login", async (req, res) => {
     const { username, password } = req.body;
     const user = { name: username}
-    const accessToken = await jwt.sign(user, process.env.TOKEN_SECRET_KEY, {expiresIn: '1h'});
+    const accessToken = await jwt.sign(user, process.env.TOKEN_SECRET_KEY, {expiresIn: '3600000'});
     // res.json({ accessToken: accessToken})
 
     if (username && password) { //using test db - change for production!

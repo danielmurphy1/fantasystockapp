@@ -78,7 +78,7 @@ app.post("/api/login", async (req, res) => {
             // res.send(accessToken)
             // console.log(rows + res.json({accessToken : accessToken}));
             // console.log(rows[0].password)
-            res.send({accessToken: accessToken, rows})
+            res.send({accessToken: accessToken, expiresIn: '3600000', rows})
         } else {
             // res.send(error);
 

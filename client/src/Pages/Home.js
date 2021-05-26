@@ -69,8 +69,9 @@ function Home() {
             .then(res => {
                 console.log(res);
                 console.log(res.data.accessToken);
-                // setIsLoggedIn(true);
-                authCtx.login(res.data.accessToken);
+                //expirationTime is current time plus token expiresIn converted to a new date object
+                const expirationTime = new Date(new Date().getTime() + (+res.data.expiresIn));
+                authCtx.login(res.data.accessToken, expirationTime.toISOString());
             })
             .catch(error => {
                 console.log(error)

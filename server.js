@@ -7,8 +7,10 @@ require("dotenv").config();
 const bodyParser = require('body-parser');
 const pool = require('./client/src/pool');
 const jwt = require('jsonwebtoken');
+const usersRouter = require('./client/src/utils/routes/user-routes');
 
-
+app.use(express.json());
+app.use(usersRouter);
 
 app.use(bodyParser.json());
 
@@ -43,26 +45,26 @@ app.get("/api/stocks", (req, res) =>{ //send client the stocks array
     res.send(stocks)
 });
 
-//testing for protected api endpoints
-// app.get('/api/protected', (req, res) => {
-//     const token = req.headers.authorization.split(' ')[1];
-//     // const token = req.headers.authorization;
+// testing for protected api endpoints
+app.get('/api/protected', (req, res) => {
+    const token = req.headers.authorization.split(' ')[1];
+    // const token = req.headers.authorization;
 
-//     // const token = req.query.token;
+    // const token = req.query.token;
 
-//     jwt.verify(token, process.env.TOKEN_SECRET_KEY, function(err, decoded){
-//         if(!err){
-//             const info ={"name":"Tommy", "home": "Pittsburgh"};
-//             res.json(info);
-//         } else {
-//             res.send(err);
-//         }
-//     })
-// })
+    jwt.verify(token, process.env.TOKEN_SECRET_KEY, function(err, decoded){
+        if(!err){
+            const info ={"name":"Tommy", "home": "Pittsburgh"};
+            res.json(info);
+        } else {
+            res.send(err);
+        }
+    })
+})
 
 app.post("/api/login", async (req, res) => {
     const { username, password } = req.body;
-    const user = { name: username}
+    const user = { name: username };
     const accessToken = await jwt.sign(user, process.env.TOKEN_SECRET_KEY, {expiresIn: '3600000'});
     // res.json({ accessToken: accessToken})
 
@@ -71,8 +73,8 @@ app.post("/api/login", async (req, res) => {
             SELECT * FROM test_users
             WHERE username = $1;
         `, [username])
-        console.log(rows[0].password)
-        console.log(password)
+        // console.log(rows[0].password)
+        // console.log(password)
 
         if(rows[0].password === password){
             // res.send(accessToken)
@@ -85,9 +87,47 @@ app.post("/api/login", async (req, res) => {
             // res.send('Username or Password Does Not Match', 404);
             res.send('Username or Password Does Not Match');
         }
+    } else {
+        res.status(401).send('Must provide a username and password.')
     }
     
 });
+
+
+// app.post("/api/login", async (req, res) => {
+//     const { username, password } = req.body;
+//     const user = { name: username };
+//     const accessToken = await jwt.sign(user, process.env.TOKEN_SECRET_KEY, {expiresIn: '3600000'});
+//     // res.json({ accessToken: accessToken})
+
+//     // if (username && password) { //using test db - change for production!
+//         const { rows } = await pool.query(`
+//             SELECT * FROM test_users
+//             WHERE username = $1;
+//         `, [username])
+//         // console.log(rows[0].password)
+//         // console.log(password)
+
+//         .then(row => {
+//             if(!row){
+//                 const error = new Error ('Username does not exist.');
+//                 error.statusCode = 404;
+//                 throw error;
+//             }
+//             res.send({accessToken: accessToken, expiresIn: '3600000', rows});
+//         })
+//         .catch(err => {
+//             console.log(err);
+//             res.status(401).json({message: err.message, statusCode: err.statusCode});
+//         }) 
+//             // res.send(error);
+
+//             // res.send('Username or Password Does Not Match', 404);
+//             // res.send('Username or Password Does Not Match');
+//         // }
+    
+    
+// });
 
 app.post("/api/signup", async (req, res) => {
     try {

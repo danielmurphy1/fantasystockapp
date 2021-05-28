@@ -77,7 +77,9 @@ function Home() {
                 console.log(error)
                 alert(error)
             });
-        }
+        } else {
+            alert('You must provide a username and password.');
+        }    
     };
 
     function handleSignUp(event) {

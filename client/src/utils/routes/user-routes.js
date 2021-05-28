@@ -9,7 +9,18 @@ router.post('/api/signup', async (req, res) => {
         const user = await UserController.signup(username, password);
         res.send(user);
     } catch (error) {
-        res.send(error)
+        res.send(error);
+    }
+});
+
+router.post('/api/login', async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        // const user = { name: username };
+        const loggedUser = await UserController.login(username, password, res);
+        res.send(loggedUser)
+    } catch (error) {
+        res.send(error);
     }
 });
 

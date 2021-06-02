@@ -6,19 +6,22 @@ import { Container } from 'react-bootstrap';
 
 function Welcome() {
 
-    // const authCtx = useContext(AuthContext);
+    const authCtx = useContext(AuthContext);
 
 
-    // function getProtected(){
-    //     axios.get('api/protected', {
-    //         headers:{
-    //             "Content-type": "application/json", 
-    //             "Accept": "application/json", 
-    //             "Authorization": "Bearer" + " " + authCtx.token
-    //         }
-    //     })
-    //     .then(res => console.log(res))
-    // }
+    function getProtected(){
+        axios.get('/api/protected', {
+            headers:{
+                "Content-type": "application/json", 
+                "Accept": "application/json", 
+                "Authorization": "Bearer" + " " + authCtx.token
+            }
+        })
+        .then(res => console.log(res))
+        .catch(err => {
+            alert(err)
+            console.log(err.message)})
+    }
     return (
         <Container>
             <Container className="App welcome-container">
@@ -34,7 +37,7 @@ function Welcome() {
                 </p>
             </Container>
             <h2>Login Successful</h2>
-            {/* <button onClick={getProtected}>Protected</button> */}
+            <button onClick={getProtected}>Protected</button>
 
         </Container>
         

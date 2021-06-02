@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const pool = require('./client/src/pool');
 const jwt = require('jsonwebtoken');
 const usersRouter = require('./client/src/utils/routes/user-routes');
+const isAuth = require('./client/src/utils/middleware/authMiddleware');
 
 app.use(express.json());
 app.use(usersRouter);
@@ -41,25 +42,29 @@ app.post("/api/stocks", (req, res) =>{
     console.log(stocks);
 });
 
-app.get("/api/stocks", (req, res) =>{ //send client the stocks array
+app.get("/api/stocks", isAuth, (req, res) =>{ //send client the stocks array
     res.send(stocks)
 });
 
 // testing for protected api endpoints
-app.get('/api/protected', (req, res) => {
-    const token = req.headers.authorization.split(' ')[1];
+app.get('/api/protected', isAuth, (req, res) => {
+    // const token = req.headers.authorization.split(' ')[1];
     // const token = req.headers.authorization;
 
     // const token = req.query.token;
 
-    jwt.verify(token, process.env.TOKEN_SECRET_KEY, function(err, decoded){
-        if(!err){
-            const info ={"name":"Tommy", "home": "Pittsburgh"};
-            res.json(info);
-        } else {
-            res.send(err);
-        }
-    })
+    // jwt.verify(token, process.env.TOKEN_SECRET_KEY, function(err, decoded){
+    //     if(!err){
+    //         const info ={"name":"Tommy", "home": "Pittsburgh"};
+    //         res.json(info);
+    //     } else {
+    //         res.send(err);
+    //     }
+    // })
+
+    const info ={"name":"Tommy", "home": "Pittsburgh", "address": "123 Main St"};
+
+    res.json(info);
 })
 
 pool.connect({

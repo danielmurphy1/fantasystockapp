@@ -1,10 +1,11 @@
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { Container, Image } from 'react-bootstrap';
 import SearchForm from '../Components/SearchForm';
 import SearchResultCard from '../Components/SearchResultCard';
 import CurrentHoldingsCard from '../Components/CurrentHoldingsCard';
 import TransactionModal from '../Components/TransactionModal';
+import AuthContext from '../store/auth-context';
 import puppy from '../images/place-holder-line-graph.jpg';
 import axios from 'axios';
 
@@ -22,12 +23,36 @@ function Trade() {
     const [priceChange, setPriceChange] = useState(null);
     const [companyName, setCompanyName] = useState(""); 
 
+    const authCtx = useContext(AuthContext);
+
+
     useEffect(() => { //request stocks array from server and return to client
         getHoldings();
     }, [])
 
     function getHoldings(){
-        fetch("/api/stocks")
+        // const holdings = axios.get('/api/stocks', {
+        //     headers:{
+        //         "Content-type": "application/json", 
+        //         "Accept": "application/json", 
+        //         "Authorization": "Bearer" + " " + authCtx.token
+        //     }
+        // })
+        
+            // .then(res => res.json())
+            // .then(res => setCurrentHoldings([...currentHoldings, holdings]))
+            // .then(console.log(currentHoldings));
+
+            // setCurrentHoldings([...currentHoldings, holdings]);
+            // console.log(currentHoldings);
+
+        fetch("/api/stocks", {
+            headers:{
+                    "Content-type": "application/json", 
+                    "Accept": "application/json", 
+                    "Authorization": "Bearer" + " " + authCtx.token
+             }
+        })
             .then(res => res.json())
             .then(currentHoldings => setCurrentHoldings(currentHoldings))
             .then(console.log(currentHoldings));

@@ -99,7 +99,6 @@ function Trade() {
 
     async function handleStockSearch(event){
         event.preventDefault();
-       
         
         await fetch(`/api/search/${inputValue}`)
             .then(res => res.json())
@@ -132,7 +131,7 @@ function Trade() {
             {resultCard}
             {chart}
             <div className="row justify-content-around">
-                {currentHoldings.map(holding => <CurrentHoldingsCard key={holding.stockSymbol} holding={holding} />)}
+                {currentHoldings.map(holding => <CurrentHoldingsCard key={holding.symbol} holding={holding} />)}
             </div>
             <TransactionModal 
                 buyOrSell={buyOrSell} 
@@ -144,6 +143,7 @@ function Trade() {
                 getHoldings={getHoldings}
                 setShowChart={setShowChart}
                 setShowResultCard={setShowResultCard}
+                companyName={companyName}
                 />
         </Container>
     )

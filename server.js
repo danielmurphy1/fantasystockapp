@@ -19,8 +19,6 @@ app.use("/", express.static(path.join(__dirname, "client/build")));
 app.use("/trade", express.static(path.join(__dirname, "client/build")));
 app.use("/portfolio", express.static(path.join(__dirname, "client/build")));
 
-const stocks = [];
-
 app.get("/api/search/:symbol", (req, res) =>{
     const symbol = req.params.symbol;
     const token = process.env.TEST_TOKEN;
@@ -35,15 +33,30 @@ app.get("/api/search/:symbol", (req, res) =>{
         })
 });
 
-app.post("/api/stocks", (req, res) =>{
-    res.send(req.body);
-    console.log(req.body);
-    stocks.push(req.body);
-    console.log(stocks);
+app.post("/api/stocks", async (req, res) =>{    
+    try {
+        const { userId, symbol, companyName, sharesOwned, sharesValue } = req.body;
+        const { rows } =  await pool.query(`
+            INSERT INTO test_user_stocks (user_id, symbol, company_name, shares_owned, shares_value)
+            VALUES
+                ($1, $2, $3, $4, $5)
+                RETURNING *;
+        `, [userId, symbol, companyName, sharesOwned, sharesValue])
+    // .then(res => res.send(rows));
+    res.send(rows);
+    } catch (error) {
+        error.statusCode = 500;
+        res.send(error);
+        throw error;
+    }
 });
 
-app.get("/api/stocks", isAuth, (req, res) =>{ //send client the stocks array
-    res.send(stocks)
+app.get("/api/stocks", isAuth, async (req, res) =>{ //send client the stocks array
+    // res.send(stocks)
+    const { rows } = await pool.query(`
+        SELECT * FROM test_user_stocks;
+    `)
+    res.send(rows);
 });
 
 // testing for protected api endpoints

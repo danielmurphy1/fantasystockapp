@@ -6,10 +6,17 @@ function TransactionModal(props) {
     const [sharesToTrade, setSharesToTrade] = useState(null);
 
     async function buyButtonHandler(){
+        // const body = {
+        //     stockSymbol: props.stockSymbol, 
+        //     sharesToTrade: sharesToTrade
+        // };
         const body = {
-            stockSymbol: props.stockSymbol, 
-            sharesToTrade: sharesToTrade
-        };
+            userId: 196, 
+            symbol: props.stockSymbol, 
+            companyName: props.companyName, 
+            sharesOwned: sharesToTrade, 
+            sharesValue: (sharesToTrade * props.currentPrice)
+        }
 
         const response = await axios.post('/api/stocks', body);
         console.log(response);

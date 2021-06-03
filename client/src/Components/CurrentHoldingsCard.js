@@ -6,7 +6,7 @@ function CurrentHoldingsCard(props) {
     return(
         <Card style={{width: '18rem'}}>
             <Card.Header id="holdings-header">
-                <h3>{props.holding.stockSymbol}</h3>
+                <h3>{props.holding.symbol}</h3>
             </Card.Header>
             <Card.Body>
                 <p>Current Shares: 10</p>

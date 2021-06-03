@@ -33,6 +33,8 @@ function App() {
           <Route path="*">
             <Redirect to="/" />
           </Route>
+          {/* <Route path="*" component={Home} /> */}
+          {/* <Route render={() => <Redirect to={{path: "/"}} />} /> */}
       </Switch>
     </Router>
   );

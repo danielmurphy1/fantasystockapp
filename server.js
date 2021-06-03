@@ -67,6 +67,10 @@ app.get('/api/protected', isAuth, (req, res) => {
     res.json(info);
 })
 
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, "client/build", "index.html"))
+});
+
 pool.connect({
     host: 'localhost', 
     port: 5432, 

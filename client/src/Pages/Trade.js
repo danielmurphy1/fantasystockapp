@@ -30,32 +30,31 @@ function Trade() {
         getHoldings();
     }, [])
 
-    function getHoldings(){
-        // const holdings = axios.get('/api/stocks', {
-        //     headers:{
-        //         "Content-type": "application/json", 
-        //         "Accept": "application/json", 
-        //         "Authorization": "Bearer" + " " + authCtx.token
-        //     }
-        // })
+    async function getHoldings(){
+        const response = await axios.get('/api/stocks', {
+            headers:{
+                "Content-type": "application/json", 
+                "Accept": "application/json", 
+                "Authorization": "Bearer" + " " + authCtx.token
+            }
+        })
         
-            // .then(res => res.json())
             // .then(res => setCurrentHoldings([...currentHoldings, holdings]))
             // .then(console.log(currentHoldings));
 
-            // setCurrentHoldings([...currentHoldings, holdings]);
-            // console.log(currentHoldings);
+            setCurrentHoldings(response.data);
+            console.log(currentHoldings);
 
-        fetch("/api/stocks", {
-            headers:{
-                    "Content-type": "application/json", 
-                    "Accept": "application/json", 
-                    "Authorization": "Bearer" + " " + authCtx.token
-             }
-        })
-            .then(res => res.json())
-            .then(currentHoldings => setCurrentHoldings(currentHoldings))
-            .then(console.log(currentHoldings));
+        // fetch("/api/stocks", {
+        //     headers:{
+        //             "Content-type": "application/json", 
+        //             "Accept": "application/json", 
+        //             "Authorization": "Bearer" + " " + authCtx.token
+        //     }
+        // })
+        //     .then(res => res.json())
+        //     .then(currentHoldings => setCurrentHoldings(currentHoldings))
+        //     .then(console.log(currentHoldings));
     };
 
     function buyTransaction (event){

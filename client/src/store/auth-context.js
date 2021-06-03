@@ -10,10 +10,10 @@ const AuthContext = React.createContext({
 });
 
 const calculateRemainingTime = (expirationTime) => {
-    const curerntTime = new Date().getTime();
+    const currentTime = new Date().getTime();
     const adjustedExpirationTime = new Date(expirationTime).getTime();
 
-    const remainingDuration = adjustedExpirationTime - curerntTime;
+    const remainingDuration = adjustedExpirationTime - currentTime;
 
     return remainingDuration;
 };

@@ -69,6 +69,7 @@ function Home() {
             .then(res => {
                 console.log(res);
                 console.log(res.data.accessToken);
+                console.log(res.data.result[0].id);
                 //expirationTime is current time plus token expiresIn converted to a new date object
                 const expirationTime = new Date(new Date().getTime() + (+res.data.expiresIn));
                 authCtx.login(res.data.accessToken, expirationTime.toISOString());

@@ -56,8 +56,8 @@ app.get("/api/stocks", isAuth, async (req, res) =>{
     const { userId } = req.body;
     const { rows } = await pool.query(`
         SELECT * FROM test_user_stocks
-        WHERE user_id = 196;
-    `)
+        WHERE user_id = $1
+    `, [userId])
     res.send(rows);
 });
 

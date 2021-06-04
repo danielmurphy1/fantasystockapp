@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import AuthContext from '../store/auth-context';
+
 import axios from 'axios';
 
 function TransactionModal(props) {
     const [sharesToTrade, setSharesToTrade] = useState(null);
+
+    const authCtx = useContext(AuthContext);
 
     async function buyButtonHandler(){
         // const body = {
@@ -11,7 +15,7 @@ function TransactionModal(props) {
         //     sharesToTrade: sharesToTrade
         // };
         const body = {
-            userId: 196, 
+            userId: authCtx.userId, 
             symbol: props.stockSymbol, 
             companyName: props.companyName, 
             sharesOwned: sharesToTrade, 

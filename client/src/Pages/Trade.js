@@ -26,18 +26,53 @@ function Trade() {
     const authCtx = useContext(AuthContext);
 
 
+    // useEffect(() => { //request stocks array from server and return to client
+    //     getHoldings();
+    // }, [])
+
+    // async function getHoldings(){
+    //     const response = await axios.get('/api/stocks', {
+    //         headers:{
+    //             "Content-type": "application/json", 
+    //             "Accept": "application/json", 
+    //             "Authorization": "Bearer" + " " + authCtx.token
+    //         }, 
+    //         data: {
+    //             userId: authCtx.userId
+    //         }
+    //     })
+        
+    //         // .then(res => setCurrentHoldings([...currentHoldings, holdings]))
+    //         // .then(console.log(currentHoldings));
+
+    //         setCurrentHoldings(response.data);
+    //         console.log(currentHoldings);
+
+    //     // fetch("/api/stocks", {
+    //     //     headers:{
+    //     //             "Content-type": "application/json", 
+    //     //             "Accept": "application/json", 
+    //     //             "Authorization": "Bearer" + " " + authCtx.token
+    //     //     }
+    //     // })
+    //     //     .then(res => res.json())
+    //     //     .then(currentHoldings => setCurrentHoldings(currentHoldings))
+    //     //     .then(console.log(currentHoldings));
+    // };
+
+
     useEffect(() => { //request stocks array from server and return to client
-        getHoldings();
+        getHoldings(authCtx.userId);
     }, [])
 
-    async function getHoldings(){
-        const response = await axios.get('/api/stocks', {
+    async function getHoldings(userId){
+        const response = await axios.get(`/api/stocks/${userId}`, {
             headers:{
                 "Content-type": "application/json", 
                 "Accept": "application/json", 
                 "Authorization": "Bearer" + " " + authCtx.token
             }, 
-            data: {
+            params: {
                 userId: authCtx.userId
             }
         })

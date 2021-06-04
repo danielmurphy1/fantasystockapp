@@ -25,7 +25,7 @@ function TransactionModal(props) {
         const response = await axios.post('/api/stocks', body);
         console.log(response);
 
-        props.getHoldings();
+        props.getHoldings(authCtx.userId);
         props.setShowChart(false);
         props.setShowResultCard(false);
 

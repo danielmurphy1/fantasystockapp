@@ -36,6 +36,9 @@ function Trade() {
                 "Content-type": "application/json", 
                 "Accept": "application/json", 
                 "Authorization": "Bearer" + " " + authCtx.token
+            }, 
+            data: {
+                userId: authCtx.userId
             }
         })
         
@@ -99,7 +102,7 @@ function Trade() {
 
     async function handleStockSearch(event){
         event.preventDefault();
-        
+
         await fetch(`/api/search/${inputValue}`)
             .then(res => res.json())
             .then(res => {

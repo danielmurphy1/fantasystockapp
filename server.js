@@ -51,10 +51,12 @@ app.post("/api/stocks", async (req, res) =>{
     }
 });
 
-app.get("/api/stocks", isAuth, async (req, res) =>{ //send client the stocks array
+app.get("/api/stocks", isAuth, async (req, res) =>{ 
     // res.send(stocks)
+    const { userId } = req.body;
     const { rows } = await pool.query(`
-        SELECT * FROM test_user_stocks;
+        SELECT * FROM test_user_stocks
+        WHERE user_id = 196;
     `)
     res.send(rows);
 });

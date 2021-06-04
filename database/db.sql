@@ -5,7 +5,7 @@
 -- Dumped from database version 13.2
 -- Dumped by pg_dump version 13.2
 
--- Started on 2021-05-19 22:13:19
+-- Started on 2021-06-03 21:07:29
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 3008 (class 1262 OID 17084)
+-- TOC entry 3010 (class 1262 OID 17084)
 -- Name: fantasy_stocks; Type: DATABASE; Schema: -; Owner: postgres
 --
 
@@ -52,7 +52,7 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.test_user_stocks (
     id integer NOT NULL,
-    user_id integer,
+    user_id integer NOT NULL,
     symbol character varying NOT NULL,
     company_name character varying NOT NULL,
     shares_owned integer,
@@ -81,7 +81,7 @@ CREATE SEQUENCE public.test_user_stocks_id_seq
 ALTER TABLE public.test_user_stocks_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3009 (class 0 OID 0)
+-- TOC entry 3011 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: test_user_stocks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -124,7 +124,7 @@ CREATE SEQUENCE public.test_users_id_seq
 ALTER TABLE public.test_users_id_seq OWNER TO postgres;
 
 --
--- TOC entry 3010 (class 0 OID 0)
+-- TOC entry 3012 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: test_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -158,6 +158,15 @@ ALTER TABLE ONLY public.test_user_stocks
 
 
 --
+-- TOC entry 2873 (class 2606 OID 25277)
+-- Name: test_user_stocks test_user_stocks_user_id_symbol_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.test_user_stocks
+    ADD CONSTRAINT test_user_stocks_user_id_symbol_key UNIQUE (user_id, symbol);
+
+
+--
 -- TOC entry 2867 (class 2606 OID 17097)
 -- Name: test_users test_users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
@@ -176,7 +185,7 @@ ALTER TABLE ONLY public.test_users
 
 
 --
--- TOC entry 2872 (class 2606 OID 17162)
+-- TOC entry 2874 (class 2606 OID 17162)
 -- Name: test_user_stocks test_user_stocks_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -184,7 +193,7 @@ ALTER TABLE ONLY public.test_user_stocks
     ADD CONSTRAINT test_user_stocks_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.test_users(id) ON DELETE CASCADE;
 
 
--- Completed on 2021-05-19 22:13:20
+-- Completed on 2021-06-03 21:07:30
 
 --
 -- PostgreSQL database dump complete

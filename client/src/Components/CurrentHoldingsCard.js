@@ -1,17 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import '../Styles/CurrentHoldingsCard.css';
+import axios from 'axios';
 
 function CurrentHoldingsCard(props) {
+    const [currentPrice, setCurrentPrice] = useState(null);
+    const currentValue = currentPrice * props.holding.shares_owned;
+    // const [currentValue, setCurrentValue] = useState(null);
+
+    useEffect(async () => {
+        const response = await axios.get(`/api/search/${props.holding.symbol}`);
+        setCurrentPrice(response.data.latestPrice);
+        // setCurrentValue(currentPrice * props.holding.shares_owned);
+        console.log(response.data);
+
+    },[props.holding.symbol])
+
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
+    });
+
+    const price = formatter.format(currentPrice);
+    const value = formatter.format(currentValue);
     return(
         <Card style={{width: '18rem'}}>
             <Card.Header id="holdings-header">
                 <h3>{props.holding.symbol}</h3>
             </Card.Header>
             <Card.Body>
-                <p>Current Shares: 10</p>
-                <p>Current Price: $215.65</p>
-                <p>Value of Shares: $2156.50</p>
+                <p>Current Shares: {props.holding.shares_owned}</p>
+                <p>Current Price:{price}</p>
+                <p>Value of Shares: {value}</p>
                 <Button>View Details</Button>
             </Card.Body>
         </Card>

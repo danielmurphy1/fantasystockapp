@@ -14,16 +14,43 @@ function TransactionModal(props) {
         //     stockSymbol: props.stockSymbol, 
         //     sharesToTrade: sharesToTrade
         // };
-        const body = {
-            userId: authCtx.userId, 
-            symbol: props.stockSymbol, 
-            companyName: props.companyName, 
-            sharesOwned: sharesToTrade, 
-            sharesValue: (sharesToTrade * props.currentPrice)
-        }
 
-        const response = await axios.post('/api/stocks', body);
-        console.log(response);
+      
+
+        if (props.currentShares === 0){
+            const body = {
+                userId: authCtx.userId, 
+                symbol: props.stockSymbol, 
+                companyName: props.companyName, 
+                sharesToBuy: sharesToTrade, 
+                sharesValue: (sharesToTrade * props.currentPrice)
+            }
+            console.log(body)
+            
+            const response = await axios.post('/api/stocks', body);
+            console.log(response);
+        } else {
+            const body = {
+                userId: authCtx.userId, 
+                symbol: props.stockSymbol, 
+                newShares: parseInt(props.currentShares) + parseInt(sharesToTrade), 
+            }
+
+            console.log(body)
+
+            const response = await axios.put('/api/stocks/buy', body);
+            console.log(response);
+        }
+        // const body = {
+        //     userId: authCtx.userId, 
+        //     symbol: props.stockSymbol, 
+        //     companyName: props.companyName, 
+        //     sharesOwned: sharesToTrade, 
+        //     sharesValue: (sharesToTrade * props.currentPrice)
+        // }
+
+        // const response = await axios.post('/api/stocks', body);
+        // console.log(response);
 
         props.getHoldings(authCtx.userId);
         props.setShowChart(false);

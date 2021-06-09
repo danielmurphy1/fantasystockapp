@@ -35,13 +35,13 @@ app.get("/api/search/:symbol", (req, res) =>{
 
 app.post("/api/stocks", async (req, res) =>{    
     try {
-        const { userId, symbol, companyName, sharesOwned, sharesValue } = req.body;
+        const { userId, symbol, companyName, sharesToBuy, sharesValue } = req.body;
         const { rows } =  await pool.query(`
             INSERT INTO test_user_stocks (user_id, symbol, company_name, shares_owned, shares_value)
             VALUES
                 ($1, $2, $3, $4, $5)
                 RETURNING *;
-        `, [userId, symbol, companyName, sharesOwned, sharesValue])
+        `, [userId, symbol, companyName, sharesToBuy, sharesValue])
     // .then(res => res.send(rows));
     res.send(rows);
     } catch (error) {
@@ -49,6 +49,24 @@ app.post("/api/stocks", async (req, res) =>{
         res.send(error);
         throw error;
     }
+});
+
+app.put("/api/stocks/buy", async (req, res) => {
+    try {
+        const { newShares, userId, symbol } = req.body;
+        const { rows } = await pool.query(`
+        UPDATE test_user_stocks
+        SET shares_owned = $1
+        WHERE user_id = $2 AND symbol = $3
+        RETURNING *; 
+        `, [newShares, userId, symbol])
+        res.send(rows);
+    } catch (error) {
+        error.statusCode = 500;
+        res.send(error);
+        throw error;
+    }
+    
 });
 
 // app.get("/api/stocks", isAuth, async (req, res) =>{ 

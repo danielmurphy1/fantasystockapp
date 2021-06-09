@@ -140,7 +140,8 @@ function Trade() {
                 buyOrSell={buyOrSell} 
                 stockSymbol={stockSymbol} 
                 show={show} 
-                currentPrice={currentPrice} 
+                currentPrice={currentPrice}
+                currentShares={currentShares} 
                 handleShowModal={handleShowModal} 
                 handleCloseModal={handleCloseModal}
                 getHoldings={getHoldings}

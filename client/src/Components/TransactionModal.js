@@ -9,14 +9,47 @@ function TransactionModal(props) {
 
     const authCtx = useContext(AuthContext);
 
+    const headers = {
+    "Content-type": "application/json", 
+    "Accept": "application/json", 
+    "Authorization": "Bearer" + " " + authCtx.token
+}
+
     async function buyButtonHandler(){
-        // const body = {
-        //     stockSymbol: props.stockSymbol, 
-        //     sharesToTrade: sharesToTrade
-        // };
+        if (props.currentShares === 0){
+            const body = {
+                userId: authCtx.userId, 
+                symbol: props.stockSymbol, 
+                companyName: props.companyName, 
+                sharesToBuy: sharesToTrade, 
+                sharesValue: (sharesToTrade * props.currentPrice)
+            }
+            console.log(body)
+            
+            const response = await axios.post('/api/stocks', body, {headers:headers});
+            console.log(response);
+        } else {
+            const body = {
+                userId: authCtx.userId, 
+                symbol: props.stockSymbol, 
+                newShares: parseInt(props.currentShares) + parseInt(sharesToTrade), 
+            }
 
-      
+            console.log(body)
 
+            const response = await axios.put('/api/stocks/buy', body, {headers:headers});
+            console.log(response);
+        }
+
+        props.getHoldings(authCtx.userId);
+        props.setShowChart(false);
+        props.setShowResultCard(false);
+
+        // props.handleCloseModal();
+            
+    };
+
+    async function sellButtonHandler(){
         if (props.currentShares === 0){
             const body = {
                 userId: authCtx.userId, 
@@ -41,16 +74,6 @@ function TransactionModal(props) {
             const response = await axios.put('/api/stocks/buy', body);
             console.log(response);
         }
-        // const body = {
-        //     userId: authCtx.userId, 
-        //     symbol: props.stockSymbol, 
-        //     companyName: props.companyName, 
-        //     sharesOwned: sharesToTrade, 
-        //     sharesValue: (sharesToTrade * props.currentPrice)
-        // }
-
-        // const response = await axios.post('/api/stocks', body);
-        // console.log(response);
 
         props.getHoldings(authCtx.userId);
         props.setShowChart(false);
@@ -96,7 +119,7 @@ function TransactionModal(props) {
             <Form>
                 <Modal.Body className="text-center">
                     <p>Current Share Price: {price}</p>
-                    <p>Current Number of Shares: 27</p>
+                    <p>Current Number of Shares: {props.currentShares}</p>
                         <Form.Group>
                             <Form.Label>Number of Shares to Trade</Form.Label>
                             <Form.Control type="number" min="0" onChange={sharesToTradeHandler}></Form.Control>

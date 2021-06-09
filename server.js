@@ -33,7 +33,7 @@ app.get("/api/search/:symbol", (req, res) =>{
         })
 });
 
-app.post("/api/stocks", async (req, res) =>{    
+app.post("/api/stocks", isAuth, async (req, res) =>{    
     try {
         const { userId, symbol, companyName, sharesToBuy, sharesValue } = req.body;
         const { rows } =  await pool.query(`
@@ -51,7 +51,7 @@ app.post("/api/stocks", async (req, res) =>{
     }
 });
 
-app.put("/api/stocks/buy", async (req, res) => {
+app.put("/api/stocks/buy", isAuth, async (req, res) => {
     try {
         const { newShares, userId, symbol } = req.body;
         const { rows } = await pool.query(`

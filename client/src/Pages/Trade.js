@@ -20,6 +20,7 @@ function Trade() {
     const [show, setShow] = useState(false);
     const [buyOrSell, setBuyOrSell] = useState("");
     const [currentPrice, setCurrentPrice] = useState(null);
+    const [currentShares, setCurrentShares] = useState(null);
     const [priceChange, setPriceChange] = useState(null);
     const [companyName, setCompanyName] = useState(""); 
 
@@ -83,6 +84,8 @@ function Trade() {
             setCurrentHoldings(response.data);
             console.log(currentHoldings);
 
+            return response;
+
         // fetch("/api/stocks", {
         //     headers:{
         //             "Content-type": "application/json", 
@@ -132,11 +135,14 @@ function Trade() {
                         currentPrice={currentPrice}
                         priceChange={priceChange}
                         companyName={companyName}
+                        currentShares = {currentShares}
                         />
     }
 
     async function handleStockSearch(event){
         event.preventDefault();
+
+        
 
         await fetch(`/api/search/${inputValue}`)
             .then(res => res.json())
@@ -153,6 +159,18 @@ function Trade() {
                 setPriceChange(res.change);
                 setCompanyName(res.companyName);
             });
+
+        const response = await getHoldings(authCtx.userId);
+        console.log(response.data)
+
+        for (let i = 0; i < response.data.length; i++){
+            if (response.data[i].symbol === stockSymbol){
+                setCurrentShares(response.data[i].shares_owned);
+                break;
+            } else {
+                setCurrentShares(0);
+            }
+        }
     }
 
     

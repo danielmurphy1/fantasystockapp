@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Container, Image } from 'react-bootstrap';
 import SearchForm from '../Components/SearchForm';
 import SearchResultCard from '../Components/SearchResultCard';
@@ -16,6 +16,7 @@ function Trade() {
     const [showChart, setShowChart] = useState(false);
     const [showResultCard, setShowResultCard] = useState(false);
     const [stockSymbol, setStockSymbol] = useState("");
+    // const stockSymbolInputRef = useRef();
     const [inputValue, setInputValue] = useState("");
     const [show, setShow] = useState(false);
     const [buyOrSell, setBuyOrSell] = useState("");
@@ -25,43 +26,7 @@ function Trade() {
     const [companyName, setCompanyName] = useState(""); 
 
     const authCtx = useContext(AuthContext);
-
-
-    // useEffect(() => { //request stocks array from server and return to client
-    //     getHoldings();
-    // }, [])
-
-    // async function getHoldings(){
-    //     const response = await axios.get('/api/stocks', {
-    //         headers:{
-    //             "Content-type": "application/json", 
-    //             "Accept": "application/json", 
-    //             "Authorization": "Bearer" + " " + authCtx.token
-    //         }, 
-    //         data: {
-    //             userId: authCtx.userId
-    //         }
-    //     })
-        
-    //         // .then(res => setCurrentHoldings([...currentHoldings, holdings]))
-    //         // .then(console.log(currentHoldings));
-
-    //         setCurrentHoldings(response.data);
-    //         console.log(currentHoldings);
-
-    //     // fetch("/api/stocks", {
-    //     //     headers:{
-    //     //             "Content-type": "application/json", 
-    //     //             "Accept": "application/json", 
-    //     //             "Authorization": "Bearer" + " " + authCtx.token
-    //     //     }
-    //     // })
-    //     //     .then(res => res.json())
-    //     //     .then(currentHoldings => setCurrentHoldings(currentHoldings))
-    //     //     .then(console.log(currentHoldings));
-    // };
-
-
+    
     useEffect(() => { //request stocks array from server and return to client
         getHoldings(authCtx.userId);
     }, [])
@@ -77,25 +42,11 @@ function Trade() {
                 userId: authCtx.userId
             }
         })
-        
-            // .then(res => setCurrentHoldings([...currentHoldings, holdings]))
-            // .then(console.log(currentHoldings));
 
             setCurrentHoldings(response.data);
             console.log(currentHoldings);
 
             return response;
-
-        // fetch("/api/stocks", {
-        //     headers:{
-        //             "Content-type": "application/json", 
-        //             "Accept": "application/json", 
-        //             "Authorization": "Bearer" + " " + authCtx.token
-        //     }
-        // })
-        //     .then(res => res.json())
-        //     .then(currentHoldings => setCurrentHoldings(currentHoldings))
-        //     .then(console.log(currentHoldings));
     };
 
     function buyTransaction (event){
@@ -139,10 +90,10 @@ function Trade() {
                         />
     }
 
-    async function handleStockSearch(event){
+    async function handleStockSearch(event, inputValue){
         event.preventDefault();
 
-        
+        let symbol;
 
         await fetch(`/api/search/${inputValue}`)
             .then(res => res.json())
@@ -151,7 +102,7 @@ function Trade() {
                 setShowResultCard(true);
                 setStockSymbol(res.symbol);
                 setInputValue("");
-
+                symbol = res.symbol;
                 console.log(res);
                 console.log(res.latestPrice)
                 console.log(res.change);
@@ -164,7 +115,7 @@ function Trade() {
         console.log(response.data)
 
         for (let i = 0; i < response.data.length; i++){
-            if (response.data[i].symbol === stockSymbol){
+            if (response.data[i].symbol === symbol){
                 setCurrentShares(response.data[i].shares_owned);
                 break;
             } else {
@@ -172,10 +123,6 @@ function Trade() {
             }
         }
     }
-
-    
-    
-//current holding cards being clicked on will make them "searched" and return a SearchResultCard and Chart
 
     return(
         <Container className="App">
@@ -187,7 +134,7 @@ function Trade() {
             {resultCard}
             {chart}
             <div className="row justify-content-around">
-                {currentHoldings.map(holding => <CurrentHoldingsCard key={holding.symbol} holding={holding} />)}
+                {currentHoldings.map(holding => <CurrentHoldingsCard key={holding.symbol} holding={holding} handleStockSearch={handleStockSearch} />)}
             </div>
             <TransactionModal 
                 buyOrSell={buyOrSell} 

@@ -91,6 +91,14 @@ function TransactionModal(props) {
         setSharesToTrade(event.target.value)
     }
 
+    let transactionType;
+    if (props.buyOrSell === "Buy") {
+        transactionType = "Buy" 
+    } else if (props.buyOrSell ==="Sell") {
+        transactionType = "Sell"
+
+    } 
+
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -109,7 +117,7 @@ function TransactionModal(props) {
                     <p>Current Share Price: {price}</p>
                     <p>Current Number of Shares: {props.currentShares}</p>
                         <Form.Group>
-                            <Form.Label>Number of Shares to Trade</Form.Label>
+                            <Form.Label>Number of Shares to {transactionType}</Form.Label>
                             <Form.Control type="number" min="0" onChange={sharesToTradeHandler}></Form.Control>
                         </Form.Group>
                 </Modal.Body>

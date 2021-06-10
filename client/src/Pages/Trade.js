@@ -93,29 +93,25 @@ function Trade() {
     async function handleStockSearch(event, inputValue){
         event.preventDefault();
 
-        let symbol;
-
-        await fetch(`/api/search/${inputValue}`)
-            .then(res => res.json())
-            .then(res => {
-                setShowChart(true);
-                setShowResultCard(true);
-                setStockSymbol(res.symbol);
-                setInputValue("");
-                symbol = res.symbol;
-                console.log(res);
-                console.log(res.latestPrice)
-                console.log(res.change);
-                setCurrentPrice(res.latestPrice);
-                setPriceChange(res.change);
-                setCompanyName(res.companyName);
-            });
+        const responseData = await fetch(`/api/search/${inputValue}`)
+            .then(res => res.json());
+        
+        setShowChart(true);
+        setShowResultCard(true);
+        setStockSymbol(responseData.symbol);
+        setInputValue("");
+        console.log(responseData);
+        console.log(responseData.latestPrice)
+        console.log(responseData.change);
+        setCurrentPrice(responseData.latestPrice);
+        setPriceChange(responseData.change);
+        setCompanyName(responseData.companyName);
 
         const response = await getHoldings(authCtx.userId);
         console.log(response.data)
 
         for (let i = 0; i < response.data.length; i++){
-            if (response.data[i].symbol === symbol){
+            if (response.data[i].symbol === responseData.symbol){
                 setCurrentShares(response.data[i].shares_owned);
                 break;
             } else {

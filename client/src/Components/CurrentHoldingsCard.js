@@ -5,16 +5,20 @@ import axios from 'axios';
 
 function CurrentHoldingsCard(props) {
     const [currentPrice, setCurrentPrice] = useState(null);
-    const currentValue = currentPrice * props.holding.shares_owned;
-    // const [currentValue, setCurrentValue] = useState(null);
+    // const currentValue = currentPrice * props.holding.shares_owned;
+    const [currentValue, setCurrentValue] = useState(null);
 
     useEffect(async () => {
         const response = await axios.get(`/api/search/${props.holding.symbol}`);
         setCurrentPrice(response.data.latestPrice);
-        // setCurrentValue(currentPrice * props.holding.shares_owned);
         console.log(response.data);
 
     },[props.holding.symbol])
+
+    useEffect(() => {
+        setCurrentValue(currentPrice * props.holding.shares_owned);
+
+    }, [currentPrice]) 
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',

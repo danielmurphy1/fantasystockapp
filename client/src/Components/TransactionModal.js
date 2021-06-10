@@ -50,20 +50,18 @@ function TransactionModal(props) {
     };
 
     async function sellButtonHandler(){
-        if (props.currentShares === 0){
-            return;
-        } else {
-            const body = {
-                userId: authCtx.userId, 
-                symbol: props.stockSymbol, 
-                newShares: parseInt(props.currentShares) - parseInt(sharesToTrade), 
-            }
-
-            console.log(body)
-
-            const response = await axios.put('/api/stocks/sell', body, {headers:headers});
-            console.log(response);
+        
+        const body = {
+            userId: authCtx.userId, 
+            symbol: props.stockSymbol, 
+            newShares: parseInt(props.currentShares) - parseInt(sharesToTrade), 
         }
+
+        console.log(body)
+
+        const response = await axios.put('/api/stocks/sell', body, {headers:headers});
+        console.log(response);
+        
 
         props.getHoldings(authCtx.userId);
         props.setShowChart(false);

@@ -84,7 +84,7 @@ function TransactionModal(props) {
         } else if (props.buyOrSell === "Sell"){
             return <div>
                         <Button className="mr-3" disabled>Buy Shares</Button>
-                        <Button onClock={sellButtonHandler}>Sell Shares</Button>
+                        <Button onClick={sellButtonHandler}>Sell Shares</Button>
                     </div>
         }
     };

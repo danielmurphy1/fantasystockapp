@@ -65,8 +65,24 @@ app.put("/api/stocks/buy", isAuth, async (req, res) => {
         error.statusCode = 500;
         res.send(error);
         throw error;
-    }
-    
+    }    
+});
+
+app.put("/api/stocks/sell", isAuth, async (req, res) => {
+    try {
+        const { newShares, userId, symbol } = req.body;
+        const { rows } = await pool.query(`
+        UPDATE test_user_stocks
+        SET shares_owned = $1
+        WHERE user_id = $2 AND symbol = $3
+        RETURNING *; 
+        `, [newShares, userId, symbol])
+        res.send(rows);
+    } catch (error) {
+        error.statusCode = 500;
+        res.send(error);
+        throw error;
+    }    
 });
 
 // app.get("/api/stocks", isAuth, async (req, res) =>{ 

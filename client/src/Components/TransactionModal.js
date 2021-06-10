@@ -51,27 +51,17 @@ function TransactionModal(props) {
 
     async function sellButtonHandler(){
         if (props.currentShares === 0){
-            const body = {
-                userId: authCtx.userId, 
-                symbol: props.stockSymbol, 
-                companyName: props.companyName, 
-                sharesToBuy: sharesToTrade, 
-                sharesValue: (sharesToTrade * props.currentPrice)
-            }
-            console.log(body)
-            
-            const response = await axios.post('/api/stocks', body);
-            console.log(response);
+            return;
         } else {
             const body = {
                 userId: authCtx.userId, 
                 symbol: props.stockSymbol, 
-                newShares: parseInt(props.currentShares) + parseInt(sharesToTrade), 
+                newShares: parseInt(props.currentShares) - parseInt(sharesToTrade), 
             }
 
             console.log(body)
 
-            const response = await axios.put('/api/stocks/buy', body);
+            const response = await axios.put('/api/stocks/sell', body, {headers:headers});
             console.log(response);
         }
 
@@ -94,7 +84,7 @@ function TransactionModal(props) {
         } else if (props.buyOrSell === "Sell"){
             return <div>
                         <Button className="mr-3" disabled>Buy Shares</Button>
-                        <Button>Sell Shares</Button>
+                        <Button onClock={sellButtonHandler}>Sell Shares</Button>
                     </div>
         }
     };

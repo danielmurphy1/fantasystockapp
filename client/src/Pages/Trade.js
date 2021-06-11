@@ -6,6 +6,7 @@ import SearchResultCard from '../Components/SearchResultCard';
 import CurrentHoldingsCard from '../Components/CurrentHoldingsCard';
 import TransactionModal from '../Components/TransactionModal';
 import AuthContext from '../store/auth-context';
+import UserContext, { UserContextProvider } from '../store/user-context';
 import puppy from '../images/place-holder-line-graph.jpg';
 import axios from 'axios';
 
@@ -26,9 +27,14 @@ function Trade() {
     const [companyName, setCompanyName] = useState(""); 
 
     const authCtx = useContext(AuthContext);
+    const userCtx = useContext(UserContext);
     
     useEffect(() => { //request stocks array from server and return to client
         getHoldings(authCtx.userId);
+        console.log(userCtx.accountBalance);
+        console.log(userCtx.userName);
+        console.log(authCtx.userId)
+        console.log(userCtx)
     }, [])
 
     async function getHoldings(userId){

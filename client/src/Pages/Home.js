@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap';
 import LogInForm from '../Components/LogInForm';
 import SignUpForm from '../Components/SignUpForm';
 import AuthContext from '../store/auth-context';
+import UserContext from '../store/user-context';
 
 function Home() {
     const [ isRegistered, setIsRegistered ] = useState(true);
@@ -13,6 +14,7 @@ function Home() {
     const passwordInputRef = useRef();
 
     const authCtx = useContext(AuthContext);
+    const userCtx = useContext(UserContext);
 
     function toggleIsRegistered(event) {
         event.preventDefault();
@@ -70,9 +72,13 @@ function Home() {
                 console.log(res);
                 console.log(res.data.accessToken);
                 console.log(res.data.result[0].id);
+                console.log(res.data.result[0].wallet_ballance)
+                console.log(res.data.result[0].username)
+                console.log(res.data.result[0].password)
                 //expirationTime is current time plus token expiresIn converted to a new date object
                 const expirationTime = new Date(new Date().getTime() + (+res.data.expiresIn));
                 authCtx.login(res.data.accessToken, expirationTime.toISOString(), res.data.result[0].id);
+                userCtx.login(res.data.result[0].wallet_ballance, res.data.result[0].username);
             })
             .catch(error => {
                 console.log(error)

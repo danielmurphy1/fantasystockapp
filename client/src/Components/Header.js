@@ -2,14 +2,17 @@ import React from 'react';
 import { Nav, Navbar, Button } from 'react-bootstrap';
 import { useContext } from 'react';
 import AuthContext from '../store/auth-context';
+import UserContext, { UserContextProvider } from '../store/user-context';
 
 function Header() {
     const authCtx = useContext(AuthContext);
+    const userCtx = useContext(UserContext);
 
     const isLoggedIn = authCtx.isLoggedIn;
 
     function logoutHandler(){
         authCtx.logout();
+        userCtx.logout();
     }
 
     return(

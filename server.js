@@ -51,6 +51,18 @@ app.post("/api/stocks", isAuth, async (req, res) =>{
     }
 });
 
+app.put('/api/user/subtract', async (req, res) => {
+    const { balance } = req.body;
+
+    const { rows } = await pool.query(`
+            UPDATE test_users
+            SET wallet_ballance = $1
+            WHERE id = 196
+            RETURNING *;
+        `, [balance])
+        res.send(rows)
+})
+
 app.put("/api/stocks/buy", isAuth, async (req, res) => {
     try {
         const { newShares, userId, symbol } = req.body;

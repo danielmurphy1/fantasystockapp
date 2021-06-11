@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { Container, Image } from 'react-bootstrap';
+import { Container, Image, Button } from 'react-bootstrap';
 import SearchForm from '../Components/SearchForm';
 import SearchResultCard from '../Components/SearchResultCard';
 import CurrentHoldingsCard from '../Components/CurrentHoldingsCard';
@@ -13,7 +13,6 @@ import axios from 'axios';
 
 function Trade() {
     const [currentHoldings, setCurrentHoldings] = useState([]);
-    const [accountBalance, setAccountBalance] = useState(100000.00);
     const [showChart, setShowChart] = useState(false);
     const [showResultCard, setShowResultCard] = useState(false);
     const [stockSymbol, setStockSymbol] = useState("");
@@ -28,6 +27,7 @@ function Trade() {
 
     const authCtx = useContext(AuthContext);
     const userCtx = useContext(UserContext);
+    const [accountBalance, setAccountBalance] = useState(userCtx.accountBalance);
     
     useEffect(() => { //request stocks array from server and return to client
         getHoldings(authCtx.userId);
@@ -36,6 +36,10 @@ function Trade() {
         console.log(authCtx.userId)
         console.log(userCtx)
     }, [])
+
+    useEffect(() => {
+        
+    }, [accountBalance])
 
     async function getHoldings(userId){
         const response = await axios.get(`/api/stocks/${userId}`, {
@@ -51,9 +55,24 @@ function Trade() {
 
             setCurrentHoldings(response.data);
             console.log(currentHoldings);
-
+            setAccountBalance(userCtx.accountBalance);
             return response;
     };
+
+    async function subtractAccountBalance(prevState) {
+        setAccountBalance(prevState => prevState - 5000);
+        
+    }
+
+    useEffect(async () => {
+        const body = {
+            balance: accountBalance
+        }
+        localStorage.setItem('accountBalance', accountBalance.toString())
+
+        const response = await axios.put('/api/user/subtract', body );
+        console.log(response)
+    }, [accountBalance])
 
     function buyTransaction (event){
         setShow(true)
@@ -135,6 +154,7 @@ function Trade() {
             {/* the Image component is where the line graph will go for the SearchResultCard Stock */}
             {resultCard}
             {chart}
+            <Button onClick={subtractAccountBalance}>Subtract</Button>
             <div className="row justify-content-around">
                 {currentHoldings.map(holding => <CurrentHoldingsCard key={holding.symbol} holding={holding} handleStockSearch={handleStockSearch} />)}
             </div>

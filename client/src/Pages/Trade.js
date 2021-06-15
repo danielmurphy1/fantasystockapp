@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Container, Image, Button } from 'react-bootstrap';
 import SearchForm from '../Components/SearchForm';
 import SearchResultCard from '../Components/SearchResultCard';
@@ -16,7 +16,6 @@ function Trade() {
     const [showChart, setShowChart] = useState(false);
     const [showResultCard, setShowResultCard] = useState(false);
     const [stockSymbol, setStockSymbol] = useState("");
-    // const stockSymbolInputRef = useRef();
     const [inputValue, setInputValue] = useState("");
     const [show, setShow] = useState(false);
     const [buyOrSell, setBuyOrSell] = useState("");
@@ -24,6 +23,8 @@ function Trade() {
     const [currentShares, setCurrentShares] = useState(null);
     const [priceChange, setPriceChange] = useState(null);
     const [companyName, setCompanyName] = useState(""); 
+
+    
 
     const authCtx = useContext(AuthContext);
     const userCtx = useContext(UserContext);
@@ -59,8 +60,8 @@ function Trade() {
             return response;
     };
 
-    async function subtractAccountBalance(prevState) {
-        setAccountBalance(prevState => prevState - 5000);
+    function subtractAccountBalance(amount) {
+        setAccountBalance(prevState => prevState - amount);
         
     }
 
@@ -170,6 +171,8 @@ function Trade() {
                 setShowChart={setShowChart}
                 setShowResultCard={setShowResultCard}
                 companyName={companyName}
+                accountBalance={accountBalance}
+                subtractAccountBalance={subtractAccountBalance}
                 />
         </Container>
     )

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import AuthContext from '../store/auth-context';
 
@@ -6,14 +6,25 @@ import axios from 'axios';
 
 function TransactionModal(props) {
     const [sharesToTrade, setSharesToTrade] = useState(null);
+    // const [accountBalance, setAccountBalance] = useState(props.accountBalance);
+
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
+    });
+
+    const price = formatter.format(props.currentPrice);
+
+    const purchaseAmount = sharesToTrade * props.currentPrice;
 
     const authCtx = useContext(AuthContext);
 
     const headers = {
-    "Content-type": "application/json", 
-    "Accept": "application/json", 
-    "Authorization": "Bearer" + " " + authCtx.token
-}
+        "Content-type": "application/json", 
+        "Accept": "application/json", 
+        "Authorization": "Bearer" + " " + authCtx.token
+    }
 
     async function buyButtonHandler(){
         if (props.currentShares === 0){
@@ -44,8 +55,10 @@ function TransactionModal(props) {
         props.getHoldings(authCtx.userId);
         props.setShowChart(false);
         props.setShowResultCard(false);
+        console.log(purchaseAmount);
+        props.subtractAccountBalance(purchaseAmount);
 
-        // props.handleCloseModal();
+        props.handleCloseModal();
             
     };
 
@@ -99,13 +112,13 @@ function TransactionModal(props) {
 
     } 
 
-    const formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2
-    });
+    // const formatter = new Intl.NumberFormat('en-US', {
+    //     style: 'currency',
+    //     currency: 'USD',
+    //     minimumFractionDigits: 2
+    // });
 
-    const price = formatter.format(props.currentPrice);
+    // const price = formatter.format(props.currentPrice);
 
     return(
         <Modal show={props.show} onHide={props.handleCloseModal} centered>
@@ -116,6 +129,7 @@ function TransactionModal(props) {
                 <Modal.Body className="text-center">
                     <p>Current Share Price: {price}</p>
                     <p>Current Number of Shares: {props.currentShares}</p>
+                    <p>Current Account Balance: {props.accountBalance}</p>
                         <Form.Group>
                             <Form.Label>Number of Shares to {transactionType}</Form.Label>
                             <Form.Control type="number" min="0" onChange={sharesToTradeHandler}></Form.Control>
@@ -123,6 +137,8 @@ function TransactionModal(props) {
                 </Modal.Body>
                 <Modal.Footer>
                     {renderButtons()}
+                    <Button onClick={()=> {props.subtractAccountBalance(purchaseAmount)}}>Subtract</Button>
+
                 </Modal.Footer>
             </Form>
         </Modal>

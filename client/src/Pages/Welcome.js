@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import AuthContext from '../store/auth-context';
+import UserContext from '../store/user-context';
 import axios from 'axios';
 
 import { Container } from 'react-bootstrap';
@@ -7,7 +8,7 @@ import { Container } from 'react-bootstrap';
 function Welcome() {
 
     const authCtx = useContext(AuthContext);
-
+    const userCtx = useContext(UserContext);
 
     function getProtected(){
         axios.get('/api/protected', {
@@ -25,7 +26,7 @@ function Welcome() {
     return (
         <Container>
             <Container className="App welcome-container">
-                <h1>Welcome to NAME OF APP HERE</h1>
+                <h1>Welcome {userCtx.userName} to NAME OF APP HERE</h1>
                 <p>
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim

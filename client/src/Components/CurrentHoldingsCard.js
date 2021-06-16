@@ -18,7 +18,7 @@ function CurrentHoldingsCard(props) {
     useEffect(() => {
         setCurrentValue(currentPrice * props.holding.shares_owned);
 
-    }, [currentPrice]) 
+    }, [currentPrice, props.holding.shares_owned]) 
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',

@@ -79,8 +79,10 @@ function TransactionModal(props) {
         props.getHoldings(authCtx.userId);
         props.setShowChart(false);
         props.setShowResultCard(false);
+        console.log(purchaseAmount);
+        props.addAccountBalance(purchaseAmount);
 
-        // props.handleCloseModal();
+        props.handleCloseModal();
             
     };
 
@@ -129,7 +131,7 @@ function TransactionModal(props) {
                 <Modal.Body className="text-center">
                     <p>Current Share Price: {price}</p>
                     <p>Current Number of Shares: {props.currentShares}</p>
-                    <p>Current Account Balance: {props.accountBalance}</p>
+                    <p>Current Account Balance: {props.balance}</p>
                         <Form.Group>
                             <Form.Label>Number of Shares to {transactionType}</Form.Label>
                             <Form.Control type="number" min="0" onChange={sharesToTradeHandler}></Form.Control>
@@ -137,7 +139,7 @@ function TransactionModal(props) {
                 </Modal.Body>
                 <Modal.Footer>
                     {renderButtons()}
-                    <Button onClick={()=> {props.subtractAccountBalance(purchaseAmount)}}>Subtract</Button>
+                    {/* <Button onClick={()=> {props.subtractAccountBalance(purchaseAmount)}}>Subtract</Button> */}
 
                 </Modal.Footer>
             </Form>

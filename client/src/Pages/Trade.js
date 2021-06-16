@@ -56,13 +56,17 @@ function Trade() {
 
             setCurrentHoldings(response.data);
             console.log(currentHoldings);
-            setAccountBalance(userCtx.accountBalance);
+            // setAccountBalance(userCtx.accountBalance);
             return response;
     };
 
-    function subtractAccountBalance(amount) {
+    function subtractAccountBalance(amount){
         setAccountBalance(prevState => prevState - amount);
         
+    }
+
+    function addAccountBalance(amount){
+        setAccountBalance(prevState => prevState + amount);
     }
 
     useEffect(async () => {
@@ -159,16 +163,23 @@ function Trade() {
         // }
     }
 
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        minimumFractionDigits: 2
+    });
+
+    const balance = formatter.format(accountBalance);
     return(
         <Container className="App">
             <h2>Trading Page</h2>
-            <h3>Current Account Balance: ${accountBalance}</h3>
+            <h3>Current Account Balance: {balance}</h3>
             <p>Search Stock Symbols to Trade. Examples: "AAPL" = Apple "NFLX" = Netflix</p>
             <SearchForm  handleStockSearch={handleStockSearch} handleInputValueChange={handleInputValueChange} inputValue={inputValue}/>
             {/* the Image component is where the line graph will go for the SearchResultCard Stock */}
             {resultCard}
             {chart}
-            <Button onClick={subtractAccountBalance}>Subtract</Button>
+            {/* <Button onClick={subtractAccountBalance}>Subtract</Button> */}
             <div className="row justify-content-around">
                 {currentHoldings.map(holding => <CurrentHoldingsCard key={holding.symbol} holding={holding} handleStockSearch={handleStockSearch} />)}
             </div>
@@ -184,8 +195,9 @@ function Trade() {
                 setShowChart={setShowChart}
                 setShowResultCard={setShowResultCard}
                 companyName={companyName}
-                accountBalance={accountBalance}
+                balance={balance}
                 subtractAccountBalance={subtractAccountBalance}
+                addAccountBalance={addAccountBalance}
                 />
         </Container>
     )

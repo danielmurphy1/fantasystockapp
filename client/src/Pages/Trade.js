@@ -39,7 +39,7 @@ function Trade() {
     }, [])
 
     useEffect(() => {
-        
+        console.log(typeof(accountBalance))
     }, [accountBalance])
 
     async function getHoldings(userId){
@@ -61,12 +61,11 @@ function Trade() {
     };
 
     function subtractAccountBalance(amount){
-        setAccountBalance(prevState => prevState - amount);
-        
+        setAccountBalance(prevState => parseFloat(prevState) - amount);
     }
 
     function addAccountBalance(amount){
-        setAccountBalance(prevState => prevState + amount);
+        setAccountBalance(prevState => parseFloat(prevState) + amount);
     }
 
     useEffect(async () => {

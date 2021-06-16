@@ -56,6 +56,8 @@ function TransactionModal(props) {
         props.setShowChart(false);
         props.setShowResultCard(false);
         console.log(purchaseAmount);
+        console.log(typeof(purchaseAmount));
+        console.log(typeof(props.currentPrice));
         props.subtractAccountBalance(purchaseAmount);
 
         props.handleCloseModal();

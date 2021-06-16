@@ -83,13 +83,23 @@ app.put("/api/stocks/buy", isAuth, async (req, res) => {
 app.put("/api/stocks/sell", isAuth, async (req, res) => {
     try {
         const { newShares, userId, symbol } = req.body;
-        const { rows } = await pool.query(`
-        UPDATE test_user_stocks
-        SET shares_owned = $1
-        WHERE user_id = $2 AND symbol = $3
-        RETURNING *; 
-        `, [newShares, userId, symbol])
-        res.send(rows);
+        if (newShares === 0){
+            const { rows } = await pool.query(`
+            DELETE from test_user_stocks
+            WHERE symbol = $1
+            RETURNING *;
+            `, [symbol])
+            res.send(rows);
+        } else {
+            const { rows } = await pool.query(`
+            UPDATE test_user_stocks
+            SET shares_owned = $1
+            WHERE user_id = $2 AND symbol = $3
+            RETURNING *; 
+            `, [newShares, userId, symbol])
+            res.send(rows);
+        }
+        
     } catch (error) {
         error.statusCode = 500;
         res.send(error);

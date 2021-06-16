@@ -136,14 +136,27 @@ function Trade() {
         const response = await getHoldings(authCtx.userId);
         console.log(response.data)
 
-        for (let i = 0; i < response.data.length; i++){
-            if (response.data[i].symbol === responseData.symbol){
-                setCurrentShares(response.data[i].shares_owned);
-                break;
-            } else {
-                setCurrentShares(0);
+        if (response.data.length === 0){
+            setCurrentShares(0);
+        } else {
+            for (let i = 0; i < response.data.length; i++){
+                if (response.data[i].symbol === responseData.symbol){
+                    setCurrentShares(response.data[i].shares_owned);
+                    break;
+                } else {
+                    setCurrentShares(0);
+                }
             }
         }
+
+        // for (let i = 0; i < response.data.length; i++){
+        //     if (response.data[i].symbol === responseData.symbol){
+        //         setCurrentShares(response.data[i].shares_owned);
+        //         break;
+        //     } else {
+        //         setCurrentShares(0);
+        //     }
+        // }
     }
 
     return(

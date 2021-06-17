@@ -61,7 +61,7 @@ app.post("/api/stocks", isAuth, async (req, res) =>{
     }
 });
 
-app.put('/api/user/subtract', async (req, res) => {
+app.put('/api/user/transaction', async (req, res) => {
     const { balance } = req.body;
 
     const { rows } = await pool.query(`

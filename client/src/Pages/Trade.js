@@ -74,7 +74,7 @@ function Trade() {
         }
         localStorage.setItem('accountBalance', accountBalance.toString())
 
-        const response = await axios.put('/api/user/subtract', body );
+        const response = await axios.put('/api/user/transaction', body );
         console.log(response)
     }, [accountBalance])
 

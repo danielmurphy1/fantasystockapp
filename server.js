@@ -33,6 +33,16 @@ app.get("/api/search/:symbol", (req, res) =>{
         })
 });
 
+app.get("/api/portfolio/:userId", isAuth, async (req, res) => {
+    const { userId } = req.params;
+    const { rows } = await pool.query(`
+    SELECT SUM (shares_value) as total
+    FROM test_user_stocks
+    WHERE user_id = $1;
+    `, [userId])
+    res.send(rows);
+})
+
 app.post("/api/stocks", isAuth, async (req, res) =>{    
     try {
         const { userId, symbol, companyName, sharesToBuy, sharesValue } = req.body;

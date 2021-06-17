@@ -61,17 +61,17 @@ app.post("/api/stocks", isAuth, async (req, res) =>{
     }
 });
 
-app.put('/api/user/transaction', async (req, res) => {
-    const { balance } = req.body;
+// app.put('/api/user/transaction', async (req, res) => {
+//     const { balance } = req.body;
 
-    const { rows } = await pool.query(`
-            UPDATE test_users
-            SET wallet_ballance = $1
-            WHERE id = 196
-            RETURNING *;
-        `, [balance])
-        res.send(rows)
-})
+//     const { rows } = await pool.query(`
+//             UPDATE test_users
+//             SET wallet_ballance = $1
+//             WHERE id = 196
+//             RETURNING *;
+//         `, [balance])
+//         res.send(rows)
+// })
 
 app.put("/api/stocks/buy", isAuth, async (req, res) => {
     try {

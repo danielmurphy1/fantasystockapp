@@ -16,9 +16,18 @@ router.post('/api/signup', async (req, res) => {
 router.post('/api/login', async (req, res) => {
     try {
         const { username, password } = req.body;
-        // const user = { name: username };
         const loggedUser = await UserController.login(username, password, res);
-        res.send(loggedUser)
+        res.send(loggedUser);
+    } catch (error) {
+        res.send(error);
+    }
+});
+
+router.put('/api/user/transaction', async (req, res) =>{
+    try {
+        const { balance } = req.body;
+        const wallet = await UserController.trade(balance)
+        res.send(wallet);
     } catch (error) {
         res.send(error);
     }

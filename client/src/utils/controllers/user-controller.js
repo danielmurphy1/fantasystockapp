@@ -24,7 +24,7 @@ class UserController { //database name will need to be changed for production - 
         return rows;
     };
 
-    static async login(username, password, res){
+    static async login(username, password, res) {
         const user = {name: username};
         const loggedUser = await pool.query(`
             SELECT * FROM test_users
@@ -55,6 +55,17 @@ class UserController { //database name will need to be changed for production - 
         })
         return loggedUser; 
     };
+
+    static async trade(balance) {
+        const { rows } = await pool.query(`
+            UPDATE test_users
+            SET wallet_ballance = $1
+            WHERE id = 196
+            RETURNING *;
+        `, [balance])
+        
+        return rows;
+    }
         
 };
 

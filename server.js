@@ -23,10 +23,22 @@ app.get("/api/search/:symbol", (req, res) =>{
     const symbol = req.params.symbol;
     const token = process.env.PRODUCTION_TOKEN;
     axios.get(`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${token}`)
-        .then((response) => {
+        .then(response => {
             res.send(response.data);
         console.log(response.data)
 
+        })
+        .catch(error => {
+            console.log(error)
+        })
+});
+
+app.get("/api/search/chart/:symbol", (req, res) =>{
+    const symbol = req.params.symbol;
+    const token = process.env.PRODUCTION_TOKEN;
+    axios.get(`https://cloud.iexapis.com/stable/stock/${symbol}/chart/1w?token=${token}`)
+        .then(response => {
+            res.send(response.data)
         })
         .catch(error => {
             console.log(error)

@@ -1,17 +1,20 @@
 import React from 'react';
 import { Chart } from 'react-google-charts';
 
-function ChartTemplate(props){
+function SearchResultsChart(props){
     return(
         <div>
             <Chart
                 width={'100%'}
                 height={'500px'}
-                chartType={props.type}
+                chartType="AreaChart"
                 loader={<div>Loading Chart</div>}
-                data={props.data}
+                data={[
+                    ['Date', 'Price'],
+                    ...props.chartData.map(d => [d.date, d.close])
+                    ]}
                 options={{
-                    title: props.title,
+                    title: `Closing Prices for ${props.companyName} the Last Week`,
                     pointSize: 10,
                     colors: ['#15A0C8'],
                     series: {
@@ -20,9 +23,9 @@ function ChartTemplate(props){
                             curveType: 'function'
                         }
                     },
-                    chartArea: { width: props.chartAreaWidth },
-                    hAxis: { title: props.hAxisTitle },
-                    vAxis: { title: props.vAxisTitle }
+                    chartArea: "100%",
+                    hAxis: {title: "Date"},
+                    vAxis: {title: "Price"}
                 }}
                 rootProps={{ 'data-testid': '1' }}
             />
@@ -30,4 +33,4 @@ function ChartTemplate(props){
     )
 };
 
-export default ChartTemplate;
+export default SearchResultsChart;

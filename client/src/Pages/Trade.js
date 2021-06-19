@@ -7,8 +7,8 @@ import CurrentHoldingsCard from '../Components/CurrentHoldingsCard';
 import TransactionModal from '../Components/TransactionModal';
 import AuthContext from '../store/auth-context';
 import UserContext, { UserContextProvider } from '../store/user-context';
-import puppy from '../images/place-holder-line-graph.jpg';
 import axios from 'axios';
+import SearchResultsChart from '../Components/Charts/SearchResultsChart';
 
 
 function Trade() {
@@ -22,7 +22,8 @@ function Trade() {
     const [currentPrice, setCurrentPrice] = useState(null);
     const [currentShares, setCurrentShares] = useState(null);
     const [priceChange, setPriceChange] = useState(null);
-    const [companyName, setCompanyName] = useState(""); 
+    const [companyName, setCompanyName] = useState("");
+    const [chartData, setChartData] = useState([]); 
 
     
 
@@ -102,7 +103,10 @@ function Trade() {
 
     let chart;
     if (showChart){
-        chart = <Image className="search-result-image" src={puppy} fluid/>
+        chart = <SearchResultsChart 
+                    companyName={companyName}
+                    chartData={chartData}
+        />
     }
 
     let resultCard;
@@ -125,6 +129,11 @@ function Trade() {
         const responseData = await fetch(`/api/search/${inputValue}`)
             .then(res => res.json());
         
+        const chartResponseData = await fetch(`/api/search/chart/${inputValue}`)
+            .then(res => res.json());
+
+        console.log(chartResponseData);
+        setChartData([...chartResponseData])
         setShowChart(true);
         setShowResultCard(true);
         setStockSymbol(responseData.symbol);

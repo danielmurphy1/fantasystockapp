@@ -4,6 +4,7 @@ import UserContext from '../store/user-context';
 import AuthContext from '../store/auth-context';
 import axios from 'axios';
 import PortfolioPieChart from '../Components/Charts/PortfolioPieChart';
+import PortfolioBarChart from '../Components/Charts/PortfolioBarChart';
 import pie from '../images/sample-pie.png';
 import bar from '../images/sample-bar.png';
 
@@ -93,13 +94,20 @@ function Portfolio() {
                             holdings={currentHoldings}
                         />
                         </Col>
-                        
                     </Row>
                     
                 </Container>
             
             <Container>
-                <Image src={bar} style={{width: "75%"}}></Image>    
+                <Row>
+                    <Col lg={12}>
+                         {/* <Image src={bar} style={{width: "75%"}}></Image>     */}
+                        <PortfolioBarChart 
+                            holdings={currentHoldings}
+                        />
+                    </Col>
+                </Row>
+               
             </Container>
         </Container>
     )

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Chart } from 'react-google-charts';
 
-function PortfolioPieChart(props){
+function PortfolioBarChart(props){
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -13,20 +13,26 @@ function PortfolioPieChart(props){
     return(
         <div>
             <Chart
-                width={'800px'}
+                width={'100%'}
                 height={'400px'}
-                chartType="PieChart"
+                chartType="BarChart"
                 loader={<div>Loading Chart</div>}
                 data={[
                     ['Symbol', 'Price'],
-                    ...props.holdings.map(holding => [holding.symbol, parseFloat(holding.shares_value)])
+                    ...props.holdings.map(holding => [holding.symbol, parseFloat(holding.shares_owned)])
                     ]}
                 options={{
-                    title: "Your Portfolio Shares Value Distribution",
+                    title: "Your Portfolio Shares Owned Distribution",
                     titleTextStyle: { fontSize: 18 },
                     chartArea: {
-                        width: "100%",
+                        width: "80%",
                         height: "75%"
+                    }, 
+                    hAxis: {
+                        title: 'Number of Shares Owned'
+                    },
+                    vAxis: {
+                        title: 'Symbol'
                     }
                     
                 }}
@@ -36,4 +42,4 @@ function PortfolioPieChart(props){
     )
 };
 
-export default PortfolioPieChart;
+export default PortfolioBarChart;

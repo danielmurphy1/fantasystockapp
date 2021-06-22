@@ -11,6 +11,7 @@ import bar from '../images/sample-bar.png';
 function Portfolio() {
     const [sharesValue, setSharesValue] = useState();
     const [currentHoldings, setCurrentHoldings] = useState([]);
+    const [showCharts, setShowCharts] = useState(false);
 
     const authCtx = useContext(AuthContext);
     const userCtx = useContext(UserContext);
@@ -20,8 +21,6 @@ function Portfolio() {
         getHoldings(authCtx.userId);
     }, [])
 
-    //create Pie/Portfolio Chart//
-    //copy getHoldings from Trade.js//
     async function getHoldings(userId){
         const response = await axios.get(`/api/stocks/${userId}`, {
             headers:{
@@ -38,9 +37,6 @@ function Portfolio() {
             console.log(currentHoldings);
             return response;
     };
-    //create holdings state in Portfolio.js//
-    //pass results to PieChart as "holdings"
-    //.map over holdings in Chart in data (will need to parseFloat holdings.shares_owned)
 
     async function getPortfolioTotal(userId){
         const response = await axios.get(`/api/portfolio/${userId}`, {
@@ -54,8 +50,14 @@ function Portfolio() {
             }
         })
 
-        setSharesValue(response.data[0].total)
-        // console.log(response.data[0].total)
+        if (response.data[0].total != null) {
+            setSharesValue(response.data[0].total);
+            setShowCharts(true);
+        } else {
+            setSharesValue(0);
+            setShowCharts(false);
+        }
+        console.log(response.data[0].total)
         return response;
     };
 
@@ -89,10 +91,10 @@ function Portfolio() {
                             </Card>
                         </Col>
                         <Col lg={7}>
-                            {/* <Image src={pie} style={{width: "75%"}}></Image> */}
-                        <PortfolioPieChart 
+                        {showCharts && <PortfolioPieChart 
                             holdings={currentHoldings}
-                        />
+                        />}
+                        {!showCharts && <h3>Your Portfolio Currently Consists of Your Wallet Balance...Go Trade!</h3>}
                         </Col>
                     </Row>
                     
@@ -101,13 +103,11 @@ function Portfolio() {
             <Container>
                 <Row>
                     <Col lg={12}>
-                         {/* <Image src={bar} style={{width: "75%"}}></Image>     */}
-                        <PortfolioBarChart 
+                        {showCharts && <PortfolioBarChart 
                             holdings={currentHoldings}
-                        />
+                        />}
                     </Col>
                 </Row>
-               
             </Container>
         </Container>
     )

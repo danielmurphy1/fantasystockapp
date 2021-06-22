@@ -18,8 +18,8 @@ function PortfolioBarChart(props){
                 chartType="BarChart"
                 loader={<div>Loading Chart</div>}
                 data={[
-                    ['Symbol', 'Price'],
-                    ...props.holdings.map(holding => [holding.symbol, parseFloat(holding.shares_owned)])
+                    ['Symbol', 'Shares'],
+                    ...props.holdings.map(holding => [holding.symbol, holding.shares_owned])
                     ]}
                 options={{
                     title: "Your Portfolio Shares Owned Distribution",

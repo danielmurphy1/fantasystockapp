@@ -55,7 +55,7 @@ app.get("/api/portfolio/:userId", isAuth, async (req, res) => {
     res.send(rows);
 })
 
-app.post("/api/stocks", isAuth, async (req, res) =>{    
+app.post("/api/stocks/new", isAuth, async (req, res) =>{    
     try {
         const { userId, symbol, companyName, sharesToBuy, sharesValue } = req.body;
         const { rows } =  await pool.query(`
@@ -87,13 +87,14 @@ app.post("/api/stocks", isAuth, async (req, res) =>{
 
 app.put("/api/stocks/buy", isAuth, async (req, res) => {
     try {
-        const { newShares, userId, symbol } = req.body;
+        const { newShares, userId, symbol, newValue } = req.body;
         const { rows } = await pool.query(`
         UPDATE test_user_stocks
-        SET shares_owned = $1
-        WHERE user_id = $2 AND symbol = $3
+        SET shares_owned = $1,
+            shares_value = $2
+        WHERE user_id = $3 AND symbol = $4
         RETURNING *; 
-        `, [newShares, userId, symbol])
+        `, [newShares, newValue, userId, symbol])
         res.send(rows);
     } catch (error) {
         error.statusCode = 500;
@@ -104,7 +105,7 @@ app.put("/api/stocks/buy", isAuth, async (req, res) => {
 
 app.put("/api/stocks/sell", isAuth, async (req, res) => {
     try {
-        const { newShares, userId, symbol } = req.body;
+        const { newShares, userId, symbol, newValue } = req.body;
         if (newShares === 0){
             const { rows } = await pool.query(`
             DELETE from test_user_stocks
@@ -115,10 +116,11 @@ app.put("/api/stocks/sell", isAuth, async (req, res) => {
         } else {
             const { rows } = await pool.query(`
             UPDATE test_user_stocks
-            SET shares_owned = $1
-            WHERE user_id = $2 AND symbol = $3
+            SET shares_owned = $1,
+                shares_value = $2
+            WHERE user_id = $3 AND symbol = $4
             RETURNING *; 
-            `, [newShares, userId, symbol])
+            `, [newShares, newValue, userId, symbol])
             res.send(rows);
         }
         

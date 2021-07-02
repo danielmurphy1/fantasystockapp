@@ -23,10 +23,20 @@ router.post('/api/login', async (req, res) => {
     }
 });
 
+// router.put('/api/user/transaction', async (req, res) =>{
+//     try {
+//         const { balance } = req.body;
+//         const wallet = await UserController.trade(balance)
+//         res.send(wallet);
+//     } catch (error) {
+//         res.send(error);
+//     }
+// });
+
 router.put('/api/user/transaction', async (req, res) =>{
     try {
-        const { balance } = req.body;
-        const wallet = await UserController.trade(balance)
+        const { balance, user } = req.body;
+        const wallet = await UserController.trade(balance, user)
         res.send(wallet);
     } catch (error) {
         res.send(error);

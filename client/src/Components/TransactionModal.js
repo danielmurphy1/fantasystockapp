@@ -37,13 +37,14 @@ function TransactionModal(props) {
             }
             console.log(body)
             
-            const response = await axios.post('/api/stocks', body, {headers:headers});
+            const response = await axios.post('/api/stocks/new', body, {headers:headers});
             console.log(response);
         } else {
             const body = {
                 userId: authCtx.userId, 
                 symbol: props.stockSymbol, 
-                newShares: parseInt(props.currentShares) + parseInt(sharesToTrade), 
+                newShares: parseInt(props.currentShares) + parseInt(sharesToTrade),
+                newValue: props.currentPrice * (parseInt(props.currentShares) + parseInt(sharesToTrade))
             }
 
             console.log(body)
@@ -69,7 +70,8 @@ function TransactionModal(props) {
         const body = {
             userId: authCtx.userId, 
             symbol: props.stockSymbol, 
-            newShares: parseInt(props.currentShares) - parseInt(sharesToTrade), 
+            newShares: parseInt(props.currentShares) - parseInt(sharesToTrade),
+            newValue: props.currentPrice * (parseInt(props.currentShares) - parseInt(sharesToTrade))
         }
 
         console.log(body)

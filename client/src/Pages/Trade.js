@@ -71,7 +71,8 @@ function Trade() {
 
     useEffect(async () => {
         const body = {
-            balance: accountBalance
+            balance: accountBalance, 
+            user: authCtx.userId
         }
         localStorage.setItem('accountBalance', accountBalance.toString())
 

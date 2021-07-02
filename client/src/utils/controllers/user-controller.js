@@ -56,17 +56,28 @@ class UserController { //database name will need to be changed for production - 
         return loggedUser; 
     };
 
-    static async trade(balance) {
+    // static async trade(balance) {
+    //     const { rows } = await pool.query(`
+    //         UPDATE test_users
+    //         SET wallet_ballance = $1
+    //         WHERE id = 196
+    //         RETURNING *;
+    //     `, [balance])
+        
+    //     return rows;
+    // }
+        
+
+    static async trade(balance, user) {
         const { rows } = await pool.query(`
             UPDATE test_users
             SET wallet_ballance = $1
-            WHERE id = 196
+            WHERE id = $2
             RETURNING *;
-        `, [balance])
+        `, [balance, user])
         
         return rows;
     }
-        
 };
 
 module.exports = UserController;

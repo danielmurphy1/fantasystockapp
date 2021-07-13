@@ -131,6 +131,23 @@ app.put("/api/stocks/sell", isAuth, async (req, res) => {
     }    
 });
 
+app.put("/api/stocks/update", isAuth, async (req, res) => {
+    try {
+        const { userId, symbol, newValue } = req.body;
+        const { rows } = await pool.query(`
+        UPDATE test_user_stocks
+        SET shares_value = $1
+        WHERE user_id = $2 AND symbol = $3
+        RETURNING *; 
+        `, [newValue, userId, symbol])
+        res.send(rows);
+    } catch (error) {
+        error.statusCode = 500;
+        res.send(error);
+        throw error;
+    }    
+});
+
 // app.get("/api/stocks", isAuth, async (req, res) =>{ 
 //     // res.send(stocks)
 //     const { userId } = req.body;

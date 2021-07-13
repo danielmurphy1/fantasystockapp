@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, ModalDialog } from 'react-bootstrap';
 import AuthContext from '../store/auth-context';
 
 import axios from 'axios';
 
 function TransactionModal(props) {
     const [sharesToTrade, setSharesToTrade] = useState(null);
+    const [oversellMessage, setOversellMessage] = useState(null);
+    const [overbuyMessage, setOverBuyMessage] = useState(null);
     // const [accountBalance, setAccountBalance] = useState(props.accountBalance);
 
     const formatter = new Intl.NumberFormat('en-US', {
@@ -27,31 +29,37 @@ function TransactionModal(props) {
     }
 
     async function buyButtonHandler(){
-        if (props.currentShares === 0){
-            const body = {
-                userId: authCtx.userId, 
-                symbol: props.stockSymbol, 
-                companyName: props.companyName, 
-                sharesToBuy: sharesToTrade, 
-                sharesValue: (sharesToTrade * props.currentPrice)
-            }
-            console.log(body)
-            
-            const response = await axios.post('/api/stocks/new', body, {headers:headers});
-            console.log(response);
+        if ((sharesToTrade * props.currentPrice > props.accountBalance)){
+            setOverBuyMessage("You Cannot Spend More Than Current Account Balance!");
+            return;
         } else {
-            const body = {
-                userId: authCtx.userId, 
-                symbol: props.stockSymbol, 
-                newShares: parseInt(props.currentShares) + parseInt(sharesToTrade),
-                newValue: props.currentPrice * (parseInt(props.currentShares) + parseInt(sharesToTrade))
+            if (props.currentShares === 0){
+                const body = {
+                    userId: authCtx.userId, 
+                    symbol: props.stockSymbol, 
+                    companyName: props.companyName, 
+                    sharesToBuy: sharesToTrade, 
+                    sharesValue: (sharesToTrade * props.currentPrice)
+                }
+                console.log(body)
+                
+                const response = await axios.post('/api/stocks/new', body, {headers:headers});
+                console.log(response);
+            } else {
+                const body = {
+                    userId: authCtx.userId, 
+                    symbol: props.stockSymbol, 
+                    newShares: parseInt(props.currentShares) + parseInt(sharesToTrade),
+                    newValue: props.currentPrice * (parseInt(props.currentShares) + parseInt(sharesToTrade))
+                }
+    
+                console.log(body)
+    
+                const response = await axios.put('/api/stocks/buy', body, {headers:headers});
+                console.log(response);
             }
-
-            console.log(body)
-
-            const response = await axios.put('/api/stocks/buy', body, {headers:headers});
-            console.log(response);
         }
+        
 
         props.getHoldings(authCtx.userId);
         props.setShowChart(false);
@@ -60,34 +68,38 @@ function TransactionModal(props) {
         console.log(typeof(purchaseAmount));
         console.log(typeof(props.currentPrice));
         props.subtractAccountBalance(purchaseAmount);
-
+        
+        setOverBuyMessage(null);
         props.handleCloseModal();
             
     };
 
     async function sellButtonHandler(){
-        
-        const body = {
-            userId: authCtx.userId, 
-            symbol: props.stockSymbol, 
-            newShares: parseInt(props.currentShares) - parseInt(sharesToTrade),
-            newValue: props.currentPrice * (parseInt(props.currentShares) - parseInt(sharesToTrade))
-        }
-
-        console.log(body)
-
-        const response = await axios.put('/api/stocks/sell', body, {headers:headers});
-        console.log(response);
-        
-
-        props.getHoldings(authCtx.userId);
-        props.setShowChart(false);
-        props.setShowResultCard(false);
-        console.log(purchaseAmount);
-        props.addAccountBalance(purchaseAmount);
-
-        props.handleCloseModal();
+        if (sharesToTrade > props.currentShares) {
+            setOversellMessage("You Cannot Sell More Shares of This Stock Than You Own!");
+        } else {
+            const body = {
+                userId: authCtx.userId, 
+                symbol: props.stockSymbol, 
+                newShares: parseInt(props.currentShares) - parseInt(sharesToTrade),
+                newValue: props.currentPrice * (parseInt(props.currentShares) - parseInt(sharesToTrade))
+            }
+    
+            console.log(body)
+    
+            const response = await axios.put('/api/stocks/sell', body, {headers:headers});
+            console.log(response);
             
+    
+            props.getHoldings(authCtx.userId);
+            props.setShowChart(false);
+            props.setShowResultCard(false);
+            console.log(purchaseAmount);
+            props.addAccountBalance(purchaseAmount);
+            
+            setOversellMessage(null);
+            props.handleCloseModal();
+        } 
     };
 
     function renderButtons(){
@@ -139,6 +151,8 @@ function TransactionModal(props) {
                         <Form.Group>
                             <Form.Label>Number of Shares to {transactionType}</Form.Label>
                             <Form.Control type="number" min="0" onChange={sharesToTradeHandler}></Form.Control>
+                            {!!oversellMessage && (<ModalDialog>{oversellMessage}</ModalDialog>)}
+                            {!!overbuyMessage && (<ModalDialog>{overbuyMessage}</ModalDialog>)}
                         </Form.Group>
                 </Modal.Body>
                 <Modal.Footer>

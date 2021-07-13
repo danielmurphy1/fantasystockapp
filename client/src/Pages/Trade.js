@@ -207,6 +207,7 @@ function Trade() {
                 balance={balance}
                 subtractAccountBalance={subtractAccountBalance}
                 addAccountBalance={addAccountBalance}
+                accountBalance={accountBalance}
                 />
         </Container>
     )

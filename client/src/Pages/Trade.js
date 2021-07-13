@@ -127,10 +127,16 @@ function Trade() {
     async function handleStockSearch(event, inputValue){
         event.preventDefault();
 
-        const responseData = await fetch(`/api/search/${inputValue}`)
+        const headers = {
+            "Content-type": "application/json", 
+            "Accept": "application/json", 
+            "Authorization": "Bearer" + " " + authCtx.token
+        }
+
+        const responseData = await fetch(`/api/search/${inputValue}`, {headers:headers})
             .then(res => res.json());
         
-        const chartResponseData = await fetch(`/api/search/chart/${inputValue}`)
+        const chartResponseData = await fetch(`/api/search/chart/${inputValue}`, {headers:headers})
             .then(res => res.json());
 
         console.log(chartResponseData);

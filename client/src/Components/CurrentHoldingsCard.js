@@ -12,7 +12,13 @@ function CurrentHoldingsCard(props) {
     const authCtx = useContext(AuthContext);
 
     useEffect(async () => {
-        const response = await axios.get(`/api/search/${props.holding.symbol}`);
+        const response = await axios.get(`/api/search/${props.holding.symbol}`, {
+            headers:{
+                "Content-type": "application/json", 
+                "Accept": "application/json", 
+                "Authorization": "Bearer" + " " + authCtx.token
+            }
+        });
         setCurrentPrice(response.data.latestPrice);
         console.log(response.data);
 

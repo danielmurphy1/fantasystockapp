@@ -8,10 +8,12 @@ const bodyParser = require('body-parser');
 const pool = require('./client/src/pool');
 const jwt = require('jsonwebtoken');
 const usersRouter = require('./client/src/utils/routes/user-routes');
+const stocksRouter = require('./client/src/utils/routes/stocks-routes');
 const isAuth = require('./client/src/utils/middleware/authMiddleware');
 
 app.use(express.json());
 app.use(usersRouter);
+app.use(stocksRouter);
 
 app.use(bodyParser.json());
 
@@ -19,19 +21,19 @@ app.use("/", express.static(path.join(__dirname, "client/build")));
 app.use("/trade", express.static(path.join(__dirname, "client/build")));
 app.use("/portfolio", express.static(path.join(__dirname, "client/build")));
 
-app.get("/api/search/:symbol", (req, res) =>{
-    const symbol = req.params.symbol;
-    const token = process.env.PRODUCTION_TOKEN;
-    axios.get(`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${token}`)
-        .then(response => {
-            res.send(response.data);
-        console.log(response.data)
+// app.get("/api/search/:symbol", isAuth, (req, res) =>{
+//     const symbol = req.params.symbol;
+//     const token = process.env.PRODUCTION_TOKEN;
+//     axios.get(`https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${token}`)
+//         .then(response => {
+//             res.send(response.data);
+//         console.log(response.data)
 
-        })
-        .catch(error => {
-            console.log(error)
-        })
-});
+//         })
+//         .catch(error => {
+//             console.log(error)
+//         })
+// });
 
 app.get("/api/search/chart/:symbol", (req, res) =>{
     const symbol = req.params.symbol;

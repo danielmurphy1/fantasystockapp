@@ -57,23 +57,23 @@ app.use("/portfolio", express.static(path.join(__dirname, "client/build")));
 //     res.send(rows);
 // })
 
-app.post("/api/stocks/new", isAuth, async (req, res) =>{    
-    try {
-        const { userId, symbol, companyName, sharesToBuy, sharesValue } = req.body;
-        const { rows } =  await pool.query(`
-            INSERT INTO test_user_stocks (user_id, symbol, company_name, shares_owned, shares_value)
-            VALUES
-                ($1, $2, $3, $4, $5)
-                RETURNING *;
-        `, [userId, symbol, companyName, sharesToBuy, sharesValue])
-    // .then(res => res.send(rows));
-    res.send(rows);
-    } catch (error) {
-        error.statusCode = 500;
-        res.send(error);
-        throw error;
-    }
-});
+// app.post("/api/stocks/new", isAuth, async (req, res) =>{    
+//     try {
+//         const { userId, symbol, companyName, sharesToBuy, sharesValue } = req.body;
+//         const { rows } =  await pool.query(`
+//             INSERT INTO test_user_stocks (user_id, symbol, company_name, shares_owned, shares_value)
+//             VALUES
+//                 ($1, $2, $3, $4, $5)
+//                 RETURNING *;
+//         `, [userId, symbol, companyName, sharesToBuy, sharesValue])
+//     // .then(res => res.send(rows));
+//     res.send(rows);
+//     } catch (error) {
+//         error.statusCode = 500;
+//         res.send(error);
+//         throw error;
+//     }
+// });
 
 // app.put('/api/user/transaction', async (req, res) => {
 //     const { balance } = req.body;

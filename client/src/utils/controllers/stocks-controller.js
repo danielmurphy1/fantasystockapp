@@ -36,6 +36,17 @@ class StocksController { //database name will need to be changed for production 
 
         return rows;
     }
+
+    static async buyNewStock(userId, symbol, companyName, sharesToBuy, sharesValue) {
+        const { rows } =  await pool.query(`
+            INSERT INTO test_user_stocks (user_id, symbol, company_name, shares_owned, shares_value)
+            VALUES
+                ($1, $2, $3, $4, $5)
+                RETURNING *;
+        `, [userId, symbol, companyName, sharesToBuy, sharesValue])
+
+        return rows;
+    }
 };
 
 module.exports = StocksController;

@@ -46,4 +46,14 @@ router.get('/api/stocks/:userId', isAuth, async (req, res) => {
     }
 });
 
+router.post('/api/stocks/new', isAuth, async (req, res) => {
+    try {
+        const { userId, symbol, companyName, sharesToBuy, sharesValue } = req.body;
+        const newStock = await StocksController.buyNewStock(userId, symbol, companyName, sharesToBuy, sharesValue);
+        res.send(newStock);
+    } catch (error) {
+        res.send(error);
+    }
+});
+
 module.exports = router;

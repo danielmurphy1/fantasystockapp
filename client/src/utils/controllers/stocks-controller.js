@@ -16,6 +16,16 @@ class StocksController { //database name will need to be changed for production 
         const response = axios.get(`https://cloud.iexapis.com/stable/stock/${symbol}/chart/1w?token=${token}`);
 
         return response;
+    };
+
+    static async getPortfolio(userId){
+        const { rows } = await pool.query(`
+            SELECT SUM (shares_value) as total
+            FROM test_user_stocks
+            WHERE user_id = $1;
+        `, [userId])
+
+        return rows;
     }
 };
 

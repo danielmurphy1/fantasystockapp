@@ -47,15 +47,15 @@ app.use("/portfolio", express.static(path.join(__dirname, "client/build")));
 //         })
 // });
 
-app.get("/api/portfolio/:userId", isAuth, async (req, res) => {
-    const { userId } = req.params;
-    const { rows } = await pool.query(`
-    SELECT SUM (shares_value) as total
-    FROM test_user_stocks
-    WHERE user_id = $1;
-    `, [userId])
-    res.send(rows);
-})
+// app.get("/api/portfolio/:userId", isAuth, async (req, res) => {
+//     const { userId } = req.params;
+//     const { rows } = await pool.query(`
+//     SELECT SUM (shares_value) as total
+//     FROM test_user_stocks
+//     WHERE user_id = $1;
+//     `, [userId])
+//     res.send(rows);
+// })
 
 app.post("/api/stocks/new", isAuth, async (req, res) =>{    
     try {

@@ -26,4 +26,14 @@ router.get('/api/search/chart/:symbol', isAuth, async (req, res) => {
     }
 });
 
+router.get('/api/portfolio/:userId', isAuth, async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const portfolioData = await StocksController.getPortfolio(userId);
+        res.send(portfolioData);
+    } catch (error) {
+        res.send(error)
+    }
+});
+
 module.exports = router;

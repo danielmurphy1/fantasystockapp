@@ -5,8 +5,6 @@ import AuthContext from '../store/auth-context';
 import axios from 'axios';
 import PortfolioPieChart from '../Components/Charts/PortfolioPieChart';
 import PortfolioBarChart from '../Components/Charts/PortfolioBarChart';
-import pie from '../images/sample-pie.png';
-import bar from '../images/sample-bar.png';
 
 function Portfolio() {
     const [sharesValue, setSharesValue] = useState();

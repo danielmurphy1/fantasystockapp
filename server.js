@@ -105,33 +105,33 @@ app.use("/portfolio", express.static(path.join(__dirname, "client/build")));
 //     }    
 // });
 
-app.put("/api/stocks/sell", isAuth, async (req, res) => {
-    try {
-        const { newShares, userId, symbol, newValue } = req.body;
-        if (newShares === 0){
-            const { rows } = await pool.query(`
-            DELETE from test_user_stocks
-            WHERE symbol = $1
-            RETURNING *;
-            `, [symbol])
-            res.send(rows);
-        } else {
-            const { rows } = await pool.query(`
-            UPDATE test_user_stocks
-            SET shares_owned = $1,
-                shares_value = $2
-            WHERE user_id = $3 AND symbol = $4
-            RETURNING *; 
-            `, [newShares, newValue, userId, symbol])
-            res.send(rows);
-        }
+// app.put("/api/stocks/sell", isAuth, async (req, res) => {
+//     try {
+//         const { newShares, userId, symbol, newValue } = req.body;
+//         if (newShares === 0){
+//             const { rows } = await pool.query(`
+//             DELETE from test_user_stocks
+//             WHERE symbol = $1 AND user_id = $2
+//             RETURNING *;
+//             `, [symbol, userId])
+//             res.send(rows);
+//         } else {
+//             const { rows } = await pool.query(`
+//             UPDATE test_user_stocks
+//             SET shares_owned = $1,
+//                 shares_value = $2
+//             WHERE user_id = $3 AND symbol = $4
+//             RETURNING *; 
+//             `, [newShares, newValue, userId, symbol])
+//             res.send(rows);
+//         }
         
-    } catch (error) {
-        error.statusCode = 500;
-        res.send(error);
-        throw error;
-    }    
-});
+//     } catch (error) {
+//         error.statusCode = 500;
+//         res.send(error);
+//         throw error;
+//     }    
+// });
 
 app.put("/api/stocks/update", isAuth, async (req, res) => {
     try {

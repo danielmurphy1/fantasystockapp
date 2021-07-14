@@ -76,4 +76,14 @@ router.put('/api/stocks/sell', isAuth, async (req, res) => {
     }
 });
 
+router.put('/api/stocks/update', isAuth, async (req, res) => {
+    try {
+        const { userId, symbol, newValue } = req.body;
+        const updatedValues = await StocksController.updateValues(newValue, userId, symbol);
+        res.send(updatedValues);
+    } catch (error) {
+        res.send(error);
+    }
+});
+
 module.exports = router;

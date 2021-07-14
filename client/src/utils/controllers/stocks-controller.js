@@ -18,10 +18,19 @@ class StocksController { //database name will need to be changed for production 
         return response;
     };
 
-    static async getPortfolio(userId){
+    static async getPortfolio(userId) {
         const { rows } = await pool.query(`
             SELECT SUM (shares_value) as total
             FROM test_user_stocks
+            WHERE user_id = $1;
+        `, [userId])
+
+        return rows;
+    }
+
+    static async getUserHoldings(userId) {
+        const { rows } = await pool.query(`
+            SELECT * FROM test_user_stocks
             WHERE user_id = $1;
         `, [userId])
 

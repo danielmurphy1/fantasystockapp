@@ -22,7 +22,7 @@ router.get('/api/search/chart/:symbol', isAuth, async (req, res) => {
         const response = await StocksController.searchChart(symbol, token);
         res.send(response.data);
     } catch (error) {
-        res.send(error)
+        res.send(error);
     }
 });
 
@@ -32,7 +32,17 @@ router.get('/api/portfolio/:userId', isAuth, async (req, res) => {
         const portfolioData = await StocksController.getPortfolio(userId);
         res.send(portfolioData);
     } catch (error) {
-        res.send(error)
+        res.send(error);
+    }
+});
+
+router.get('/api/stocks/:userId', isAuth, async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const userData = await StocksController.getUserHoldings(userId);
+        res.send(userData);
+    } catch (error) {
+        res.send(error);
     }
 });
 

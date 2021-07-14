@@ -160,15 +160,15 @@ app.put("/api/stocks/update", isAuth, async (req, res) => {
 //     res.send(rows);
 // });
 
-app.get("/api/stocks/:userId", isAuth, async (req, res) =>{ 
-    // res.send(stocks)
-    const { userId } = req.params;
-    const { rows } = await pool.query(`
-        SELECT * FROM test_user_stocks
-        WHERE user_id = $1;
-    `, [userId])
-    res.send(rows);
-});
+// app.get("/api/stocks/:userId", isAuth, async (req, res) =>{ 
+//     // res.send(stocks)
+//     const { userId } = req.params;
+//     const { rows } = await pool.query(`
+//         SELECT * FROM test_user_stocks
+//         WHERE user_id = $1;
+//     `, [userId])
+//     res.send(rows);
+// });
 
 // testing for protected api endpoints
 app.get('/api/protected', isAuth, (req, res) => {

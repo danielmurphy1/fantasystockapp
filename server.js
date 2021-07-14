@@ -87,23 +87,23 @@ app.use("/portfolio", express.static(path.join(__dirname, "client/build")));
 //         res.send(rows)
 // })
 
-app.put("/api/stocks/buy", isAuth, async (req, res) => {
-    try {
-        const { newShares, userId, symbol, newValue } = req.body;
-        const { rows } = await pool.query(`
-        UPDATE test_user_stocks
-        SET shares_owned = $1,
-            shares_value = $2
-        WHERE user_id = $3 AND symbol = $4
-        RETURNING *; 
-        `, [newShares, newValue, userId, symbol])
-        res.send(rows);
-    } catch (error) {
-        error.statusCode = 500;
-        res.send(error);
-        throw error;
-    }    
-});
+// app.put("/api/stocks/buy", isAuth, async (req, res) => {
+//     try {
+//         const { newShares, userId, symbol, newValue } = req.body;
+//         const { rows } = await pool.query(`
+//         UPDATE test_user_stocks
+//         SET shares_owned = $1,
+//             shares_value = $2
+//         WHERE user_id = $3 AND symbol = $4
+//         RETURNING *; 
+//         `, [newShares, newValue, userId, symbol])
+//         res.send(rows);
+//     } catch (error) {
+//         error.statusCode = 500;
+//         res.send(error);
+//         throw error;
+//     }    
+// });
 
 app.put("/api/stocks/sell", isAuth, async (req, res) => {
     try {

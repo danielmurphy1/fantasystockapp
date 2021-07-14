@@ -26,7 +26,7 @@ class StocksController { //database name will need to be changed for production 
         `, [userId])
 
         return rows;
-    }
+    };
 
     static async getUserHoldings(userId) {
         const { rows } = await pool.query(`
@@ -35,7 +35,7 @@ class StocksController { //database name will need to be changed for production 
         `, [userId])
 
         return rows;
-    }
+    };
 
     static async buyNewStock(userId, symbol, companyName, sharesToBuy, sharesValue) {
         const { rows } =  await pool.query(`
@@ -46,7 +46,19 @@ class StocksController { //database name will need to be changed for production 
         `, [userId, symbol, companyName, sharesToBuy, sharesValue])
 
         return rows;
-    }
+    };
+
+    static async buyShares(newShares, userId, symbol, newValue) {
+        const { rows } = await pool.query(`
+            UPDATE test_user_stocks
+            SET shares_owned = $1,
+                shares_value = $2
+            WHERE user_id = $3 AND symbol = $4
+            RETURNING *; 
+        `, [newShares, newValue, userId, symbol])
+
+        return rows;
+    };
 };
 
 module.exports = StocksController;

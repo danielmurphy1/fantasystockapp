@@ -49,8 +49,6 @@ function CurrentHoldingsCard(props) {
         }
 
         axios.put('/api/stocks/update', body, {headers:headers});
-
-        debugger;
     }
 
     const formatter = new Intl.NumberFormat('en-US', {

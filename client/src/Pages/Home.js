@@ -113,20 +113,17 @@ function Home() {
     return (
         <Container>
             <Container className="App welcome-container">
-                <h1>Welcome to NAME OF APP HERE</h1>
+                <h1>Welcome to Fantasy Stock Trader</h1>
                 <p>
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum."
+                    Fantasy Stock Trader is to Wall Street what fantasy football is to the NFL.
+                    Instead of a coach, here you take on the role of someone who wants to play the 
+                    market with none of the risks: because at Fantasy Stock Trader the money is imaginary, 
+                    just like your dream of being an NFL coach one day. When you sign-up, you receive $10,000
+                    of pretend money to hedge your bets and see if you can become a stock trading tycoon! So, 
+                    what are you waiting for? Register below and begin your dream to become a millionaire.
                 </p>
             </Container>
-            {successfulReg && (<p>Registration Successful</p>)}
-            {/* <p>Registration Successful</p> */}
-            {/* <FormSwitch /> */}
+            {successfulReg && (<p className="text-center">Registration Successful - Login Below</p>)}
             {formSwitch()}
         </Container>
         

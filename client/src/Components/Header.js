@@ -16,7 +16,7 @@ function Header() {
     }
 
     return(
-        <Navbar collapseOnSelect expand="lg" bg="light" variant="light" sticky="top">
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
             <Navbar.Brand href="#home"></Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">

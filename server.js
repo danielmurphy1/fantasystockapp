@@ -35,17 +35,17 @@ app.use("/portfolio", express.static(path.join(__dirname, "client/build")));
 //         })
 // });
 
-app.get("/api/search/chart/:symbol", (req, res) =>{
-    const symbol = req.params.symbol;
-    const token = process.env.PRODUCTION_TOKEN;
-    axios.get(`https://cloud.iexapis.com/stable/stock/${symbol}/chart/1w?token=${token}`)
-        .then(response => {
-            res.send(response.data)
-        })
-        .catch(error => {
-            console.log(error)
-        })
-});
+// app.get("/api/search/chart/:symbol", isAuth, (req, res) =>{
+//     const symbol = req.params.symbol;
+//     const token = process.env.PRODUCTION_TOKEN;
+//     axios.get(`https://cloud.iexapis.com/stable/stock/${symbol}/chart/1w?token=${token}`)
+//         .then(response => {
+//             res.send(response.data)
+//         })
+//         .catch(error => {
+//             console.log(error)
+//         })
+// });
 
 app.get("/api/portfolio/:userId", isAuth, async (req, res) => {
     const { userId } = req.params;

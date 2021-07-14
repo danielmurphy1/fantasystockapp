@@ -12,7 +12,11 @@ class StocksController { //database name will need to be changed for production 
         return response;
     };
 
-    
+    static async searchChart(symbol, token) {
+        const response = axios.get(`https://cloud.iexapis.com/stable/stock/${symbol}/chart/1w?token=${token}`);
+
+        return response;
+    }
 };
 
 module.exports = StocksController;

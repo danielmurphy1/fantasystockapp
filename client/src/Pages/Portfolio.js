@@ -72,7 +72,7 @@ function Portfolio() {
 
     return(
         <Container className="App">
-            <h2>{userCtx.userName}'s Portfolio</h2>
+            <h2 className="pt-3">{userCtx.userName}'s Portfolio</h2>
                 <Container className="d-flex align-items-start mt-5">
                     <Row>
                         <Col lg={5}>
@@ -89,13 +89,13 @@ function Portfolio() {
                         {showCharts && <PortfolioPieChart 
                             holdings={currentHoldings}
                         />}
-                        {!showCharts && <h3>Your Portfolio Currently Consists of Your Wallet Balance...Go Trade!</h3>}
+                        {!showCharts && <h3>Your Portfolio Currently Consists of Your Account Balance...Go Trade!</h3>}
                         </Col>
                     </Row>
                     
                 </Container>
             
-            <Container>
+            <Container className="mt-3">
                 <Row>
                     <Col lg={12}>
                         {showCharts && <PortfolioBarChart 

@@ -16,6 +16,12 @@ function Portfolio() {
     const authCtx = useContext(AuthContext);
     const userCtx = useContext(UserContext);
 
+    const headers = {
+        "Content-type": "application/json", 
+        "Accept": "application/json", 
+        "Authorization": "Bearer" + " " + authCtx.token
+    }
+
     useEffect(() => { 
         getPortfolioTotal(authCtx.userId);
         getHoldings(authCtx.userId);
@@ -23,11 +29,7 @@ function Portfolio() {
 
     async function getHoldings(userId){
         const response = await axios.get(`/api/stocks/${userId}`, {
-            headers:{
-                "Content-type": "application/json", 
-                "Accept": "application/json", 
-                "Authorization": "Bearer" + " " + authCtx.token
-            }, 
+            headers:headers, 
             params: {
                 userId: authCtx.userId
             }
@@ -40,11 +42,7 @@ function Portfolio() {
 
     async function getPortfolioTotal(userId){
         const response = await axios.get(`/api/portfolio/${userId}`, {
-            headers:{
-                "Content-type": "application/json", 
-                "Accept": "application/json", 
-                "Authorization": "Bearer" + " " + authCtx.token
-            }, 
+            headers:headers, 
             params: {
                 userId: authCtx.userId
             }

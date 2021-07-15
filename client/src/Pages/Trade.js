@@ -27,11 +27,15 @@ function Trade() {
     const [companyName, setCompanyName] = useState("");
     const [chartData, setChartData] = useState([]); 
 
-    
-
     const authCtx = useContext(AuthContext);
     const userCtx = useContext(UserContext);
     const [accountBalance, setAccountBalance] = useState(userCtx.accountBalance);
+
+    const headers = {
+        "Content-type": "application/json", 
+        "Accept": "application/json", 
+        "Authorization": "Bearer" + " " + authCtx.token
+    }
     
     useEffect(() => { //request stocks array from server and return to client
         getHoldings(authCtx.userId);
@@ -47,11 +51,7 @@ function Trade() {
 
     async function getHoldings(userId){
         const response = await axios.get(`/api/stocks/${userId}`, {
-            headers:{
-                "Content-type": "application/json", 
-                "Accept": "application/json", 
-                "Authorization": "Bearer" + " " + authCtx.token
-            }, 
+            headers:headers, 
             params: {
                 userId: authCtx.userId
             }
@@ -129,22 +129,27 @@ function Trade() {
     async function handleStockSearch(event, inputValue){
         event.preventDefault();
 
-        const headers = {
-            "Content-type": "application/json", 
-            "Accept": "application/json", 
-            "Authorization": "Bearer" + " " + authCtx.token
-        }
-
         const responseData = await fetch(`/api/search/${inputValue}`, {headers:headers})
             .then(res => res.json());
         
-        const chartResponseData = await fetch(`/api/search/chart/${inputValue}`, {headers:headers})
-            .then(res => res.json());
+        const chartResponseData = await axios.get(`/api/search/chart/${inputValue}`, {headers:headers});
+            
+        if (typeof chartResponseData.data.length === "number") {
+            console.log(chartResponseData.data);
+            const chartData = []
+            for (let i = 0; i < chartResponseData.data.length; i++){
+                console.log(chartResponseData.data[i])
+                chartData.push(chartResponseData.data[i])
+            }
+            setChartData(chartData);
+            setShowChart(true);
+            setShowResultCard(true);
+        } else {
+            alert("You Did Not Enter A Valid Stock Symbol. Please Try Again.")
+            setShowChart(false);
+            setShowResultCard(false);
+        }
 
-        console.log(chartResponseData);
-        setChartData([...chartResponseData])
-        setShowChart(true);
-        setShowResultCard(true);
         setStockSymbol(responseData.symbol);
         setInputValue("");
         console.log(responseData);
@@ -169,15 +174,6 @@ function Trade() {
                 }
             }
         }
-
-        // for (let i = 0; i < response.data.length; i++){
-        //     if (response.data[i].symbol === responseData.symbol){
-        //         setCurrentShares(response.data[i].shares_owned);
-        //         break;
-        //     } else {
-        //         setCurrentShares(0);
-        //     }
-        // }
     }
 
     const balance = formatter.format(accountBalance);

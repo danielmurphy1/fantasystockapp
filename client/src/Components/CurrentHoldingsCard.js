@@ -11,14 +11,17 @@ function CurrentHoldingsCard(props) {
 
     const authCtx = useContext(AuthContext);
 
+    const headers = {
+        "Content-type": "application/json", 
+        "Accept": "application/json", 
+        "Authorization": "Bearer" + " " + authCtx.token
+    }
+
     useEffect(async () => {
         const response = await axios.get(`/api/search/${props.holding.symbol}`, {
-            headers:{
-                "Content-type": "application/json", 
-                "Accept": "application/json", 
-                "Authorization": "Bearer" + " " + authCtx.token
+            headers:headers
             }
-        });
+        );
         setCurrentPrice(response.data.latestPrice);
         console.log(response.data);
 
@@ -40,12 +43,6 @@ function CurrentHoldingsCard(props) {
             userId: authCtx.userId, 
             symbol: props.holding.symbol, 
             newValue: currentValue
-        }
-
-        const headers = {
-            "Content-type": "application/json", 
-            "Accept": "application/json", 
-            "Authorization": "Bearer" + " " + authCtx.token
         }
 
         axios.put('/api/stocks/update', body, {headers:headers});

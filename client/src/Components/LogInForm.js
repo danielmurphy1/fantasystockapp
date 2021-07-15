@@ -12,7 +12,7 @@ function LogInForm(props) {
                 <Form.Group controlId="formBasicPassword">
                     <Form.Control type="password"  ref={props.passwordInputRef} placeholder="Password" />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="dark" type="submit">
                     Login
                 </Button>
                 <p className="form-paragraph">Not registered yet? Register <a onClick={props.isRegistered} href="">Here</a></p>

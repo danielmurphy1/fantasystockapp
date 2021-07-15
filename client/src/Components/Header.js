@@ -24,7 +24,7 @@ function Header() {
                     <Nav.Link href="/">Home</Nav.Link>
                     {isLoggedIn && (<Nav.Link href="/trade">Trade</Nav.Link>)}
                     {isLoggedIn && (<Nav.Link href="/portfolio">Portfolio</Nav.Link>)}
-                    {isLoggedIn && (<Button onClick={logoutHandler}>Logout</Button>)}
+                    {isLoggedIn && (<Button variant="dark" onClick={logoutHandler}>Logout</Button>)}
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

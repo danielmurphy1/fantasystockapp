@@ -116,9 +116,9 @@ function Home() {
                 <h1>Welcome to Fantasy Stock Trader</h1>
                 <p>
                     Fantasy Stock Trader is to Wall Street what fantasy football is to the NFL.
-                    Instead of a coach, here you take on the role of someone who wants to play the 
-                    market with none of the risks: because at Fantasy Stock Trader the money is imaginary, 
-                    just like your dream of being an NFL coach one day. When you sign-up, you receive $10,000
+                    Instead of a coach, here you take on the role of a stock market invester with 
+                    none of the risks: because at Fantasy Stock Trader the money is imaginary, 
+                    just like your dream of being an NFL coach one day. When you register, you receive $10,000
                     of pretend money to hedge your bets and see if you can become a stock trading tycoon! So, 
                     what are you waiting for? Register below and begin your dream to become a millionaire.
                 </p>

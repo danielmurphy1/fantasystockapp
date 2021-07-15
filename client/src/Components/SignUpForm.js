@@ -20,8 +20,8 @@ function SignUpForm(props) {
                     <Form.Control type="password" placeholder="Confirm Password" />
                 </Form.Group> */}
 
-                <Button variant="primary" type="submit">
-                    SignUp
+                <Button variant="dark" type="submit">
+                    Register
                 </Button>
                 <p className="form-paragraph">Already registered? Login <a onClick={props.isRegistered} href="">Here</a></p>
             </Form>

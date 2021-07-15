@@ -25,17 +25,16 @@ function CurrentHoldingsCard(props) {
         setCurrentPrice(response.data.latestPrice);
         console.log(response.data);
 
-    },[props.holding.symbol])
+    },[props.holding.symbol]);
 
     useEffect(() => {
         setCurrentValue(currentPrice * props.holding.shares_owned);
 
-    }, [currentPrice, props.holding.shares_owned]) 
+    }, [currentPrice, props.holding.shares_owned]); 
 
     useEffect(() => {
         updateSharesValue();
-    }, [currentValue])
-
+    }, [currentValue]);
     
     function updateSharesValue (){
         
@@ -46,10 +45,11 @@ function CurrentHoldingsCard(props) {
         }
 
         axios.put('/api/stocks/update', body, {headers:headers});
-    }
+    };
 
     const price = formatter.format(currentPrice);
     const value = formatter.format(currentValue);
+
     return(
         <Card style={{width: '18rem'}} className="mt-2 shadow-lg">
             <Card.Header id="holdings-header">
@@ -62,7 +62,7 @@ function CurrentHoldingsCard(props) {
                 <Button onClick={()=>{props.handleStockSearch(event, props.holding.symbol)}} variant="outline-dark">View Details</Button>
             </Card.Body>
         </Card>
-    )
-}
+    );
+};
 
 export default CurrentHoldingsCard;

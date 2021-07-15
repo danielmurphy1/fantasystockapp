@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { Container } from 'react-bootstrap';
 import LogInForm from '../Components/LogInForm';
 import SignUpForm from '../Components/SignUpForm';
@@ -8,7 +8,6 @@ import UserContext from '../store/user-context';
 
 function Home() {
     const [ isRegistered, setIsRegistered ] = useState(true);
-    const [ isLoggedIn, setIsLoggedIn ] = useState(false);
     const [ successfulReg, setSuccessfulReg ] = useState(false);
     const userNameInputRef = useRef();
     const passwordInputRef = useRef();
@@ -22,25 +21,9 @@ function Home() {
         if (isRegistered) {
             setSuccessfulReg(false);
         }
-        console.log(isRegistered)
     };
 
-    // function FormSwitch() {
-    //     if (isRegistered) {
-    //         return <LogInForm 
-    //                     isRegistered={toggleIsRegistered} 
-    //                     handleUserNameChange={handleUserNameChange} 
-    //                     handlePasswordChange={handlePasswordChange}
-    //                     handleLogin={handleLogin}
-    //                     userName={userName}
-    //                     password={password}
-    //                     />
-    //     } else {
-    //         return <SignUpForm isRegistered={toggleIsRegistered}/>
-    //     }
-    // };
-
-    const formSwitch = () => { //fix lose input focus each character typed bug
+    const formSwitch = () => {
         if (isRegistered) {
             return <LogInForm 
                         isRegistered={toggleIsRegistered} 
@@ -63,26 +46,20 @@ function Home() {
 
         const enteredUserName = userNameInputRef.current.value;
         const enteredPassword = passwordInputRef.current.value;
+
         if(enteredUserName && enteredPassword){
             axios.post('/api/login', {
                 username: enteredUserName, 
                 password: enteredPassword
             })
             .then(res => {
-                console.log(res);
-                console.log(res.data.accessToken);
-                console.log(res.data.result[0].id);
-                console.log(res.data.result[0].wallet_ballance)
-                console.log(res.data.result[0].username)
-                console.log(res.data.result[0].password)
                 //expirationTime is current time plus token expiresIn converted to a new date object
                 const expirationTime = new Date(new Date().getTime() + (+res.data.expiresIn));
                 authCtx.login(res.data.accessToken, expirationTime.toISOString(), res.data.result[0].id);
                 userCtx.login(res.data.result[0].wallet_ballance, res.data.result[0].username);
             })
             .catch(error => {
-                console.log(error)
-                alert(error)
+                alert("Please check your username/password.");
             });
         } else {
             alert('You must provide a username and password.');
@@ -98,13 +75,11 @@ function Home() {
             username: enteredUserName, 
             password: enteredPassword
         }).then(res => {
-            console.log(res)
             if (!res.data.detail) {
                 setIsRegistered(prevState => !prevState);
                 setSuccessfulReg(prevState => !prevState);
             } else {
                 const errorMessage = res.data.detail;
-                console.log(errorMessage);
                 alert(errorMessage);
             }
         })
@@ -128,6 +103,6 @@ function Home() {
         </Container>
         
     );
-}
+};
 
 export default Home;

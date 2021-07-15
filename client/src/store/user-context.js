@@ -41,7 +41,7 @@ export const UserContextProvider = (props) => {
         setUserName(null);
         localStorage.removeItem('userName');
         localStorage.removeItem('accountBalance');
-    }
+    };
 
     const contextValue = {
         accountBalance: accountBalance, 
@@ -54,10 +54,8 @@ export const UserContextProvider = (props) => {
         <UserContext.Provider value={contextValue}>
             {props.children}
         </UserContext.Provider>
-    )
+    );
 };
 
-
-//remember to import to index.js and wrap provider around entire APP
 export default UserContext;
 

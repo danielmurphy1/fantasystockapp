@@ -2,8 +2,7 @@ import React from 'react';
 import { Chart } from 'react-google-charts';
 
 function PortfolioPieChart(props){
-    
-    console.log(props.holdings)
+
     return(
         <div>
             <Chart
@@ -27,7 +26,7 @@ function PortfolioPieChart(props){
                 rootProps={{ 'data-testid': '1' }}
             />
         </div>
-    )
+    );
 };
 
 export default PortfolioPieChart;

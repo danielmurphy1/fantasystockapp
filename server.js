@@ -2,14 +2,11 @@ const express = require('express');
 const path = require('path');
 const port = process.env.PORT || 3000;
 const app = express();
-const axios = require("axios");
 require("dotenv").config();
 const bodyParser = require('body-parser');
 const pool = require('./client/src/pool');
-const jwt = require('jsonwebtoken');
 const usersRouter = require('./client/src/utils/routes/user-routes');
 const stocksRouter = require('./client/src/utils/routes/stocks-routes');
-const isAuth = require('./client/src/utils/middleware/authMiddleware');
 
 app.use(express.json());
 app.use(usersRouter);

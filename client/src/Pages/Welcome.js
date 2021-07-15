@@ -23,6 +23,6 @@ function Welcome() {
         </Container>
         
     );
-}
+};
 
 export default Welcome;

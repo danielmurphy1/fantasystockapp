@@ -2,8 +2,6 @@ const pool = require('../../pool');
 const axios = require('axios');
 require("dotenv").config();
 
-
-
 class StocksController { //database name will need to be changed for production - curently using 'test_NAMEOFTABLE'
 
     static async searchStock(symbol, token) {

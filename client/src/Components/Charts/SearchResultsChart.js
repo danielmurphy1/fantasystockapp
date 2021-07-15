@@ -30,7 +30,7 @@ function SearchResultsChart(props){
                 rootProps={{ 'data-testid': '1' }}
             />
         </div>
-    )
+    );
 };
 
 export default SearchResultsChart;

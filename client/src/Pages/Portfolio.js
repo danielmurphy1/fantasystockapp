@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Container, Card, Image, ListGroup, Row, Col } from 'react-bootstrap';
+import { Container, Card, ListGroup, Row, Col } from 'react-bootstrap';
 import UserContext from '../store/user-context';
 import AuthContext from '../store/auth-context';
 import axios from 'axios';
 import PortfolioPieChart from '../Components/Charts/PortfolioPieChart';
 import PortfolioBarChart from '../Components/Charts/PortfolioBarChart';
 const formatter = require('../utils/helpers/currency-formatter');
-
 
 function Portfolio() {
     const [sharesValue, setSharesValue] = useState();
@@ -25,7 +24,7 @@ function Portfolio() {
     useEffect(() => { 
         getPortfolioTotal(authCtx.userId);
         getHoldings(authCtx.userId);
-    }, [])
+    }, []);
 
     async function getHoldings(userId){
         const response = await axios.get(`/api/stocks/${userId}`, {
@@ -36,7 +35,6 @@ function Portfolio() {
         })
 
             setCurrentHoldings(response.data);
-            console.log(currentHoldings);
             return response;
     };
 
@@ -55,7 +53,6 @@ function Portfolio() {
             setSharesValue(0);
             setShowCharts(false);
         }
-        console.log(response.data[0].total)
         return response;
     };
 
@@ -99,7 +96,7 @@ function Portfolio() {
                 </Row>
             </Container>
         </Container>
-    )
-}
+    );
+};
 
 export default Portfolio;

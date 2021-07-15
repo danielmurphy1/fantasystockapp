@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Card, Button, Container } from 'react-bootstrap';
+import React from 'react';
+import { Card, Button } from 'react-bootstrap';
 import '../Styles/SearchResultCard.css';
 const formatter = require('../utils/helpers/currency-formatter');
 
@@ -25,7 +25,7 @@ function SearchResultCard(props){
                 </div>
             )
         }
-    }
+    };
 
     return(
         <Card>
@@ -33,10 +33,6 @@ function SearchResultCard(props){
                 <div>
                     {props.companyName} 
                 </div>
-                {/* <div>
-                    <Button className="mx-3" onClick={props.buyTransaction}>Buy</Button>
-                    <Button onClick={props.sellTransaction}>Sell</Button>
-                </div> */}
                 {buttons()}
             </Card.Header>
             <Card.Body id="result-card-body" className="d-flex justify-content-around">
@@ -54,7 +50,7 @@ function SearchResultCard(props){
                 </div>
             </Card.Body>
         </Card>
-    )
-}
+    );
+};
 
 export default SearchResultCard;

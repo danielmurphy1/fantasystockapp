@@ -3,7 +3,6 @@ import { Chart } from 'react-google-charts';
 
 function PortfolioBarChart(props){
 
-    console.log(props.holdings)
     return(
         <div>
             <Chart
@@ -33,7 +32,7 @@ function PortfolioBarChart(props){
                 rootProps={{ 'data-testid': '1' }}
             />
         </div>
-    )
+    );
 };
 
 export default PortfolioBarChart;

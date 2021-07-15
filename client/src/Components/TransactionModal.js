@@ -1,8 +1,7 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Modal, Button, Form, ModalDialog } from 'react-bootstrap';
 import AuthContext from '../store/auth-context';
 const formatter = require('../utils/helpers/currency-formatter');
-
 import axios from 'axios';
 
 function TransactionModal(props) {
@@ -11,9 +10,7 @@ function TransactionModal(props) {
     const [overbuyMessage, setOverBuyMessage] = useState(null);
 
     const price = formatter.format(props.currentPrice);
-
     const purchaseAmount = sharesToTrade * props.currentPrice;
-
     const authCtx = useContext(AuthContext);
 
     const headers = {
@@ -35,10 +32,8 @@ function TransactionModal(props) {
                     sharesToBuy: sharesToTrade, 
                     sharesValue: (sharesToTrade * props.currentPrice)
                 }
-                console.log(body)
                 
-                const response = await axios.post('/api/stocks/new', body, {headers:headers});
-                console.log(response);
+                await axios.post('/api/stocks/new', body, {headers:headers});
             } else {
                 const body = {
                     userId: authCtx.userId, 
@@ -47,25 +42,16 @@ function TransactionModal(props) {
                     newValue: props.currentPrice * (parseInt(props.currentShares) + parseInt(sharesToTrade))
                 }
     
-                console.log(body)
-    
-                const response = await axios.put('/api/stocks/buy', body, {headers:headers});
-                console.log(response);
+                await axios.put('/api/stocks/buy', body, {headers:headers});
             }
         }
         
-
         props.getHoldings(authCtx.userId);
         props.setShowChart(false);
         props.setShowResultCard(false);
-        console.log(purchaseAmount);
-        console.log(typeof(purchaseAmount));
-        console.log(typeof(props.currentPrice));
         props.subtractAccountBalance(purchaseAmount);
-        
         setOverBuyMessage(null);
-        props.handleCloseModal();
-            
+        props.handleCloseModal();   
     };
 
     async function sellButtonHandler(){
@@ -79,18 +65,12 @@ function TransactionModal(props) {
                 newValue: props.currentPrice * (parseInt(props.currentShares) - parseInt(sharesToTrade))
             }
     
-            console.log(body)
-    
-            const response = await axios.put('/api/stocks/sell', body, {headers:headers});
-            console.log(response);
-            
-    
+            await axios.put('/api/stocks/sell', body, {headers:headers});
+        
             props.getHoldings(authCtx.userId);
             props.setShowChart(false);
             props.setShowResultCard(false);
-            console.log(purchaseAmount);
             props.addAccountBalance(purchaseAmount);
-            
             setOversellMessage(null);
             props.handleCloseModal();
         } 
@@ -114,14 +94,13 @@ function TransactionModal(props) {
 
     function sharesToTradeHandler(event){
         setSharesToTrade(event.target.value)
-    }
+    };
 
     let transactionType;
     if (props.buyOrSell === "Buy") {
         transactionType = "Buy" 
     } else if (props.buyOrSell ==="Sell") {
         transactionType = "Sell"
-
     } 
 
     return(
@@ -143,12 +122,10 @@ function TransactionModal(props) {
                 </Modal.Body>
                 <Modal.Footer>
                     {renderButtons()}
-                    {/* <Button onClick={()=> {props.subtractAccountBalance(purchaseAmount)}}>Subtract</Button> */}
-
                 </Modal.Footer>
             </Form>
         </Modal>
-    )
-}
+    );
+};
 
 export default TransactionModal;

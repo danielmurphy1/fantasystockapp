@@ -10,8 +10,8 @@ function SearchForm(props) {
                 <Button type="submit">Search</Button>
             </Form.Group>
         </Form>
-    )
-}
+    );
+};
 
 
 export default SearchForm;

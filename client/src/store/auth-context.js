@@ -45,10 +45,6 @@ export const AuthContextProvider = (props) => {
     let initialToken;
     let initialUserId;
 
-    // if (tokenData) {
-    //     initialToken = tokenData.token;
-
-    // }
     tokenData ? initialToken = tokenData.token : initialToken = undefined;
     tokenData ? initialUserId = tokenData.userId : initialUserId = undefined;
     
@@ -63,10 +59,6 @@ export const AuthContextProvider = (props) => {
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
         localStorage.removeItem('expirationTime');
-
-        // if (logoutTimer){
-        //     clearTimeout(logoutTimer);
-        // }
 
         logoutTimer ? clearTimeout(logoutTimer) : null;
     }, []);
@@ -85,7 +77,6 @@ export const AuthContextProvider = (props) => {
 
     useEffect(() => {
         if (tokenData){
-            console.log(tokenData.duration);
             logoutTimer = setTimeout(logoutHandler, tokenData.duration);
         }
     }, [tokenData], logoutHandler);

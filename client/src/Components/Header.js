@@ -2,7 +2,7 @@ import React from 'react';
 import { Nav, Navbar, Button } from 'react-bootstrap';
 import { useContext } from 'react';
 import AuthContext from '../store/auth-context';
-import UserContext, { UserContextProvider } from '../store/user-context';
+import UserContext from '../store/user-context';
 
 function Header() {
     const authCtx = useContext(AuthContext);
@@ -13,7 +13,7 @@ function Header() {
     function logoutHandler(){
         authCtx.logout();
         userCtx.logout();
-    }
+    };
 
     return(
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
@@ -28,7 +28,7 @@ function Header() {
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
-    )
-}
+    );
+};
 
 export default Header;

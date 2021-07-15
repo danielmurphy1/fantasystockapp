@@ -18,8 +18,8 @@ function LogInForm(props) {
                 <p className="form-paragraph">Not registered yet? Register <a onClick={props.isRegistered} href="">Here</a></p>
             </Form>
         </Container>
-    )
-}
+    );
+};
 
 
 export default LogInForm;

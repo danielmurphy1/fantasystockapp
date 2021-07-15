@@ -1,7 +1,6 @@
 const pool = require('../../pool');
 const jwt = require('jsonwebtoken');
 
-
 class UserController { //database name will need to be changed for production - curently using 'test_NAMEOFTABLE'
 
     static async findByUsername(username) {
@@ -32,13 +31,11 @@ class UserController { //database name will need to be changed for production - 
         `, [username])
         .then(result => {
             if(result.rows.length < 1){
-                console.log(result.rows.length)
                 const error = new Error ('Username does not exist.');
                 error.statusCode = 404;
                 throw error;
             } else {
                 if (result.rows[0].password === password) {
-                console.log(result.rows)
                 const accessToken = jwt.sign(user, process.env.TOKEN_SECRET_KEY, {expiresIn: '3600000'});
                 
                 res.send({accessToken: accessToken, expiresIn: '3600000', result: result.rows});
@@ -50,23 +47,10 @@ class UserController { //database name will need to be changed for production - 
             }
         })
         .catch(error => {
-            console.log(error);
             res.status(error.statusCode).send({message: error.message, statusCode: error.statusCode});
         })
         return loggedUser; 
     };
-
-    // static async trade(balance) {
-    //     const { rows } = await pool.query(`
-    //         UPDATE test_users
-    //         SET wallet_ballance = $1
-    //         WHERE id = 196
-    //         RETURNING *;
-    //     `, [balance])
-        
-    //     return rows;
-    // }
-        
 
     static async trade(balance, user) {
         const { rows } = await pool.query(`

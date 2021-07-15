@@ -60,7 +60,7 @@ function CurrentHoldingsCard(props) {
     const price = formatter.format(currentPrice);
     const value = formatter.format(currentValue);
     return(
-        <Card style={{width: '18rem'}}>
+        <Card style={{width: '18rem'}} className="mt-2 shadow-lg">
             <Card.Header id="holdings-header">
                 <h3>{props.holding.symbol}</h3>
             </Card.Header>
@@ -68,7 +68,7 @@ function CurrentHoldingsCard(props) {
                 <p>Current Shares: {props.holding.shares_owned}</p>
                 <p>Current Price:{price}</p>
                 <p>Value of Shares: {value}</p>
-                <Button onClick={()=>{props.handleStockSearch(event, props.holding.symbol)}}>View Details</Button>
+                <Button onClick={()=>{props.handleStockSearch(event, props.holding.symbol)}} variant="outline-dark">View Details</Button>
             </Card.Body>
         </Card>
     )

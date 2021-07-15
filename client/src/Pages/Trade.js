@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect, useContext } from 'react';
-import { Container, Image, Button } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import SearchForm from '../Components/SearchForm';
 import SearchResultCard from '../Components/SearchResultCard';
 import CurrentHoldingsCard from '../Components/CurrentHoldingsCard';
 import TransactionModal from '../Components/TransactionModal';
 import AuthContext from '../store/auth-context';
-import UserContext, { UserContextProvider } from '../store/user-context';
+import UserContext from '../store/user-context';
 import axios from 'axios';
 import SearchResultsChart from '../Components/Charts/SearchResultsChart';
 
@@ -190,11 +190,10 @@ function Trade() {
             <h2>Trading Page</h2>
             <h3>Current Account Balance: {balance}</h3>
             <p>Search Stock Symbols to Trade. Examples: "AAPL" = Apple "NFLX" = Netflix</p>
+            <p>For current holdings, click the "View Details" button on the corresponding card to trade that stock.</p>
             <SearchForm  handleStockSearch={handleStockSearch} handleInputValueChange={handleInputValueChange} inputValue={inputValue}/>
-            {/* the Image component is where the line graph will go for the SearchResultCard Stock */}
             {resultCard}
             {chart}
-            {/* <Button onClick={subtractAccountBalance}>Subtract</Button> */}
             <div className="row justify-content-around">
                 {currentHoldings.map(holding => <CurrentHoldingsCard key={holding.symbol} holding={holding} handleStockSearch={handleStockSearch} />)}
             </div>

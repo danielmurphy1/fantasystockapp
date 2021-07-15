@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Modal, Button, Form, ModalDialog } from 'react-bootstrap';
 import AuthContext from '../store/auth-context';
+const formatter = require('../utils/helpers/currency-formatter');
 
 import axios from 'axios';
 
@@ -8,13 +9,6 @@ function TransactionModal(props) {
     const [sharesToTrade, setSharesToTrade] = useState(null);
     const [oversellMessage, setOversellMessage] = useState(null);
     const [overbuyMessage, setOverBuyMessage] = useState(null);
-    // const [accountBalance, setAccountBalance] = useState(props.accountBalance);
-
-    const formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2
-    });
 
     const price = formatter.format(props.currentPrice);
 
@@ -129,14 +123,6 @@ function TransactionModal(props) {
         transactionType = "Sell"
 
     } 
-
-    // const formatter = new Intl.NumberFormat('en-US', {
-    //     style: 'currency',
-    //     currency: 'USD',
-    //     minimumFractionDigits: 2
-    // });
-
-    // const price = formatter.format(props.currentPrice);
 
     return(
         <Modal show={props.show} onHide={props.handleCloseModal} centered>

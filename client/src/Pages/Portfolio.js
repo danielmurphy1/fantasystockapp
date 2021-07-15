@@ -5,6 +5,8 @@ import AuthContext from '../store/auth-context';
 import axios from 'axios';
 import PortfolioPieChart from '../Components/Charts/PortfolioPieChart';
 import PortfolioBarChart from '../Components/Charts/PortfolioBarChart';
+const formatter = require('../utils/helpers/currency-formatter');
+
 
 function Portfolio() {
     const [sharesValue, setSharesValue] = useState();
@@ -58,12 +60,6 @@ function Portfolio() {
         console.log(response.data[0].total)
         return response;
     };
-
-    const formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2
-    });
 
     const formattedBalance = formatter.format(userCtx.accountBalance);
     const formattedSharesValue = formatter.format(sharesValue);

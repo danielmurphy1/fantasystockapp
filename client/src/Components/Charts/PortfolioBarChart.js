@@ -3,12 +3,6 @@ import { Chart } from 'react-google-charts';
 
 function PortfolioBarChart(props){
 
-    const formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2
-    });
-
     console.log(props.holdings)
     return(
         <div>

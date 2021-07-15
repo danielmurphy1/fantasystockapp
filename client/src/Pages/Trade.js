@@ -9,6 +9,8 @@ import AuthContext from '../store/auth-context';
 import UserContext from '../store/user-context';
 import axios from 'axios';
 import SearchResultsChart from '../Components/Charts/SearchResultsChart';
+const formatter = require('../utils/helpers/currency-formatter');
+
 
 
 function Trade() {
@@ -177,12 +179,6 @@ function Trade() {
         //     }
         // }
     }
-
-    const formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2
-    });
 
     const balance = formatter.format(accountBalance);
     return(

@@ -3,10 +3,10 @@ import { Card, Button } from 'react-bootstrap';
 import '../Styles/CurrentHoldingsCard.css';
 import axios from 'axios';
 import AuthContext from '../store/auth-context';
+const formatter = require('../utils/helpers/currency-formatter');
 
 function CurrentHoldingsCard(props) {
     const [currentPrice, setCurrentPrice] = useState(null);
-    // const currentValue = currentPrice * props.holding.shares_owned;
     const [currentValue, setCurrentValue] = useState(null);
 
     const authCtx = useContext(AuthContext);
@@ -50,12 +50,6 @@ function CurrentHoldingsCard(props) {
 
         axios.put('/api/stocks/update', body, {headers:headers});
     }
-
-    const formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2
-    });
 
     const price = formatter.format(currentPrice);
     const value = formatter.format(currentValue);

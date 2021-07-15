@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import { Card, Button, Container } from 'react-bootstrap';
 import '../Styles/SearchResultCard.css';
+const formatter = require('../utils/helpers/currency-formatter');
 
 
 function SearchResultCard(props){
-
-    const formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2
-    });
 
     const price = formatter.format(props.currentPrice);
     const priceChange = formatter.format(props.priceChange);

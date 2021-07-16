@@ -4,7 +4,7 @@
   "description": "Fantasy Stock Trading Application",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "client": "npm run watch --prefix client",
     "dev": "concurrently \"nodemon sever.js\" \"npm run client\""
   },
@@ -22,5 +22,8 @@
     "pg": "^8.6.0",
     "react-bootstrap": "^1.4.3",
     "react-google-charts": "^3.0.15"
+  },
+  "devDependencies": {
+    "jest": "^27.0.6"
   }
 }

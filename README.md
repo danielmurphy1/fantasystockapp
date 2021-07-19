@@ -2,7 +2,7 @@
 
 _Web Based Fantasy Stock Trading Application_
 
-_Use Fake Money To Test Your Stockmarket Skills Trading Shares of Your Favorite Companies_
+Use Fake Money To Test Your Stock Market Skills Trading Shares of Your Favorite Companies
 
 Start Trading Today! [Link to Application]() 
 

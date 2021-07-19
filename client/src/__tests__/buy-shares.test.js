@@ -2,6 +2,9 @@
 const StocksController = require('../utils/controllers/stocks-controller');
 const UserController = require('../utils/controllers/user-controller');
 
+jest.mock('../utils/controllers/user-controller');
+jest.mock('../utils/controllers/stocks-controller');
+
 describe('Buying Shares', () => {
     describe('Buying a New Stock', () => {
         test('should add new stock symbol, company name, shares owned, and shares value to DB ', async () => {
@@ -12,7 +15,7 @@ describe('Buying Shares', () => {
             const sharesToBuy = 10;
             const sharesValue = 100;
             
-            StocksController.buyNewStock = jest.fn();
+            // StocksController.buyNewStock = jest.fn();
             StocksController.buyNewStock.mockReturnValue([userId, symbol, companyName, sharesToBuy, sharesValue]);
 
             const result = await StocksController.buyNewStock(userId, symbol, companyName, sharesToBuy, sharesValue);

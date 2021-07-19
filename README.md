@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# Fantasy Stock Trader 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+_Web Based Fantasy Stock Trading Application_
 
-## Available Scripts
+_Use Fake Money To Test Your Stockmarket Skills Trading Shares of Your Favorite Companies_
 
-In the project directory, you can run:
+Start Trading Today! [Link to Application]() 
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Instructions
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To Download and Run Locally
 
-### `npm test`
+I. Clone SQL Databse Schema
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Download PosgreSQL/PGAdmin 
+2. Run the databse creation script in the `db.sql` file in the `database` directory
 
-### `npm run build`
+II. Install Files to Run Locally
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone code locally from GitHub
+2. CD into application/root directory
+3. Run `npm i` in root directory
+4. Run `npm i --prefix client` in root directory
+5. Rename `.env_sample` to `.env` file and replace API keys and the JSON Web Token secret key with your own. You can reach IEX API [here](https://iexcloud.io/) and JSON Web Token [here](https://jwt.io/)
+6. Run `npm run dev` in root directory to start server
+7. Open browser at `http://localhost:3000/`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To Use Locally or Accessing at Below Link
+___
+The search page can be used to search for tweets by either content or by username, using the corresponding button to search. When searching by username, input a valid Twitter username (omitting the "@" symbol), and Tweeter-Grabberer will return the most recent ten of that user's tweets. Users who have marked their accounts as "private" cannot be searched using Tweeter-Grabberer. To search by content, type a content that you would like to search (ie. World Series, PS5, Simpsons). The fifteen most popular tweets (as determined by the Twitter algorithm ) about that content will be displayed. The random page will allow the user to choose one of my five favorite Twitter users and will display a random tweet from that user's most recent ten tweets. 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+![Login/Signup-Page ScreenShot]()
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![Home-Page ScreenShot]()
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Trade-Page ScreenShot]()
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Portfolio-PageScreenShot]()
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![Trade-Collapsed-PageScreenShot]()
 
-## Learn More
+![Portfolio-Collapsed-PageScreenShot]()
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Technologies/Design
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Technology Stack
 
-### Code Splitting
+- HTML, CSS, JavaScript - Front End Stack
+- React - Front End Framework
+- Node.js and Express.js - Backend Stack and Internal API
+- PostgreSQL - Database
+- IEX Cloud API - RESTAPI
+- Heroku - Hosting platform for both the web server and database
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Other Tools
 
-### Analyzing the Bundle Size
+- Google Charts to graphically display stock and portfolio information
+- dbdiagram.io to design databse schema [Diagram] ()
+- JSON Web Token for user authentication and authorization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
+### Summary
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Author
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Dan Murphy, Full-Stack Developer, https://www.linkedin.com/in/daniel-murphy-055/

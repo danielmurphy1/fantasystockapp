@@ -5,8 +5,8 @@ const app = express();
 require("dotenv").config();
 const bodyParser = require('body-parser');
 const pool = require('./client/src/pool');
-const usersRouter = require('./client/src/utils/routes/user-routes');
-const stocksRouter = require('./client/src/utils/routes/stocks-routes');
+const usersRouter = require('./routes/user-routes');
+const stocksRouter = require('./routes/stocks-routes');
 
 app.use(express.json());
 app.use(usersRouter);

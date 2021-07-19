@@ -1,6 +1,6 @@
 const express = require('express');
 const StocksController = require('../controllers/stocks-controller');
-const isAuth = require('../client/src/utils/middleware/authMiddleware');
+const isAuth = require('../middleware/authMiddleware');
 
 const router = express.Router();
 

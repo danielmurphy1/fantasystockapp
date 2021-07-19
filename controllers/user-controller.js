@@ -1,4 +1,4 @@
-const pool = require('../client/src/pool');
+const pool = require('../database/pool');
 const jwt = require('jsonwebtoken');
 
 class UserController { //database name will need to be changed for production - curently using 'test_NAMEOFTABLE'

@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000;
 const app = express();
 require("dotenv").config();
 const bodyParser = require('body-parser');
-const pool = require('./client/src/pool');
+const pool = require('./database/pool');
 const usersRouter = require('./routes/user-routes');
 const stocksRouter = require('./routes/stocks-routes');
 

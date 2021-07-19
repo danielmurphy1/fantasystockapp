@@ -1,6 +1,6 @@
 
-const StocksController = require('../utils/controllers/stocks-controller');
-const UserController = require('../utils/controllers/user-controller');
+const StocksController = require('../../../controllers/stocks-controller');
+const UserController = require('../../../controllers/user-controller');
 
 jest.mock('../utils/controllers/user-controller');
 jest.mock('../utils/controllers/stocks-controller');

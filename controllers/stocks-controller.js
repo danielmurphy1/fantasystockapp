@@ -1,4 +1,4 @@
-const pool = require('../../pool');
+const pool = require('../client/src/pool');
 const axios = require('axios');
 require("dotenv").config();
 

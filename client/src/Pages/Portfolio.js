@@ -70,7 +70,7 @@ function Portfolio() {
                             <Card style={{ width: '24rem' }}>
                                 <Card.Header as="h3">Account Information</Card.Header>
                                 <ListGroup variant="flush">
-                                    <ListGroup.Item as="p">Account Balance: {formattedBalance}</ListGroup.Item>
+                                    <ListGroup.Item as="p">Wallet Balance: {formattedBalance}</ListGroup.Item>
                                     <ListGroup.Item as="p">Value of All Shares: {formattedSharesValue}</ListGroup.Item>
                                     <ListGroup.Item as="p">Total Holdings: {formattedHoldings}</ListGroup.Item>
                                 </ListGroup>

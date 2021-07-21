@@ -138,7 +138,7 @@ function Trade() {
     return(
         <Container className="App">
             <h2 className="pt-3">Trading Page</h2>
-            <h3>Current Account Balance: {balance}</h3>
+            <h3>Current Wallet Balance: {balance}</h3>
             <p>Search Stock Symbols to Trade. Examples: "AAPL" = Apple "NFLX" = Netflix</p>
             <p>For current holdings, click the "View Details" button on the corresponding card to trade that stock.</p>
             <SearchForm  handleStockSearch={handleStockSearch} handleInputValueChange={handleInputValueChange} inputValue={inputValue}/>

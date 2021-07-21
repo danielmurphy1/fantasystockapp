@@ -1,4 +1,4 @@
-const pool = require('../database/pool');
+const pool = require('../../database/pool');
 
 async function buyShares(newShares, userId, symbol, newValue) {
     const { rows } = await pool.query(`

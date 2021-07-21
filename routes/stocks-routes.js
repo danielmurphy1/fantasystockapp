@@ -1,7 +1,7 @@
 const express = require('express');
 const StocksController = require('../controllers/stocks-controller');
-const {buyNewStockController, buyOldSharesController} = require('../controllers/buySharesController');
-const sellSharesController = require('../controllers/sellSharesController');
+const {buyNewStockController, buyOldSharesController} = require('../controllers/transactionControllers/buySharesController');
+const sellSharesController = require('../controllers/transactionControllers/sellSharesController');
 const holdingsValueUpdateController = require('../controllers/updateControllers/holdingsValueUpdateController');
 const isAuth = require('../middleware/authMiddleware');
 

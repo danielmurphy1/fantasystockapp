@@ -1,4 +1,4 @@
-const pool = require('../database/pool');
+const pool = require('../../database/pool');
 
 async function sellShares(newShares, userId, symbol, newValue) {
     if (newShares === 0) {

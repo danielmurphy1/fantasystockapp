@@ -1,4 +1,4 @@
-const { buyShares, buyNewStock } = require('../services/buyingService');
+const { buyShares, buyNewStock } = require('../../services/transactionServices/buyingService');
 
 exports.buyOldSharesController = async (req, res) => {
     const { newShares, userId, symbol, newValue } = req.body;

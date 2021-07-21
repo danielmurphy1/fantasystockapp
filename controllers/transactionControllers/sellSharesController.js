@@ -1,4 +1,4 @@
-const sellShares = require('../services/sellingService');
+const sellShares = require('../../services/transactionServices/sellingService');
 
 module.exports = async (req, res) => {
     try {

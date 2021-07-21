@@ -1,6 +1,6 @@
 const updateValues = require('../../services/updateServices/holdingsValueUpdateService');
 
-moldule.exoports = async (req, res) => {
+module.exports = async (req, res) => {
     try {
         const { userId, symbol, newValue } = req.body;
         const updatedValues = await updateValues(newValue, userId, symbol);

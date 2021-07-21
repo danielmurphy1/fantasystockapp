@@ -1,4 +1,4 @@
-const login = require('../services/loginUserService');
+const login = require('../../services/userServices/loginUserService');
 
 module.exports = async(request, response) => {
     const { body } = request;

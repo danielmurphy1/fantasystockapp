@@ -26,22 +26,30 @@ II. Install Files to Run Locally
 6. Run `npm run dev` in root directory to start server
 7. Open browser at `http://localhost:3000/`
 
-To Use Locally or Accessing at Below Link
-___
-The search page can be used to search for tweets by either content or by username, using the corresponding button to search. When searching by username, input a valid Twitter username (omitting the "@" symbol), and Tweeter-Grabberer will return the most recent ten of that user's tweets. Users who have marked their accounts as "private" cannot be searched using Tweeter-Grabberer. To search by content, type a content that you would like to search (ie. World Series, PS5, Simpsons). The fifteen most popular tweets (as determined by the Twitter algorithm ) about that content will be displayed. The random page will allow the user to choose one of my five favorite Twitter users and will display a random tweet from that user's most recent ten tweets. 
+###### Login/Signup Page
+![Login/Signup-Page ScreenShot](https://github.com/danielmurphy1/fanstasystockapp/blob/main/images/loginANDregister.JPG)
 
+###### Home/Welcome Page
+![Home-Page ScreenShot](https://github.com/danielmurphy1/fanstasystockapp/blob/main/images/welcome-home.JPG)
 
-![Login/Signup-Page ScreenShot]()
+###### Trade Page
+![Trade-Page ScreenShot](https://github.com/danielmurphy1/fanstasystockapp/blob/main/images/trade1.JPG)
 
-![Home-Page ScreenShot]()
+![Trade-Page ScreenShot](https://github.com/danielmurphy1/fanstasystockapp/blob/main/images/trade2.JPG)
 
-![Trade-Page ScreenShot]()
+###### Portfolio Page
+![Portfolio-PageScreenShot](https://github.com/danielmurphy1/fanstasystockapp/blob/main/images/porfolio.JPG)
 
-![Portfolio-PageScreenShot]()
+##### Responsive
 
-![Trade-Collapsed-PageScreenShot]()
+###### Trade Page Collapsed
+![Trade-Collapsed-PageScreenShot](https://github.com/danielmurphy1/fanstasystockapp/blob/main/images/trade-collapsed1.JPG)
+![Trade-Collapsed-PageScreenShot](https://github.com/danielmurphy1/fanstasystockapp/blob/main/images/trade-collapsed2.JPG)
+![Trade-Collapsed-PageScreenShot](https://github.com/danielmurphy1/fanstasystockapp/blob/main/images/trade-collapsed3.JPG)
 
-![Portfolio-Collapsed-PageScreenShot]()
+###### Portfolio Page Collapsed
+![Portfolio-Collapsed-PageScreenShot](https://github.com/danielmurphy1/fanstasystockapp/blob/main/images/portfolio-collapsed1.JPG)
+![Portfolio-Collapsed-PageScreenShot](https://github.com/danielmurphy1/fanstasystockapp/blob/main/images/portfolio-collapsed2.JPG)
 
 ## Technologies/Design
 

@@ -2,6 +2,7 @@ const express = require('express');
 const StocksController = require('../controllers/stocks-controller');
 const {buyNewStockController, buyOldSharesController} = require('../controllers/buySharesController');
 const sellSharesController = require('../controllers/sellSharesController');
+const holdingsValueUpdateController = require('../controllers/updateControllers/holdingsValueUpdateController');
 const isAuth = require('../middleware/authMiddleware');
 
 const router = express.Router();
@@ -54,14 +55,16 @@ router.put('/api/stocks/buy', isAuth, buyOldSharesController);
 
 router.put('/api/stocks/sell', isAuth, sellSharesController);
 
-router.put('/api/stocks/update', isAuth, async (req, res) => {
-    try {
-        const { userId, symbol, newValue } = req.body;
-        const updatedValues = await StocksController.updateValues(newValue, userId, symbol);
-        res.send(updatedValues);
-    } catch (error) {
-        res.send(error);
-    }
-});
+router.put('/api/stocks/update', isAuth, holdingsValueUpdateController);
+
+// async (req, res) => {
+//     try {
+//         const { userId, symbol, newValue } = req.body;
+//         const updatedValues = await StocksController.updateValues(newValue, userId, symbol);
+//         res.send(updatedValues);
+//     } catch (error) {
+//         res.send(error);
+//     }
+// }
 
 module.exports = router;

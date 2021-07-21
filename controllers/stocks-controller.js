@@ -80,16 +80,16 @@ class StocksController { //database name will need to be changed for production 
     //     }
     // };
 
-    static async updateValues(newValue, userId, symbol) {
-        const { rows } = await pool.query(`
-            UPDATE test_user_stocks
-            SET shares_value = $1
-            WHERE user_id = $2 AND symbol = $3
-            RETURNING *; 
-        `, [newValue, userId, symbol])
+//     static async updateValues(newValue, userId, symbol) {
+//         const { rows } = await pool.query(`
+//             UPDATE test_user_stocks
+//             SET shares_value = $1
+//             WHERE user_id = $2 AND symbol = $3
+//             RETURNING *; 
+//         `, [newValue, userId, symbol])
 
-        return rows;
-    };
+//         return rows;
+//     };
 };
 
 module.exports = StocksController;

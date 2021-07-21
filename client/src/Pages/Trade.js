@@ -65,7 +65,7 @@ function Trade() {
         }
         localStorage.setItem('accountBalance', accountBalance.toString())
 
-        const response = await axios.put('/api/user/transaction', body );
+        await axios.put('/api/user/wallet-update', body );
     }, [accountBalance]);
 
     function buyTransaction (event){

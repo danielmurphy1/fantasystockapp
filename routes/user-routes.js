@@ -9,7 +9,7 @@ router.post('/api/signup', signupController);
 
 router.post('/api/login', loginUserController);
 
-router.put('/api/user/transaction', async (req, res) =>{
+router.put('/api/user/wallet-update', async (req, res) =>{
     try {
         const { balance, user } = req.body;
         const wallet = await UserController.trade(balance, user)

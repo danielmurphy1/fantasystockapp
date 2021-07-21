@@ -1,5 +1,7 @@
 const express = require('express');
 const StocksController = require('../controllers/stocks-controller');
+const {buyNewStockController, buyOldSharesController} = require('../controllers/buySharesController');
+const sellSharesController = require('../controllers/sellSharesController');
 const isAuth = require('../middleware/authMiddleware');
 
 const router = express.Router();
@@ -46,35 +48,11 @@ router.get('/api/stocks/:userId', isAuth, async (req, res) => {
     }
 });
 
-router.post('/api/stocks/new', isAuth, async (req, res) => {
-    try {
-        const { userId, symbol, companyName, sharesToBuy, sharesValue } = req.body;
-        const newStock = await StocksController.buyNewStock(userId, symbol, companyName, sharesToBuy, sharesValue);
-        res.send(newStock);
-    } catch (error) {
-        res.send(error);
-    }
-});
+router.post('/api/stocks/new', isAuth, buyNewStockController);
 
-router.put('/api/stocks/buy', isAuth, async (req, res) => {
-    try {
-        const { newShares, userId, symbol, newValue } = req.body;
-        const purchasedShares = await StocksController.buyShares(newShares, userId, symbol, newValue);
-        res.send(purchasedShares);
-    } catch (error) {
-        res.send(error);
-    }
-});
+router.put('/api/stocks/buy', isAuth, buyOldSharesController);
 
-router.put('/api/stocks/sell', isAuth, async (req, res) => {
-    try {
-        const { newShares, userId, symbol, newValue } = req.body;
-        const soldShares = await StocksController.sellShares(newShares, userId, symbol, newValue);
-        res.send(soldShares);
-    } catch (error) {
-        res.send(error);
-    }
-});
+router.put('/api/stocks/sell', isAuth, sellSharesController);
 
 router.put('/api/stocks/update', isAuth, async (req, res) => {
     try {

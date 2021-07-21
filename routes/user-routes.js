@@ -1,27 +1,13 @@
 const express = require('express');
 const UserController = require('../controllers/user-controller');
+const loginUserController = require('../controllers/loginUserController');
+const signupController = require('../controllers/signupController');
 
 const router = express.Router();
 
-router.post('/api/signup', async (req, res) => {
-    try {
-        const { username, password } = req.body;
-        const user = await UserController.signup(username, password);
-        res.send(user);
-    } catch (error) {
-        res.send(error);
-    }
-});
+router.post('/api/signup', signupController);
 
-router.post('/api/login', async (req, res) => {
-    try {
-        const { username, password } = req.body;
-        const loggedUser = await UserController.login(username, password, res);
-        res.send(loggedUser);
-    } catch (error) {
-        res.send(error);
-    }
-});
+router.post('/api/login', loginUserController);
 
 router.put('/api/user/transaction', async (req, res) =>{
     try {

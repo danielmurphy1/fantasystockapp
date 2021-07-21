@@ -1,5 +1,5 @@
-const StocksController = require('../../../controllers/stocks-controller');
-const UserController = require('../../../controllers/user-controller');
+const StocksController = require('../controllers/stocks-controller');
+const UserController = require('../controllers/user-controller');
 
 describe('Selling Shares', () => {
     describe('Selling less than all shares of a stock', () => {

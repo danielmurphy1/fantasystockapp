@@ -1,11 +1,11 @@
 const express = require('express');
-const StocksController = require('../controllers/stocks-controller');
 const {buyNewStockController, buyOldSharesController} = require('../controllers/transactionControllers/buySharesController');
 const sellSharesController = require('../controllers/transactionControllers/sellSharesController');
 const holdingsValueUpdateController = require('../controllers/updateControllers/holdingsValueUpdateController');
 const stockSearchController = require('../controllers/stockSearchControllers/stockSearchController');
 const chartSearchController = require('../controllers/stockSearchControllers/chartSearchController');
 const getUserHoldingsController = require('../controllers/portfolioControllers/getUserHoldingsController');
+const getPortfolioTotalController = require('../controllers/portfolioControllers/getPortfolioTotalController');
 const isAuth = require('../middleware/authMiddleware');
 const router = express.Router();
 
@@ -13,15 +13,7 @@ router.get('/api/search/:symbol', isAuth, stockSearchController);
 
 router.get('/api/search/chart/:symbol', isAuth, chartSearchController);
 
-router.get('/api/portfolio/:userId', isAuth, async (req, res) => {
-    try {
-        const { userId } = req.params;
-        const portfolioData = await StocksController.getPortfolio(userId);
-        res.send(portfolioData);
-    } catch (error) {
-        res.send(error);
-    }
-});
+router.get('/api/portfolio/:userId', isAuth, getPortfolioTotalController);
 
 router.get('/api/stocks/:userId', isAuth, getUserHoldingsController);
 

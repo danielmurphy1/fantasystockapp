@@ -4,23 +4,13 @@ const {buyNewStockController, buyOldSharesController} = require('../controllers/
 const sellSharesController = require('../controllers/transactionControllers/sellSharesController');
 const holdingsValueUpdateController = require('../controllers/updateControllers/holdingsValueUpdateController');
 const stockSearchController = require('../controllers/stockSearchControllers/stockSearchController');
+const chartSearchController = require('../controllers/stockSearchControllers/chartSearchController');
 const isAuth = require('../middleware/authMiddleware');
-
 const router = express.Router();
 
 router.get('/api/search/:symbol', isAuth, stockSearchController);
 
-
-router.get('/api/search/chart/:symbol', isAuth, async (req, res) => {
-    try {
-        const symbol = req.params.symbol;
-        const token = process.env.PRODUCTION_TOKEN;
-        const response = await StocksController.searchChart(symbol, token);
-        res.send(response.data);
-    } catch (error) {
-        res.send(error);
-    }
-});
+router.get('/api/search/chart/:symbol', isAuth, chartSearchController);
 
 router.get('/api/portfolio/:userId', isAuth, async (req, res) => {
     try {
@@ -49,15 +39,5 @@ router.put('/api/stocks/buy', isAuth, buyOldSharesController);
 router.put('/api/stocks/sell', isAuth, sellSharesController);
 
 router.put('/api/stocks/update', isAuth, holdingsValueUpdateController);
-
-// async (req, res) => {
-//     try {
-//         const { userId, symbol, newValue } = req.body;
-//         const updatedValues = await StocksController.updateValues(newValue, userId, symbol);
-//         res.send(updatedValues);
-//     } catch (error) {
-//         res.send(error);
-//     }
-// }
 
 module.exports = router;

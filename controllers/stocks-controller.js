@@ -10,11 +10,11 @@ class StocksController { //database name will need to be changed for production 
     //     return response;
     // };
 
-    static async searchChart(symbol, token) {
-        const response = axios.get(`https://cloud.iexapis.com/stable/stock/${symbol}/chart/1w?token=${token}`);
+    // static async searchChart(symbol, token) {
+    //     const response = axios.get(`https://cloud.iexapis.com/stable/stock/${symbol}/chart/1w?token=${token}`);
 
-        return response;
-    };
+    //     return response;
+    // };
 
     static async getPortfolio(userId) {
         const { rows } = await pool.query(`

@@ -11,4 +11,4 @@ async function updateValues(newValue, userId, symbol) {
     return rows;
 };
 
-module.export = updateValues;
+module.exports = updateValues;

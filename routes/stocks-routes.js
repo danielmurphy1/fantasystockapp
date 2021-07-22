@@ -3,20 +3,13 @@ const StocksController = require('../controllers/stocks-controller');
 const {buyNewStockController, buyOldSharesController} = require('../controllers/transactionControllers/buySharesController');
 const sellSharesController = require('../controllers/transactionControllers/sellSharesController');
 const holdingsValueUpdateController = require('../controllers/updateControllers/holdingsValueUpdateController');
+const stockSearchController = require('../controllers/stockSearchControllers/stockSearchController');
 const isAuth = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.get('/api/search/:symbol', isAuth, async (req, res) => {
-    try {
-        const symbol = req.params.symbol;
-        const token = process.env.PRODUCTION_TOKEN;
-        const response = await StocksController.searchStock(symbol, token);
-        res.send(response.data);
-    } catch (error) {
-        res.send(error);
-    }
-});
+router.get('/api/search/:symbol', isAuth, stockSearchController);
+
 
 router.get('/api/search/chart/:symbol', isAuth, async (req, res) => {
     try {

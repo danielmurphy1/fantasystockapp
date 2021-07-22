@@ -5,6 +5,7 @@ const sellSharesController = require('../controllers/transactionControllers/sell
 const holdingsValueUpdateController = require('../controllers/updateControllers/holdingsValueUpdateController');
 const stockSearchController = require('../controllers/stockSearchControllers/stockSearchController');
 const chartSearchController = require('../controllers/stockSearchControllers/chartSearchController');
+const getUserHoldingsController = require('../controllers/portfolioControllers/getUserHoldingsController');
 const isAuth = require('../middleware/authMiddleware');
 const router = express.Router();
 
@@ -22,15 +23,7 @@ router.get('/api/portfolio/:userId', isAuth, async (req, res) => {
     }
 });
 
-router.get('/api/stocks/:userId', isAuth, async (req, res) => {
-    try {
-        const { userId } = req.params;
-        const userData = await StocksController.getUserHoldings(userId);
-        res.send(userData);
-    } catch (error) {
-        res.send(error);
-    }
-});
+router.get('/api/stocks/:userId', isAuth, getUserHoldingsController);
 
 router.post('/api/stocks/new', isAuth, buyNewStockController);
 

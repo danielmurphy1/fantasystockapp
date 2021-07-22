@@ -26,14 +26,14 @@ class StocksController { //database name will need to be changed for production 
         return rows;
     };
 
-    static async getUserHoldings(userId) {
-        const { rows } = await pool.query(`
-            SELECT * FROM test_user_stocks
-            WHERE user_id = $1;
-        `, [userId])
+    // static async getUserHoldings(userId) {
+    //     const { rows } = await pool.query(`
+    //         SELECT * FROM test_user_stocks
+    //         WHERE user_id = $1;
+    //     `, [userId])
 
-        return rows;
-    };
+    //     return rows;
+    // };
 
     // static async buyNewStock(userId, symbol, companyName, sharesToBuy, sharesValue) {
     //     const { rows } =  await pool.query(`

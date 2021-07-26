@@ -1,12 +1,14 @@
 const sellSharesController = require('../controllers/transactionControllers/sellSharesController');
-const sellShares = require('../services/transactionServices/sellingService');
+const sellStockService = require('../services/transactionServices/sellingService');
+const walletUpdateController = require('../controllers/updateControllers/walletUpdateController');
+const walletUpdateService = require('../services/updateServices/walletUpdateService');
 
-jest.mock('../controllers/transactionControllers/sellSharesController');
-jest.mock('../services/transactionServices/sellingService')
+jest.mock('../services/transactionServices/sellingService');
+jest.mock('../services/updateServices/walletUpdateService');
 
 describe('Selling Shares', () => {
     describe('Selling less than all shares of a stock', () => {
-        test('should subtract the sold shares from the current and update the new total shares value to the DB for the correct stock', async () => {
+        test('should call the sellStockService through the sellSharesController while updating the number of shares and shares value.', async () => {
             
             const userId = 'testUser';
             const symbol = 'TSTNG';
@@ -16,58 +18,92 @@ describe('Selling Shares', () => {
             const oldSharesValue = 100;
             const newValue = newShares * oldSharesValue;
 
-            sellSharesController.mockReturnValue([newShares, userId, symbol, newValue])
+            const req = {
+                body: {
+                    userId, 
+                    symbol, 
+                    newValue,
+                    newShares
+                }
+            };
+            const res = {};
+            res.send = jest.fn();
 
-            const result = await sellSharesController(newShares, userId, symbol, newValue);
-            expect(result).toEqual([newShares, userId, symbol, newValue]);
-            expect(sellShares).toHaveBeenCalledWith(newShares, userId, symbol, newValue);
-            expect(sellShares).toHaveBeenCalledTimes(1);
+            await sellSharesController(req, res);
+            expect(sellStockService).toHaveBeenCalledWith(newShares, userId, symbol, newValue);
+            expect(sellStockService).toHaveBeenCalledTimes(1);
         });
 
-        // test('should add shares value to user wallet balance', async () => {
+        test('should call the walletUpdateService through the walletUpdateController and update the user wallet.', async () => {
 
-        //     const oldBalance = 1000;
-        //     const sharesValue = 100;
-        //     const id = '100';
-        //     const newBalance = oldBalance + sharesValue;
+            const oldBalance = 1000;
+            const sharesValue = 100;
+            const user = '100';
+            const balance = oldBalance + sharesValue;
 
-        //     UserController.trade = jest.fn();
-        //     UserController.trade.mockReturnValue([newBalance, id]);
+            const req ={
+                body: {
+                    balance, 
+                    user
+                }
+            };
 
-        //     const result = UserController.trade(newBalance, id);
-        //     expect(result).toEqual([newBalance, id]);
-        // });
+            const res = {};
+            res.send = jest.fn();
+
+            await walletUpdateController(req, res);
+            expect(walletUpdateService).toHaveBeenCalledWith(balance, user);
+            expect(walletUpdateService).toHaveBeenCalledTimes(1);
+        });
     });
 
-    // describe('Selling all shares of a stock', () => {
-    //     test('should delete the record of the stock from the DB', async () => {
-    //         const userId = 'testUser';
-    //         const symbol = 'TSTNG';
-    //         const oldShares = 15;
-    //         const sharesToSell = 15;
-    //         const newShares = oldShares - sharesToSell;
-    //         const oldSharesValue = 100;
-    //         const newValue = newShares * oldSharesValue;
+    describe('Selling all shares of a stock', () => {
+        test('should call the sellStockService through the sellSharesController while deleting the record of the stock.', async () => {
+            const userId = 'testUser';
+            const symbol = 'TSTNG';
+            const oldShares = 15;
+            const sharesToSell = 15;
+            const newShares = oldShares - sharesToSell;
+            const oldSharesValue = 100;
+            const newValue = newShares * oldSharesValue;
 
 
-    //         StocksController.sellShares = jest.fn();
-    //         StocksController.sellShares.mockReturnValue([newShares, userId, symbol])
+            const req = {
+                body: {
+                    userId, 
+                    symbol, 
+                    newValue,
+                    newShares
+                }
+            };
+            const res = {};
+            res.send = jest.fn();
 
-    //         const result = await StocksController.sellShares(newShares, userId, symbol);
-    //         expect(result).toEqual([newShares, userId, symbol]);
-    //     });
+            await sellSharesController(req, res);
+            expect(sellStockService).toHaveBeenCalledWith(newShares, userId, symbol, newValue);
+            expect(sellStockService).toHaveBeenCalledTimes(2);
+        });
 
-    //     test('should add shares value to user wallet balance', async () => {
-    //         const oldBalance = 1000;
-    //         const sharesValue = 100;
-    //         const id = '100';
-    //         const newBalance = oldBalance + sharesValue;
+        test('should call the walletUpdateService through the walletUpdateController update the user wallet.', async () => {
 
-    //         UserController.trade = jest.fn();
-    //         UserController.trade.mockReturnValue([newBalance, id]);
+            const oldBalance = 1000;
+            const sharesValue = 100;
+            const user = '100';
+            const balance = oldBalance + sharesValue;
 
-    //         const result = UserController.trade(newBalance, id);
-    //         expect(result).toEqual([newBalance, id]);
-    //     });
-    // });
+            const req ={
+                body: {
+                    balance, 
+                    user
+                }
+            };
+
+            const res = {};
+            res.send = jest.fn();
+            
+            const result = await walletUpdateController(req, res);
+            expect(walletUpdateService).toHaveBeenCalledWith(balance, user);
+            expect(walletUpdateService).toHaveBeenCalledTimes(2);
+        });
+    });
 });

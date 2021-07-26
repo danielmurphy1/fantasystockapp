@@ -25,7 +25,7 @@ app.get('/*', (req, res) => {
 pool.connect({
     host: 'localhost', 
     port: 5432, 
-    database: 'fantasy_stocks', 
+    database: 'fantasy_stock_app', 
     user: process.env.DB_USER, 
     password: process.env.DB_PASSWORD
     })

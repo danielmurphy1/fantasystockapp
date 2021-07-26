@@ -56,7 +56,7 @@ function Home() {
                 //expirationTime is current time plus token expiresIn converted to a new date object
                 const expirationTime = new Date(new Date().getTime() + (+res.data.expiresIn));
                 authCtx.login(res.data.accessToken, expirationTime.toISOString(), res.data.result[0].id);
-                userCtx.login(res.data.result[0].wallet_ballance, res.data.result[0].username);
+                userCtx.login(res.data.result[0].wallet_balance, res.data.result[0].username);
             })
             .catch(error => {
                 alert("Please check your username/password.");
@@ -93,7 +93,7 @@ function Home() {
                     Fantasy Stock Trader is to Wall Street what fantasy football is to the NFL.
                     Instead of a coach, here you take on the role of a stock market invester with 
                     none of the risks: because at Fantasy Stock Trader the money is imaginary, 
-                    just like your dream of being an NFL coach one day. When you register, you receive $10,000
+                    just like your dream of being an NFL coach one day. When you register, you receive $25,000
                     of pretend money to hedge your bets and see if you can become a stock trading tycoon! So, 
                     what are you waiting for? Register below and begin your dream to become a millionaire.
                 </p>

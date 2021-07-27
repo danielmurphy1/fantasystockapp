@@ -57,5 +57,7 @@ client.query('SELECT table_schema,table_name FROM information_schema.tables;', (
   client.end();
 });
 
-
+app.listen(port, () =>{
+  console.log(`listening on port ${port}`);
+});
 

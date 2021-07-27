@@ -10,7 +10,7 @@
     "test": "jest",
     "client": "npm run watch --prefix client",
     "dev": "concurrently \"nodemon sever.js\" \"npm run client\"",
-    "heroku-postbuild": "npm i --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client" 
   },
   "repository": {
     "type": "git",

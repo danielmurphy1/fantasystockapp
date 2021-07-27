@@ -6,8 +6,7 @@
   "scripts": {
     "test": "jest",
     "client": "npm run watch --prefix client",
-    "dev": "concurrently \"nodemon sever.js\" \"npm run client\"",
-    "heroku-postbuild": "npm i --prefix client && npm run build --prefix client"
+    "dev": "concurrently \"nodemon sever.js\" \"npm run client\""
   },
   "repository": {
     "type": "git",

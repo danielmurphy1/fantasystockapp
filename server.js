@@ -22,20 +22,36 @@ app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, "client/build", "index.html"))
 });
 
-pool.connect({
-    host: 'localhost', 
-    port: 5432, 
-    database: 'fantasy_stock_app', 
-    user: process.env.DB_USER, 
-    password: process.env.DB_PASSWORD
-    })
+// pool.connect({ //local
+//     host: 'localhost', 
+//     port: 5432, 
+//     database: 'fantasy_stock_app', 
+//     user: process.env.DB_USER, 
+//     password: process.env.DB_PASSWORD
+//     })
+// //     .then(() => {
+// //         app.listen(port, () => {
+// //             console.log(`Listening on port: ${port}.`);
+// //         });
+// //     })
+//     .catch(err => {
+//         console.error(err)
+// });
+
+pool.connect({ //production
+  host: DB_HOST_PRODUCTION, 
+  port: 5432, 
+  database: DB_NAME_PRODUCTION, 
+  user: DB_USER_PRODUCTION, 
+  password: DR_PASSWORD_PRODUCTION
+  })
 //     .then(() => {
 //         app.listen(port, () => {
 //             console.log(`Listening on port: ${port}.`);
 //         });
 //     })
-    .catch(err => {
-        console.error(err)
+  .catch(err => {
+      console.error(err)
 });
 
 // const { Client } = require('pg');

@@ -51,7 +51,7 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.user_stocks (
-    id integer NOT NULL,
+    id SERIAL NOT NULL,
     user_id integer NOT NULL,
     symbol character varying NOT NULL,
     company_name character varying NOT NULL,
@@ -95,7 +95,7 @@ ALTER SEQUENCE public.test_user_stocks_id_seq OWNED BY public.user_stocks.id;
 --
 
 CREATE TABLE public.users (
-    id integer NOT NULL,
+    id SERIAL NOT NULL,
     created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP,
     username character varying NOT NULL,
     password character varying NOT NULL,

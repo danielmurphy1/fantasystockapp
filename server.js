@@ -43,7 +43,7 @@ pool.connect({ //production
   port: 5432, 
   database: DB_NAME_PRODUCTION, 
   user: DB_USER_PRODUCTION, 
-  password: DR_PASSWORD_PRODUCTION
+  password: DB_PASSWORD_PRODUCTION
   })
 //     .then(() => {
 //         app.listen(port, () => {

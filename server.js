@@ -34,9 +34,9 @@ pool.connect({
 //             console.log(`Listening on port: ${port}.`);
 //         });
 //     })
-//     .catch(err => {
-//         console.error(err)
-// });
+    .catch(err => {
+        console.error(err)
+});
 
 // const { Client } = require('pg');
 

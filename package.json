@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Fantasy Stock Trading Application",
   "main": "server.js",
+  "engines": {
+    "node": "12.18.3"
+  },
   "scripts": {
     "test": "jest",
     "client": "npm run watch --prefix client",

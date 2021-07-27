@@ -29,29 +29,13 @@ app.get('/*', (req, res) => {
 //     user: process.env.DB_USER, 
 //     password: process.env.DB_PASSWORD
 //     })
-// //     .then(() => {
-// //         app.listen(port, () => {
-// //             console.log(`Listening on port: ${port}.`);
-// //         });
-// //     })
+//     .then(() => {
+//         app.listen(port, () => {
+//             console.log(`Listening on port: ${port}.`);
+//         });
+//     })
 //     .catch(err => {
 //         console.error(err)
-// });
-
-// pool.connect({ //production
-//   host: DB_HOST_PRODUCTION, 
-//   port: 5432, 
-//   database: DB_NAME_PRODUCTION, 
-//   user: DB_USER_PRODUCTION, 
-//   password: DB_PASSWORD_PRODUCTION
-//   })
-// //     .then(() => {
-// //         app.listen(port, () => {
-// //             console.log(`Listening on port: ${port}.`);
-// //         });
-// //     })
-//   .catch(err => {
-//       console.error(err)
 // });
 
 const { Client } = require('pg');
@@ -65,15 +49,7 @@ const client = new Client({
 
 client.connect();
 
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  client.end();
-});
 
 app.listen(port, () =>{
   console.log(`listening on port ${port}`);
 });
-

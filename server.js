@@ -47,7 +47,7 @@ app.get('/*', (req, res) => {
 //   }
 // });
 
-// pool.connect();
+pool.connect();
 
 
 app.listen(port, () =>{

@@ -38,17 +38,7 @@ app.get('/*', (req, res) => {
 //         console.error(err)
 // });
 
-// const { Pool } = require('pg');
-
-// const pool = new Pool({
-//   connectionString: process.env.DATABASE_URL,
-//   ssl: {
-//     rejectUnauthorized: false
-//   }
-// });
-
 pool.connect();
-
 
 app.listen(port, () =>{
   console.log(`listening on port ${port}`);

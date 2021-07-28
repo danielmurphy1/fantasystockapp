@@ -54,6 +54,7 @@ client.query('SELECT 1+1;', (err, res) => {
   for (let row of res.rows) {
     console.log(JSON.stringify(row));
   }
+  client.end();
 });
 
 app.listen(port, () =>{

@@ -41,7 +41,7 @@ app.get('/*', (req, res) => {
 const { Client } = require('pg');
 
 const client = new Client({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: 'postgres://clrciyosaombqh:c34b8316be6960a5aa2e8551b0bb0c9545c4384f361f15736bddca1135706e96@ec2-52-1-20-236.compute-1.amazonaws.com:5432/dd79dt65n3e6fa',
   ssl: {
     rejectUnauthorized: false
   }

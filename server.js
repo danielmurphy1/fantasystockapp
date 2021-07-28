@@ -38,16 +38,16 @@ app.get('/*', (req, res) => {
 //         console.error(err)
 // });
 
-const { Client } = require('pg');
+const { Pool } = require('pg');
 
-const client = new Client({
+const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false
   }
 });
 
-client.connect();
+pool.connect();
 
 
 app.listen(port, () =>{

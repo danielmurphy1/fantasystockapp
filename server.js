@@ -22,7 +22,9 @@ app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, "client/build", "index.html"))
 });
 
-// pool.connect({ //local
+//for local DB
+
+// pool.connect({ 
 //     host: 'localhost', 
 //     port: 5432, 
 //     database: 'fantasy_stock_app', 
@@ -37,6 +39,8 @@ app.get('/*', (req, res) => {
 //     .catch(err => {
 //         console.error(err)
 // });
+
+//for deployed/production DB
 
 pool.connect();
 

@@ -1,3 +1,5 @@
+//for local DB
+
 // const pg = require('pg');
 
 // class Pool {
@@ -18,6 +20,8 @@
 // }
 
 // module.exports = new Pool();
+
+//for deployed/production DB
 
 const { Pool } = require('pg');
 require("dotenv").config();

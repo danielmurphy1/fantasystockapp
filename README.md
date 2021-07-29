@@ -4,7 +4,7 @@ _Web Based Fantasy Stock Trading Application_
 
 Use Fake Money To Test Your Stock Market Skills Trading Shares of Your Favorite Companies
 
-Start Trading Today! [Link to Application]() 
+Start Trading Today! [Link to Application](https://desolate-hollows-80945.herokuapp.com/) 
 
 
 ## Instructions

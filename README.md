@@ -23,7 +23,7 @@ II. Install Files to Run Locally
 3. Run `npm i` in root directory
 4. Run `npm i --prefix client` in root directory
 5. Rename `.env_sample` to `.env` file and replace API keys and the JSON Web Token secret key with your own. You can reach IEX API [here](https://iexcloud.io/) and JSON Web Token [here](https://jwt.io/)
-6. Uncomment lines 27-41 and comment out lines 43-45 in `server.js`
+6. Uncomment lines 27-41 and comment out lines 45-49 in `server.js`
 7. Uncomment lines 3-22 and comment out lines 26-35 in `pool.js`
 8. Run `npm run dev` in root directory to start server
 9. Open browser at `http://localhost:3000/`

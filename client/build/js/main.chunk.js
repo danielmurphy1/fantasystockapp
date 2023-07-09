@@ -137,7 +137,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Pages_Welcome__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Pages/Welcome */ "./src/Pages/Welcome.js");
 /* harmony import */ var _Pages_Trade__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Pages/Trade */ "./src/Pages/Trade.js");
 /* harmony import */ var _Pages_Portfolio__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Pages/Portfolio */ "./src/Pages/Portfolio.js");
-/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "../node_modules/bootstrap/dist/css/bootstrap.min.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
 /* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__);
@@ -234,7 +234,7 @@ function App() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_google_charts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-google-charts */ "../node_modules/react-google-charts/dist/index.esm.js");
+/* harmony import */ var react_google_charts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-google-charts */ "./node_modules/react-google-charts/dist/index.esm.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__);
 var _jsxFileName = "C:\\Users\\danie\\Documents\\FantasyStockApp\\client\\src\\Components\\Charts\\PortfolioBarChart.js";
@@ -303,7 +303,7 @@ function PortfolioBarChart(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_google_charts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-google-charts */ "../node_modules/react-google-charts/dist/index.esm.js");
+/* harmony import */ var react_google_charts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-google-charts */ "./node_modules/react-google-charts/dist/index.esm.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__);
 var _jsxFileName = "C:\\Users\\danie\\Documents\\FantasyStockApp\\client\\src\\Components\\Charts\\PortfolioPieChart.js";
@@ -366,7 +366,7 @@ function PortfolioPieChart(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_google_charts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-google-charts */ "../node_modules/react-google-charts/dist/index.esm.js");
+/* harmony import */ var react_google_charts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-google-charts */ "./node_modules/react-google-charts/dist/index.esm.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__);
 var _jsxFileName = "C:\\Users\\danie\\Documents\\FantasyStockApp\\client\\src\\Components\\Charts\\SearchResultsChart.js";
@@ -387,7 +387,7 @@ function SearchResultsChart(props) {
         lineNumber: 11,
         columnNumber: 25
       }, this),
-      data: [['Date', 'Price'], ...props.chartData.map(d => [d.date, d.close])],
+      data: [['Date', 'Price'], ...props.chartData.map(d => [d.datetime, Number(d.close)])],
       options: {
         title: `Closing Prices for ${props.companyName} the Last Week`,
         pointSize: 10,
@@ -437,10 +437,10 @@ function SearchResultsChart(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "../node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var _Styles_CurrentHoldingsCard_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Styles/CurrentHoldingsCard.css */ "./src/Styles/CurrentHoldingsCard.css");
 /* harmony import */ var _Styles_CurrentHoldingsCard_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Styles_CurrentHoldingsCard_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "../node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _store_auth_context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../store/auth-context */ "./src/store/auth-context.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
@@ -468,7 +468,7 @@ function CurrentHoldingsCard(props) {
     const response = await axios__WEBPACK_IMPORTED_MODULE_3___default.a.get(`/api/search/${props.holding.symbol}`, {
       headers: headers
     });
-    setCurrentPrice(response.data.latestPrice);
+    setCurrentPrice(response.data.priceResponse.price);
     console.log(response.data);
   }, [props.holding.symbol]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
@@ -568,7 +568,7 @@ function CurrentHoldingsCard(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "../node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var _store_auth_context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/auth-context */ "./src/store/auth-context.js");
 /* harmony import */ var _store_user_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/user-context */ "./src/store/user-context.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
@@ -676,7 +676,7 @@ function Header() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "../node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__);
 var _jsxFileName = "C:\\Users\\danie\\Documents\\FantasyStockApp\\client\\src\\Components\\LogInForm.js";
@@ -771,7 +771,7 @@ function LogInForm(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "../node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__);
 var _jsxFileName = "C:\\Users\\danie\\Documents\\FantasyStockApp\\client\\src\\Components\\SearchForm.js";
@@ -801,7 +801,8 @@ function SearchForm(props) {
         placeholder: "Enter Stock Symbol",
         className: "mr-1",
         value: props.inputValue,
-        onChange: props.handleInputValueChange
+        onChange: props.handleInputValueChange,
+        required: true
       }, void 0, false, {
         fileName: _jsxFileName,
         lineNumber: 9,
@@ -842,7 +843,7 @@ function SearchForm(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "../node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var _Styles_SearchResultCard_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Styles/SearchResultCard.css */ "./src/Styles/SearchResultCard.css");
 /* harmony import */ var _Styles_SearchResultCard_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Styles_SearchResultCard_css__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
@@ -1012,7 +1013,7 @@ function SearchResultCard(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "../node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__);
 var _jsxFileName = "C:\\Users\\danie\\Documents\\FantasyStockApp\\client\\src\\Components\\SignUpForm.js";
@@ -1106,9 +1107,9 @@ function SignUpForm(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "../node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var _store_auth_context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/auth-context */ "./src/store/auth-context.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "../node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__);
@@ -1371,11 +1372,11 @@ function TransactionModal(props) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "../node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "../node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var _Components_LogInForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/LogInForm */ "./src/Components/LogInForm.js");
 /* harmony import */ var _Components_SignUpForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Components/SignUpForm */ "./src/Components/SignUpForm.js");
 /* harmony import */ var _store_auth_context__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../store/auth-context */ "./src/store/auth-context.js");
@@ -1531,10 +1532,10 @@ function Home() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "../node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var _store_user_context__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/user-context */ "./src/store/user-context.js");
 /* harmony import */ var _store_auth_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/auth-context */ "./src/store/auth-context.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "../node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _Components_Charts_PortfolioPieChart__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Components/Charts/PortfolioPieChart */ "./src/Components/Charts/PortfolioPieChart.js");
 /* harmony import */ var _Components_Charts_PortfolioBarChart__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Components/Charts/PortfolioBarChart */ "./src/Components/Charts/PortfolioBarChart.js");
@@ -1747,14 +1748,14 @@ function Portfolio() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "../node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var _Components_SearchForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Components/SearchForm */ "./src/Components/SearchForm.js");
 /* harmony import */ var _Components_SearchResultCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Components/SearchResultCard */ "./src/Components/SearchResultCard.js");
 /* harmony import */ var _Components_CurrentHoldingsCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Components/CurrentHoldingsCard */ "./src/Components/CurrentHoldingsCard.js");
 /* harmony import */ var _Components_TransactionModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Components/TransactionModal */ "./src/Components/TransactionModal.js");
 /* harmony import */ var _store_auth_context__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../store/auth-context */ "./src/store/auth-context.js");
 /* harmony import */ var _store_user_context__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../store/user-context */ "./src/store/user-context.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! axios */ "../node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _Components_Charts_SearchResultsChart__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../Components/Charts/SearchResultsChart */ "./src/Components/Charts/SearchResultsChart.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
@@ -1873,11 +1874,12 @@ function Trade() {
       headers: headers
     });
 
-    if (typeof chartResponseData.data.length === "number") {
-      const chartData = [];
+    if (typeof chartResponseData.data.values.length === "number") {
+      const chartData = []; //dates are most recent first in chartResponseData - want to show in reverse order - most recent last
+      //so add to chartData array in reverse order
 
-      for (let i = 0; i < chartResponseData.data.length; i++) {
-        chartData.push(chartResponseData.data[i]);
+      for (let i = chartResponseData.data.values.length - 1; i >= 0; i--) {
+        chartData.push(chartResponseData.data.values[i]);
       }
 
       setChartData(chartData);
@@ -1889,18 +1891,18 @@ function Trade() {
       setShowResultCard(false);
     }
 
-    setStockSymbol(responseData.symbol);
+    setStockSymbol(responseData.searchResponse.symbol);
     setInputValue("");
-    setCurrentPrice(responseData.latestPrice);
-    setPriceChange(responseData.change);
-    setCompanyName(responseData.companyName);
+    setCurrentPrice(responseData.priceResponse.price);
+    setPriceChange(responseData.searchResponse.change);
+    setCompanyName(responseData.searchResponse.name);
     const response = await getHoldings(authCtx.userId);
 
     if (response.data.length === 0) {
       setCurrentShares(0);
     } else {
       for (let i = 0; i < response.data.length; i++) {
-        if (response.data[i].symbol === responseData.symbol) {
+        if (response.data[i].symbol === responseData.searchResponse.symbol) {
           setCurrentShares(response.data[i].shares_owned);
           break;
         } else {
@@ -1919,25 +1921,25 @@ function Trade() {
       children: "Trading Page"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 140,
+      lineNumber: 141,
       columnNumber: 13
     }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__["jsxDEV"])("h3", {
       children: ["Current Wallet Balance: ", balance]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 141,
+      lineNumber: 142,
       columnNumber: 13
     }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__["jsxDEV"])("p", {
       children: "Search Stock Symbols to Trade. Examples: \"AAPL\" = Apple \"NFLX\" = Netflix"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 142,
+      lineNumber: 143,
       columnNumber: 13
     }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__["jsxDEV"])("p", {
       children: "For current holdings, click the \"View Details\" button on the corresponding card to trade that stock."
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 143,
+      lineNumber: 144,
       columnNumber: 13
     }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__["jsxDEV"])(_Components_SearchForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
       handleStockSearch: handleStockSearch,
@@ -1945,7 +1947,7 @@ function Trade() {
       inputValue: inputValue
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 144,
+      lineNumber: 145,
       columnNumber: 13
     }, this), showResultCard && /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__["jsxDEV"])(_Components_SearchResultCard__WEBPACK_IMPORTED_MODULE_3__["default"], {
       stockSymbol: stockSymbol,
@@ -1958,14 +1960,14 @@ function Trade() {
       currentShares: currentShares
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 145,
+      lineNumber: 146,
       columnNumber: 33
     }, this), showChart && /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__["jsxDEV"])(_Components_Charts_SearchResultsChart__WEBPACK_IMPORTED_MODULE_9__["default"], {
       companyName: companyName,
       chartData: chartData
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 155,
+      lineNumber: 156,
       columnNumber: 28
     }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__["jsxDEV"])("div", {
       className: "row justify-content-around",
@@ -1974,12 +1976,12 @@ function Trade() {
         handleStockSearch: handleStockSearch
       }, holding.symbol, false, {
         fileName: _jsxFileName,
-        lineNumber: 160,
+        lineNumber: 161,
         columnNumber: 49
       }, this))
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 159,
+      lineNumber: 160,
       columnNumber: 13
     }, this), /*#__PURE__*/Object(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__["jsxDEV"])(_Components_TransactionModal__WEBPACK_IMPORTED_MODULE_5__["default"], {
       buyOrSell: buyOrSell,
@@ -1999,12 +2001,12 @@ function Trade() {
       accountBalance: accountBalance
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 162,
+      lineNumber: 163,
       columnNumber: 13
     }, this)]
   }, void 0, true, {
     fileName: _jsxFileName,
-    lineNumber: 139,
+    lineNumber: 140,
     columnNumber: 9
   }, this);
 }
@@ -2026,7 +2028,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _store_user_context__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/user-context */ "./src/store/user-context.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "../node_modules/react-bootstrap/esm/index.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-dev-runtime */ "./node_modules/react/jsx-dev-runtime.js");
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__);
 var _jsxFileName = "C:\\Users\\danie\\Documents\\FantasyStockApp\\client\\src\\Pages\\Welcome.js";

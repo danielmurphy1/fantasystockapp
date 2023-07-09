@@ -95,13 +95,14 @@ function Trade() {
 
         const responseData = await fetch(`/api/search/${inputValue}`, {headers:headers})
             .then(res => res.json());
-        
         const chartResponseData = await axios.get(`/api/search/chart/${inputValue}`, {headers:headers});
-            
-        if (typeof chartResponseData.data.length === "number") {
+
+        if (typeof chartResponseData.data.values.length === "number") {
             const chartData = []
-            for (let i = 0; i < chartResponseData.data.length; i++){
-                chartData.push(chartResponseData.data[i])
+            //dates are most recent first in chartResponseData - want to show in reverse order - most recent last
+            //so add to chartData array in reverse order
+            for (let i = chartResponseData.data.values.length -1; i >= 0; i--){
+                chartData.push(chartResponseData.data.values[i])
             }
             setChartData(chartData);
             setShowChart(true);
@@ -112,19 +113,19 @@ function Trade() {
             setShowResultCard(false);
         }
 
-        setStockSymbol(responseData.symbol);
+        setStockSymbol(responseData.searchResponse.symbol);
         setInputValue("");
-        setCurrentPrice(responseData.latestPrice);
-        setPriceChange(responseData.change);
-        setCompanyName(responseData.companyName);
+        setCurrentPrice(responseData.priceResponse.price);
+        setPriceChange(responseData.searchResponse.change);
+        setCompanyName(responseData.searchResponse.name);
 
         const response = await getHoldings(authCtx.userId);
-
+        
         if (response.data.length === 0){
             setCurrentShares(0);
         } else {
             for (let i = 0; i < response.data.length; i++){
-                if (response.data[i].symbol === responseData.symbol){
+                if (response.data[i].symbol === responseData.searchResponse.symbol){
                     setCurrentShares(response.data[i].shares_owned);
                     break;
                 } else {

@@ -11,7 +11,7 @@ function SearchResultsChart(props){
                 loader={<div>Loading Chart</div>}
                 data={[
                     ['Date', 'Price'],
-                    ...props.chartData.map(d => [d.date, d.close])
+                    ...props.chartData.map(d => [d.datetime, Number(d.close)])
                     ]}
                 options={{
                     title: `Closing Prices for ${props.companyName} the Last Week`,

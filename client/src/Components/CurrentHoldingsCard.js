@@ -22,7 +22,7 @@ function CurrentHoldingsCard(props) {
             headers:headers
             }
         );
-        setCurrentPrice(response.data.latestPrice);
+        setCurrentPrice(response.data.priceResponse.price);
         console.log(response.data);
 
     },[props.holding.symbol]);

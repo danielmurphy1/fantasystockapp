@@ -59,7 +59,7 @@ function CurrentHoldingsCard(props) {
                 <p>Current Shares: {props.holding.shares_owned}</p>
                 <p>Current Price:{price}</p>
                 <p>Value of Shares: {value}</p>
-                <Button onClick={()=>{props.handleStockSearch(event, props.holding.symbol)}} variant="outline-dark">View Details</Button>
+                <Button onClick={(event)=>{props.handleStockSearch(event, props.holding.symbol)}} variant="outline-dark">View Details</Button>
             </Card.Body>
         </Card>
     );

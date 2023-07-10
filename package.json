@@ -29,8 +29,5 @@
     "pg": "^8.6.0",
     "react-bootstrap": "^1.4.3",
     "react-google-charts": "^3.0.15"
-  },
-  "devDependencies": {
-    "jest": "^27.0.6"
   }
 }

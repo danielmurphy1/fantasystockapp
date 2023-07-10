@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Modal, Button, Form, ModalDialog } from 'react-bootstrap';
 import AuthContext from '../store/auth-context';
-const formatter = require('../utils/helpers/currency-formatter');
 import axios from 'axios';
+const formatter = require('../utils/helpers/currency-formatter');
 
 function TransactionModal(props) {
     const [sharesToTrade, setSharesToTrade] = useState(null);

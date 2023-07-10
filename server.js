@@ -14,12 +14,17 @@ app.use(stocksRouter);
 
 app.use(bodyParser.json());
 
-app.use("/", express.static(path.join(__dirname, "client/build")));
-app.use("/trade", express.static(path.join(__dirname, "client/build")));
-app.use("/portfolio", express.static(path.join(__dirname, "client/build")));
+// app.use("/", express.static(path.join(__dirname, "client/build")));
+app.use("/", express.static(path.join(process.env.FRONT_END)));
+// app.use("/trade", express.static(path.join(__dirname, "client/build")));
+app.use("/trade", express.static(path.join(process.env.FRONT_END)));
+// app.use("/portfolio", express.static(path.join(__dirname, "client/build")));
+app.use("/portfolio", express.static(path.join(process.env.FRONT_END)));
 
 app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, "client/build", "index.html"))
+    // res.sendFile(path.join(__dirname, "client/build", "index.html"))
+    res.sendFile(path.join(process.env.FRONT_END, "index.html"))
+
 });
 
 //for local DB

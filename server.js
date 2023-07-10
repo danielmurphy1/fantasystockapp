@@ -23,7 +23,7 @@ app.use("/trade", express.static("client/build"));
 app.use("/portfolio", express.static( "client/build"));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, "client/build", "index.html"))
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"))
 });
 
 //for local DB

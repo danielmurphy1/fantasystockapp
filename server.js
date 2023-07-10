@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 const app = express();
 require("dotenv").config();
 const bodyParser = require('body-parser');
@@ -14,8 +14,8 @@ app.use(stocksRouter);
 
 app.use(bodyParser.json());
 
-// app.use("/", express.static(path.join(__dirname, "client/build")));
-app.use(express.static("client/build"));
+app.use("/", express.static(path.join(__dirname, "client/build")));
+// app.use(express.static("client/build"));
 
 // app.use("/trade", express.static(path.join(__dirname, "client/build")));
 // app.use("/trade", express.static("client/build"));

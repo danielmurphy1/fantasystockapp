@@ -51,8 +51,8 @@ function CurrentHoldingsCard(props) {
     const value = formatter.format(currentValue);
 
     return(
-        <Card style={{width: '18rem'}} className="mt-2 shadow-lg">
-            <Card.Header id="holdings-header">
+        <Card style={{width: '18rem', padding: '0px'}} className="mt-2 shadow-lg">
+            <Card.Header id="holdings-header" style={{width: '100%'}}>
                 <h3>{props.holding.symbol}</h3>
             </Card.Header>
             <Card.Body>

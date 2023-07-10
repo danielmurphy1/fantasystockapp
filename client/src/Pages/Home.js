@@ -96,6 +96,9 @@ function Home() {
                     just like your dream of being an NFL coach one day. When you register, you receive $25,000
                     of pretend money to hedge your bets and see if you can become a stock trading tycoon! So, 
                     what are you waiting for? Register below and begin your dream to become a millionaire.
+                    <br></br> 
+                    Please note that if you have just loaded the page, you may need to wait 30s-60s for the hosting
+                    provider to spin up the backend. Thanks for your patience!
                 </p>
             </Container>
             {successfulReg && (<p className="text-center">Registration Successful - Login Below</p>)}

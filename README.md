@@ -5,6 +5,7 @@ _Web Based Fantasy Stock Trading Application_
 Use Fake Money To Test Your Stock Market Skills Trading Shares of Your Favorite Companies
 
 Start Trading Today! [Link to Application](https://fantasy-stocks-app.onrender.com) 
+___Due to TwelveData greatly increasing their rates for API usage, this app is using the free tier, and that tier has rate limits on the API. If you begin to experience errors when searching for stocks, that is likely the problem. Please be patient and wait a minute or two. Or, feel free to pull/fork this repo and run locally, as described above (which does take a bit more work). There is both a per minute (8 Credits) and per day (800) limit. This application doesn't get a ton of traffic, but there is a chance that the per day limit has been reached.___
 
 
 ## Instructions
@@ -64,8 +65,9 @@ II. Install Files to Run Locally
 - Node.js and Express.js - Backend Stack and Internal API
 - PostgreSQL - Database
 - TwelveData API - RESTAPI
-- Render - Hosting platform for both the React-add and the Node web server 
-- ElephantSQL - Hosting platform for the database.
+- Render - Hosting platform for both the React-app and the Node web server 
+- ~~ElephantSQL - Hosting platform for the database.~~
+- Neon Console - Hosting platform for the database.
 
 #### Other Tools
 
@@ -89,6 +91,9 @@ This project certainly pushed me to hone my skills as a self-taught devloper. Th
 I revisited this application after needing to find a new hosting site, due to Heroku no longer offering their free tier. After some reading, I chose Render for the new hosting platform. However, I also found out that IEX Cloud (the previous Stock Data API that I used), also recently changed their payment model. Their model no longer was an affordable option, so I found Twelve Data API. I had to make a few changes to the code. I can say that these changes were pretty simple for me to make with my current experience; however I KNOW that if I had to make these changes before around 9 months ago, it would have taken me much longer. At this point I was really able to see the growth that I have acheived as a developer and the progress I have made. 
 
 Secondly, it took me a little bit to get the appication deployed to Render. Lots of Googling, some forum reading, some video watching, and some tinkering under the hood, and I was up and running on Render. That was another moment where I realized how much I have grown as a developer. I really was able to keep at it and ask the right questions I needed to come to the answer. Getting this application up and running again was really a good exercise for me and has helped me to realize the journey I have taken.
+
+#### Update 2 
+With ElephanSQL going off-line, I had to find a new host for the SQL production database. After reading a lot and a bit of trial and error, I found Neon Console to handle this task. Moreover, TwelveData seems to have started charging for API usage, so there are very strict limits. When using the app, if you begin to have some issues with fetching stock prices and information, it is likely due to that. Feel free to pull/fork this repo and run locally...or just be a bit patient and wait for the time where more API Calls will be allowed.
 
 ### Author
 

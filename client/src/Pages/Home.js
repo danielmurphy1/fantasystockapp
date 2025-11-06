@@ -90,6 +90,10 @@ function Home() {
             <Container className="App welcome-container">
                 <h1>Welcome to Fantasy Stock Trader</h1>
                 <p>
+                    <em>Due to the significant increase in cost of the API that is consumed for this application, the free tier is used, which has rate limits
+                    with it. If you experience sudden inability to search for stocks, this is almost certainly the issue. Take a little break, and come back in a few minutes. </em>
+                </p>
+                <p>
                     Fantasy Stock Trader is to Wall Street what fantasy football is to the NFL.
                     Instead of a coach, here you take on the role of a stock market invester with 
                     none of the risks: because at Fantasy Stock Trader the money is imaginary, 
